@@ -20,8 +20,13 @@ public class RallyPointInstruction extends Instruction {
     public final static int S    	= 8;
     public final static int SE   	= 9;
 
-
     int inst;
+
+    //Examples: you can make a RallyPoint instruction with:
+    //RallyPointInstruction(3);
+    //RallyPointInstruction(RallyPointInstruction.NE);
+    //These do the same thing
+
     public RallyPointInstruction(int inst) {
        this.inst = inst;
     }
