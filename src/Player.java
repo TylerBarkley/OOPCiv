@@ -9,6 +9,7 @@ public class Player {
     ArrayList<ArrayList<Structure>>  structures;
     ArrayList<Army> armies;
     ArrayList<RallyPoint>  rallyPoints;
+
     MenuState menuState;
 
     public Player(){
@@ -24,5 +25,17 @@ public class Player {
 
     ArrayList<ArrayList<Unit>> getUnits(){
         return units;
+    }
+    ArrayList<ArrayList<Structure>> getStructures(){
+        return structures;
+    }
+    ArrayList<Army> getArmies(){
+        return armies;
+    }
+    ArrayList<RallyPoint> getRallyPoints(){
+        return rallyPoints;
+    }
+    MenuState getMenuState(){
+        return menuState;
     }
 }

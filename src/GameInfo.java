@@ -17,5 +17,10 @@ public class GameInfo {
 
     public final static int BASE            = 0;
 
+    public final static int RALLYPOINTMODE  = 0;
+    public final static int ARMYMODE       	= 1;
+    public final static int UNITMODE       	= 2;
+    public final static int STRUCTUREMODE   = 3;
+
 
 }
