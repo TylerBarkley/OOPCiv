@@ -1,13 +1,11 @@
 /**
  * Created by Trevor on 1/30/2017.
  */
-<<<<<<< HEAD
-public abstract class Unit {
+
+public abstract class Unit extends Controllable {
     int unitID;
 
-=======
-public class Unit extends Controllable {
->>>>>>> origin/master
+
     Tile currentTileOn;
 
     Map map;

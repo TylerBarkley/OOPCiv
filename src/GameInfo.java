@@ -6,7 +6,16 @@ public class GameInfo {
 
     public static final int UNIT_TYPES = 4, STRUCTURE_TYPES = 1;
 
-    public static final int COLONIST = 0, EXPLORER = 1, MELEE = 2, RANGED = 3;
+    public final static int EXPLORER     	= 0;
+    public final static int COLONIST    	= 1;
+    public final static int MELEEUNIT    	= 2;
+    public final static int RANGEDUNIT    	= 3;
 
-    public static final int BASE = 0;
+    public final static int ENTIREARMY     	= 0;
+    public final static int BATTLEGROUP    	= 1;
+    public final static int REINFORCEMENTS 	= 2;
+
+    public final static int BASE            = 0;
+
+
 }

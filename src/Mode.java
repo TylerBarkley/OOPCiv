@@ -6,9 +6,15 @@
 
 public abstract class Mode {
 
+    Player player;
+
     int currentType = 0;
+    int currentInstance = 0;
 
     abstract int cycleTypeL();
     abstract int cycleTypeR();
+
+    abstract int cycleInstanceL();
+    abstract int cycleInstanceR();
 
 }
