@@ -4,6 +4,7 @@
 public class Map {
     int mapXSize;
     int mapYSize;
+    Terrain terrainType;
     Tile [][] map;
 
     Map(int mapXsize,int mapYsize){
@@ -30,9 +31,12 @@ public class Map {
 
 public static void main(String argsp[]){
     Map map=new Map(10,10);
-    Unit u=new Unit(map.map[0][1],map);
+    Unit u=new MeleeFighter("MeleeFighter",map.map[0][1],map);
     u.move('W');
+    u.printStats();
+    map.print();
+    u.move('S');
     map.print();
     return;
-}
+    }
 }
