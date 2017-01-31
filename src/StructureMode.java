@@ -3,7 +3,7 @@
  */
 public class StructureMode extends Mode {
 
-    public final static int BASE    = 0;
+
 
     int cycleTypeL(){
         return currentType;

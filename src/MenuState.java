@@ -18,14 +18,17 @@ public class MenuState {
     int currentInstance = 0;
     int currentInstruction = 0;
 
+    Player player;
+
     ArrayList<Mode> ModeList;
 
     //Constructor
-    MenuState(){
-        Mode rp = new RallyPointMode();
-        Mode a = new ArmyMode();
-        Mode u = new UnitMode();
-        Mode s = new StructureMode();
+    MenuState(Player player){
+        this.player = player;
+        Mode rp = new RallyPointMode(player);
+        Mode a = new ArmyMode(player);
+        Mode u = new UnitMode(player);
+        Mode s = new StructureMode(player);
         ModeList.add(rp);
         ModeList.add(a);
         ModeList.add(u);
