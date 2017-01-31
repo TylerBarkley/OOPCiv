@@ -6,4 +6,8 @@ import java.util.ArrayList;
 public class Army extends Controllable {
     BattleGroup battleGroup;
     Reinforcements reinforcements;
+
+    void move(char cardinalDirection){
+
+    }
 }
