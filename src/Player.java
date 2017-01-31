@@ -25,4 +25,16 @@ public class Player {
     ArrayList<ArrayList<Unit>> getUnits(){
         return units;
     }
+    ArrayList<ArrayList<Structure>> getStructures(){
+        return structures;
+    }
+    ArrayList<Army> getArmies(){
+        return armies;
+    }
+    ArrayList<RallyPoint> getRallyPoints(){
+        return rallyPoints;
+    }
+    MenuState getMenuState(){
+        return menuState;
+    }
 }

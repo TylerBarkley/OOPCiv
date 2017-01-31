@@ -28,6 +28,9 @@ public class ArmyMode extends Mode {
         TypeModeList.add(bg);
         TypeModeList.add(r);
     }*/
+    ArmyMode(Player player){
+        this.player = player;
+    }
 
 
 
