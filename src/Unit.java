@@ -1,7 +1,7 @@
 /**
  * Created by Trevor on 1/30/2017.
  */
-public class Unit {
+public abstract class Unit {
     int unitID;
 
     Tile currentTileOn;
@@ -34,7 +34,7 @@ public class Unit {
         currentTileOn.removeUnit(this);
        switch(cardinalDirection) {
            case 'N':
-               if (map.map[currentTileOn.xPosition - 1][currentTileOn.yPosition].isPassable(this)) {
+               if (map.map[currentTileOn.xPosition - 1][currentTileOn.yPosition].isTraversable(this)) {
                    map.map[currentTileOn.xPosition - 1][currentTileOn.yPosition].addUnit(this);//North
                    currentTileOn = map.map[currentTileOn.xPosition - 1][currentTileOn.yPosition];
                } else {
@@ -42,7 +42,7 @@ public class Unit {
                }
                break;
            case 'S':
-               if (map.map[currentTileOn.xPosition + 1][currentTileOn.yPosition].isPassable(this)) {
+               if (map.map[currentTileOn.xPosition + 1][currentTileOn.yPosition].isTraversable(this)) {
                    map.map[currentTileOn.xPosition + 1][currentTileOn.yPosition].addUnit(this); //South
                    currentTileOn = map.map[currentTileOn.xPosition + 1][currentTileOn.yPosition];
                } else {
@@ -50,7 +50,7 @@ public class Unit {
                }
                break;
            case 'E':
-               if (map.map[currentTileOn.xPosition][currentTileOn.yPosition+1].isPassable(this)) {
+               if (map.map[currentTileOn.xPosition][currentTileOn.yPosition+1].isTraversable(this)) {
                    map.map[currentTileOn.xPosition][currentTileOn.yPosition + 1].addUnit(this);  //East
                    currentTileOn = map.map[currentTileOn.xPosition][currentTileOn.yPosition + 1];
                } else {
@@ -59,7 +59,7 @@ public class Unit {
 
                     break;
            case 'W':
-               if (map.map[currentTileOn.xPosition][currentTileOn.yPosition-1].isPassable(this)) {
+               if (map.map[currentTileOn.xPosition][currentTileOn.yPosition-1].isTraversable(this)) {
                    map.map[currentTileOn.xPosition][currentTileOn.yPosition -1].addUnit(this);  //East
                    currentTileOn = map.map[currentTileOn.xPosition][currentTileOn.yPosition-1];
                } else {
@@ -83,6 +83,7 @@ public class Unit {
     void printStats(){
         unitStats.print();
     }
+
     Unit(String unitType,Tile tileCreatedOn, Map currentMap){
         tileCreatedOn.addUnit(this);
         unitStats=StatsFactory.produceStats(unitType);

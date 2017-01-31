@@ -14,15 +14,24 @@ public class Tile {
 
     ArrayList<Unit> unitsOnTile;
 
-    Tile(int xPosition,int yPosition){
+    Tile(int xPosition,int yPosition, char terrainType){
         this.xPosition=xPosition;
         this.yPosition=yPosition;
         unitsOnTile=new ArrayList<Unit>();
-        terrainType=new Terrain();
+        if(terrainType=='W') {
+            this.terrainType = new Water();
+        }
+        if(terrainType=='M'){
+            this.terrainType=new Mountain();
+        }
+        if(terrainType=='G'){
+            this.terrainType=new Ground();
+        }
+
     }
 
-    boolean isPassable(Unit unitMovingToTile){
-        return terrainType.isPassable(unitMovingToTile);
+    boolean isTraversable(Unit unitMovingToTile){
+        return terrainType.isTraversableBy(unitMovingToTile);
     }
 
     void addUnit(Unit toBeAddedUnit){
@@ -40,7 +49,7 @@ public class Tile {
         if(unitsOnTile.size()>0){
             System.out.print(unitsOnTile.get(0).displayCharacter);
         }else {
-            System.out.print("T");
+            terrainType.print();
         }
     }
 
