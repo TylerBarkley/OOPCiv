@@ -1,7 +1,7 @@
 /**
  * Created by Trevor on 1/30/2017.
  */
-public class Unit {
+public class Unit extends Controllable {
     Tile currentTileOn;
     Map map;
     char displayCharacter='U';
