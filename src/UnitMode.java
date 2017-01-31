@@ -12,7 +12,7 @@ public class UnitMode extends Mode {
         units = player.getUnits();
     }
 
-
+    //CycleType methods reset the instance to 0 because we have different #s of different troops.
     int cycleTypeL(){
         currentInstance = 0;
         if(currentType == GameInfo.EXPLORER)
