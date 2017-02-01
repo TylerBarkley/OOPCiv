@@ -5,27 +5,40 @@ import java.util.ArrayList;
  */
 public class UnitMode extends Mode {
 
+    ArrayList<ArrayList<Unit>> units;
 
+    UnitMode(Player player){
+        this.player = player;
+        units = player.getUnits();
+    }
 
-
+    //CycleType methods reset the instance to 0 because we have different #s of different troops.
     int cycleTypeL(){
-        if(currentType == 0)
-            currentType = 3;
+        currentInstance = 0;
+        if(currentType == GameInfo.EXPLORER)
+            currentType = GameInfo.RANGEDUNIT;
         else currentType--;
         return currentType;
     }
     int cycleTypeR(){
-        if(currentType == 3)
-            currentType = 0;
+        currentInstance = 0;
+        if(currentType == GameInfo.RANGEDUNIT)
+            currentType = GameInfo.EXPLORER;
         else currentType++;
         return currentType;
     }
     int cycleInstanceL(){
-        ArrayList<ArrayList<Unit>> units = player.getUnits();
-
-        return 0;
+        int lastInstance = units.get(currentType).size() -1;
+        if(currentInstance == 0)
+            currentInstance = lastInstance;
+        else currentInstance--;
+        return currentInstance;
     }
     int cycleInstanceR(){
-        return 0;
+        int lastInstance = units.size() - 1;
+        if(currentInstance == lastInstance)
+            currentInstance = 0;
+        else currentInstance++;
+        return currentInstance;
     }
 }
