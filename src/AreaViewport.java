@@ -1,35 +1,39 @@
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
+import java.util.ArrayList;
 
 public class AreaViewport extends Viewport{
 	private Map map;
 	private int width, height;
-	private Graphics2D g2d;
-	private Decal[] decals;
+	private ArrayList<Decal> decals;
+	private ArrayList<int[]> decalLocations;
 	
 	public AreaViewport(int height, int width, Map map){
 		super(height, width);
 		this.height=height;
 		this.width=width;
 		this.map=map;
-		g2d=new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB).createGraphics();
 	}
 	
 	public void updateView(){
-		
+		generateMapView();
 	}
 	
-	public void placeDecal(Decal decal){
-		
+	public void placeDecal(Decal decal, int x, int y){
+		decals.add(decal);
+		decalLocations.add(new int[]{x, y});
+		generateMapView();
 	}
 	
-	private void gerateMapView(){
+	private void generateMapView(){
+		Graphics2D g2d=new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB).createGraphics();
+		paintComponent(g2d);
+	}
+	
+	public void paintComponent(Graphics g) {
+	    super.paintComponent(g);
 		TileViewFactory tileViewFactory=new TileViewFactory();
-		
-		g2d.clearRect(0, 0, width, height);
 		
 		for(int i=0; i<map.map.length; i++){
 			Tile[] row=map.map[i];
@@ -38,13 +42,17 @@ public class AreaViewport extends Viewport{
 				Terrain terrain=tile.terrainType;
 				TileView view=tileViewFactory.getTileView(terrain);
 				
-				g2d.drawImage(view.getImage(), i*TileView.SIZE, j*TileView.SIZE, TileView.SIZE, TileView.SIZE, null);
+				g.drawImage(view.getImage(), i*TileView.SIZE, j*TileView.SIZE, null);
 			}
 		}
-	}
-	
-	public void paintComponent(Graphics g) {
-	    super.paint(g);
-	    g.drawImage(g2d, 0, 0, null);
+		
+		for(int i=0; i<decals.size(); i++){
+			int x=decalLocations.get(i)[0];
+			int y=decalLocations.get(i)[1];
+			
+			Decal decal=decals.get(i);
+			
+			g.drawImage(decal.getImage(), (int)((x+0.5)*TileView.SIZE), (int)((y+0.5)*TileView.SIZE), null);
+		}
 	}
 }
