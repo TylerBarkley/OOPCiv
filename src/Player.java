@@ -17,4 +17,16 @@ public class Player {
 
         rallyPoints = new RallyPoint[GameInfo.MAX_ARMIES];
     }
+
+    public void remove(Unit target){
+        if(target.myArmy != null){
+            target.myArmy.remove(target);
+        }
+
+        units[target.getCID().typeID][target.getCID().personelID] = null;
+    }
+
+    public void remove(Structure target){
+        structures[target.getCID().typeID][target.getCID().personelID] = null;
+    }
 }

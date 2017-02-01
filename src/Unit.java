@@ -1,22 +1,10 @@
 /**
  * Created by Trevor on 1/30/2017.
  */
-<<<<<<< HEAD
-public abstract class Unit {
-    int unitID;
 
-=======
-public class Unit extends Controllable {
->>>>>>> origin/master
-    Tile currentTileOn;
+public abstract class Unit extends Controllable {
 
-    Map map;
-
-    Stats unitStats;
-
-    char displayCharacter='U';
-
-    char cardinalDirectionFacing;
+    Army myArmy;
 
     double state;
 
@@ -33,57 +21,39 @@ public class Unit extends Controllable {
 
     /*TODO: make a  Move Rally Point*/
 
+    void endTurn(){
+        //TODO Resource Consumption at end of turn
 
-    void move(char cardinalDirection){
-        currentTileOn.removeUnit(this);
-       switch(cardinalDirection) {
-           case 'N':
-               if (map.map[currentTileOn.xPosition - 1][currentTileOn.yPosition].isTraversable(this)) {
-                   map.map[currentTileOn.xPosition - 1][currentTileOn.yPosition].addUnit(this);//North
-                   currentTileOn = map.map[currentTileOn.xPosition - 1][currentTileOn.yPosition];
-               } else {
-                   currentTileOn.addUnit(this);//Add the unit back, move not successful
-               }
-               break;
-           case 'S':
-               if (map.map[currentTileOn.xPosition + 1][currentTileOn.yPosition].isTraversable(this)) {
-                   map.map[currentTileOn.xPosition + 1][currentTileOn.yPosition].addUnit(this); //South
-                   currentTileOn = map.map[currentTileOn.xPosition + 1][currentTileOn.yPosition];
-               } else {
-                   currentTileOn.addUnit(this); //Add the unit back, move not successful
-               }
-               break;
-           case 'E':
-               if (map.map[currentTileOn.xPosition][currentTileOn.yPosition+1].isTraversable(this)) {
-                   map.map[currentTileOn.xPosition][currentTileOn.yPosition + 1].addUnit(this);  //East
-                   currentTileOn = map.map[currentTileOn.xPosition][currentTileOn.yPosition + 1];
-               } else {
-                    currentTileOn.addUnit(this);
-               }
-
-                    break;
-           case 'W':
-               if (map.map[currentTileOn.xPosition][currentTileOn.yPosition-1].isTraversable(this)) {
-                   map.map[currentTileOn.xPosition][currentTileOn.yPosition -1].addUnit(this);  //East
-                   currentTileOn = map.map[currentTileOn.xPosition][currentTileOn.yPosition-1];
-               } else {
-                   currentTileOn.addUnit(this);
-               }
-               break;
-           case 'A':  map.map[currentTileOn.xPosition-1][currentTileOn.yPosition-1].addUnit(this);//North Weast
-                    currentTileOn=map.map[currentTileOn.xPosition-1][currentTileOn.yPosition-1];
-                    break;
-           case 'B':  map.map[currentTileOn.xPosition-1][currentTileOn.yPosition+1].addUnit(this);//North East
-                    currentTileOn=map.map[currentTileOn.xPosition-1][currentTileOn.yPosition+1];
-                    break;
-           case 'C':  map.map[currentTileOn.xPosition+1][currentTileOn.yPosition+1].addUnit(this); //South East
-                    currentTileOn= map.map[currentTileOn.xPosition+1][currentTileOn.yPosition+1];
-                    break;
-           case 'D': map.map[currentTileOn.xPosition+1][currentTileOn.yPosition-1].addUnit(this);  //South Weast
-                    currentTileOn=map.map[currentTileOn.xPosition+1][currentTileOn.yPosition-1];
-                    break;
-       }
+        //Reset the unit's action points
+        actionPoints = myArmy == null ? stats.movement : myArmy.stats.movement;
     }
+
+    void move(Map.MapDirection md){
+        Location targetLoc = loc.getAdjacent(md);
+        Tile targetTile = map.getTile(targetLoc);
+
+        if(targetTile.addUnit(this)){
+           map.getTile(this.getLoc()).removeUnit(this);
+           this.setLoc(targetLoc);
+        }
+        else{
+            this.clearCommands();
+        }
+    }
+
+    void healMe(){
+
+    }
+
+    void damageMe(){
+
+    }
+
+    void killMe(){
+        player.remove(this);
+        map.getTile(getLoc()).removeUnit(this);
+    }
+
     void printStats(){
         unitStats.print();
     }

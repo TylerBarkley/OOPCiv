@@ -5,18 +5,19 @@ import java.util.Random;
 public class Map {
     int mapXSize;
     int mapYSize;
-    Terrain terrainType;
-    Tile [][] map;
+    Tile [][] tileMatrix;
+
+    enum MapDirection {NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST}
 
     Map(int mapXsize,int mapYsize,boolean random){
         this.mapXSize=mapXsize;
         this.mapYSize=mapYsize;
         Random rn= new Random();
         char [] tileTypes={'G','W','M'};
-        map= new Tile [mapXSize][mapYSize];
+        tileMatrix = new Tile [mapXSize][mapYSize];
         for(int i=0;i<mapXSize;i++){
             for(int j=0;j<mapYSize;j++) {
-               map[i][j]=new Tile(i,j,tileTypes[rn.nextInt(3)]);
+                tileMatrix[i][j] = new Tile(i,j,tileTypes[rn.nextInt(3)]);
             }
         }
     }
@@ -24,19 +25,23 @@ public class Map {
         this.mapXSize=mapXsize;
         this.mapYSize=mapYsize;
         Random rn= new Random();
-        map= new Tile [mapXSize][mapYSize];
+        tileMatrix = new Tile [mapXSize][mapYSize];
         for(int i=0;i<mapXSize;i++){
             for(int j=0;j<mapYSize;j++) {
-                map[i][j]=new Tile(i,j,'G');
+                tileMatrix[i][j]=  new Tile(i,j,'G');
             }
         }
+    }
+
+    Tile getTile(Location loc){
+        return tileMatrix[loc.x][loc.y];
     }
 
     void print(){
         for(int i=0;i<mapXSize;i++){
             for(int j=0;j<mapYSize;j++){
                 System.out.print("  ");
-                map[i][j].print();
+                tileMatrix[i][j].print();
                 System.out.print("  ");
             }
             System.out.println();
@@ -45,7 +50,7 @@ public class Map {
 
 public static void main(String argsp[]){
     Map map=new Map(10,10,true);
-    Unit u=new MeleeFighter("MeleeFighter",map.map[0][1],map);
+    Unit u=new MeleeFighter("MeleeFighter",map.tileMatrix[0][1],map);
     u.move('W');
     u.printStats();
     map.print();

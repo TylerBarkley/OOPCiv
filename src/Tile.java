@@ -6,18 +6,15 @@ import java.util.List;
  */
 public class Tile {
 
-    public int xPosition;
-
-    public int yPosition;
+    Location loc;
 
     Terrain terrainType;
 
     ArrayList<Unit> unitsOnTile;
 
     Tile(int xPosition,int yPosition, char terrainType){
-        this.xPosition=xPosition;
-        this.yPosition=yPosition;
-        unitsOnTile=new ArrayList<Unit>();
+        loc = new Location(xPosition, yPosition);
+        unitsOnTile=new ArrayList<Unit>(GameInfo.MAX_UNITS);
         if(terrainType=='W') {
             this.terrainType = new Water();
         }
