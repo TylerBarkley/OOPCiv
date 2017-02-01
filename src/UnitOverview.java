@@ -14,7 +14,7 @@ public class UnitOverview extends Overview{
 	}
 	
 	private Unit[] getAllUnits(){
-		
+		return null;
 	}
 	
 	private void displayUnitStatus(Unit unit){
