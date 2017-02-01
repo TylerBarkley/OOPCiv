@@ -9,8 +9,8 @@ public class AreaViewport extends Viewport{
 	private ArrayList<Decal> decals;
 	private ArrayList<int[]> decalLocations;
 	
-	public AreaViewport(int height, int width, Map map){
-		super(height, width);
+	public AreaViewport(Player player, int width, int height, Map map){
+		super(player, width, height);
 		this.height=height;
 		this.width=width;
 		this.map=map;

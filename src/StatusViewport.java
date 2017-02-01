@@ -10,8 +10,8 @@ public class StatusViewport extends Viewport{
 	private int width, height;
 	private JTextArea structureArea, unitArea;
 	
-	public StatusViewport(int height, int width) {
-		super(height, width);
+	public StatusViewport(Player player, int width, int height) {
+		super(player, width, height);
 		this.width = width;
 		this.height = height;
 		
@@ -105,7 +105,7 @@ public class StatusViewport extends Viewport{
 	public static void main(String args[]) {
 		JFrame frame = new JFrame();
 		frame.setSize(600,600);
-		frame.add(new StatusViewport(600,600));
+		frame.add(new StatusViewport(new Player(), 600,600));
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
