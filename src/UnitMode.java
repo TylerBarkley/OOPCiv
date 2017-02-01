@@ -1,23 +1,44 @@
+import java.util.ArrayList;
+
 /**
  * Created by hankerins on 1/31/17.
  */
 public class UnitMode extends Mode {
 
-    public final static int EXPLORER     	= 0;
-    public final static int COLONIST    	= 1;
-    public final static int MELEEUNIT    	= 2;
-    public final static int RANGEDUNIT    	= 3;
+    ArrayList<ArrayList<Unit>> units;
 
+    UnitMode(Player player){
+        this.player = player;
+        units = player.getUnits();
+    }
+
+    //CycleType methods reset the instance to 0 because we have different #s of different troops.
     int cycleTypeL(){
-        if(currentType == 0)
-            currentType = 3;
+        currentInstance = 0;
+        if(currentType == GameInfo.EXPLORER)
+            currentType = GameInfo.RANGEDUNIT;
         else currentType--;
         return currentType;
     }
     int cycleTypeR(){
-        if(currentType == 3)
-            currentType = 0;
+        currentInstance = 0;
+        if(currentType == GameInfo.RANGEDUNIT)
+            currentType = GameInfo.EXPLORER;
         else currentType++;
         return currentType;
+    }
+    int cycleInstanceL(){
+        int lastInstance = units.get(currentType).size() -1;
+        if(currentInstance == 0)
+            currentInstance = lastInstance;
+        else currentInstance--;
+        return currentInstance;
+    }
+    int cycleInstanceR(){
+        int lastInstance = units.size() - 1;
+        if(currentInstance == lastInstance)
+            currentInstance = 0;
+        else currentInstance++;
+        return currentInstance;
     }
 }
