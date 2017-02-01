@@ -1,21 +1,42 @@
+import java.util.ArrayList;
+
 /**
  * Created by Zac on 1/31/2017.
  */
 public class Player {
     int numUnits = 0;
-    Unit[][] units;
-    Structure[][] structures;
-    Army[] armies;
-    RallyPoint[] rallyPoints;
+    ArrayList<ArrayList<Unit>> units;
+    ArrayList<ArrayList<Structure>>  structures;
+    ArrayList<Army> armies;
+    ArrayList<RallyPoint>  rallyPoints;
+
+    MenuState menuState;
 
     public Player(){
-        units = new Unit[GameInfo.UNIT_TYPES][GameInfo.MAX_PER_TYPE];
+        for(int i = 0; i < GameInfo.UNIT_TYPES; i++){
+            units.add(new ArrayList<Unit>());
+        }
+        for(int i = 0; i < GameInfo.STRUCTURE_TYPES; i++){
+            structures.add(new ArrayList<Structure>());
+        }
 
-        structures = new Structure[GameInfo.STRUCTURE_TYPES][GameInfo.MAX_PER_TYPE];
+        menuState = new MenuState(this);
+    }
 
-        armies = new Army[GameInfo.MAX_ARMIES];
-
-        rallyPoints = new RallyPoint[GameInfo.MAX_ARMIES];
+    ArrayList<ArrayList<Unit>> getUnits(){
+        return units;
+    }
+    ArrayList<ArrayList<Structure>> getStructures(){
+        return structures;
+    }
+    ArrayList<Army> getArmies(){
+        return armies;
+    }
+    ArrayList<RallyPoint> getRallyPoints(){
+        return rallyPoints;
+    }
+    MenuState getMenuState(){
+        return menuState;
     }
 
     public void remove(Unit target){

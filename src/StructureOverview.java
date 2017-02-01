@@ -12,8 +12,8 @@ public class StructureOverview extends Overview{
 		
 	}
 
-	private void getAllStructures(){
-		
+	private Structure getAllStructures(){
+		return null;
 	}
 	
 	private void displayStructureStatus(Structure structure){
