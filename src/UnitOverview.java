@@ -1,16 +1,9 @@
 
 public class UnitOverview extends Overview{
 
-	public void updateWindow() {
-		
-	}
+	public UnitOverview(Player player, int width, int height) {
+		super(player, width, height);
 
-	public void openWindow() {
-		
-	}
-
-	public void closeWindow() {
-		
 	}
 	
 	private Unit[] getAllUnits(){
@@ -18,6 +11,15 @@ public class UnitOverview extends Overview{
 	}
 	
 	private void displayUnitStatus(Unit unit){
+		
+	}
+
+	public void updateView() {
+
+		
+	}
+
+	public void displayView() {
 		
 	}
 }
