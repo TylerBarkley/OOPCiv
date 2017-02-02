@@ -6,29 +6,21 @@
 
 
 public class RallyPointInstruction extends Instruction {
-    //Rally Point movement instructions are queued then executed immediately upon Place.
-    //This way we can check if there's a path from old Rally Point to new Rally Point easily at each move instruction.
-    //RPInst inst;
 
-    public final static int NW     	= 1;
-    public final static int N     	= 2;
-    public final static int NE   	= 3;
-    public final static int W    	= 4;
-    public final static int SELECT 	= 5;
-    public final static int E    	= 6;
-    public final static int SW   	= 7;
-    public final static int S    	= 8;
-    public final static int SE   	= 9;
+    public final static int RP_MOVEENTER   	= 40;
+    public final static int RP_DELETE     	= 41;
 
-    int inst;
 
-    //Examples: you can make a RallyPoint instruction with:
-    //RallyPointInstruction(3);
-    //RallyPointInstruction(RallyPointInstruction.NE);
-    //These do the same thing
+    public RallyPointInstruction(int inst_num){
+        super(inst_num);
+        setString();
 
-    public RallyPointInstruction(int inst) {
-       this.inst = inst;
+    }
+    public void setString(){
+        setStringDirection();
+        if(inst_num == RP_MOVEENTER)		inst = "MoveEnter";
+        else if(inst_num == RP_DELETE)		inst = "Delete";
+
     }
 
 }
