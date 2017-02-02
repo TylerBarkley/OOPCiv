@@ -4,15 +4,15 @@
 public abstract class Terrain {
     char tileCharacter;
     boolean isTraversable;
-    Terrain(){}
+    int movePenalty;
+    AOEInterface tileAOE;
 
-   boolean isTraversableBy(Unit unit){
-       /* Some BullShit Code to test if a specific unit can pass*/
-        return isTraversable; //Always returns true
-   }
+   abstract boolean isTraversableBy(Unit unit);
+
+   abstract void effect(Unit unit);
+
    void print(){
        System.out.print(tileCharacter);
-
    }
 
 }

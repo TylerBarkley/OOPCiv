@@ -38,4 +38,16 @@ public class Player {
     MenuState getMenuState(){
         return menuState;
     }
+
+    public void remove(Unit target){
+        if(target.myArmy != null){
+            //TODO target.myArmy.remove(target);
+        }
+
+        units.get(target.getCID().typeID).remove(target.getCID().personelID);
+    }
+
+    public void remove(Structure target){
+        structures.get(target.getCID().typeID).remove(target.getCID().personelID);
+    }
 }

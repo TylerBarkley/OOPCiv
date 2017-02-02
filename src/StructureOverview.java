@@ -1,22 +1,23 @@
 public class StructureOverview extends Overview{
 
-	public void updateWindow() {
-		
+	public StructureOverview(Player player, int width, int height) {
+		super(player, width, height);
+
 	}
 
-	public void openWindow() {
-		
-	}
-
-	public void closeWindow() {
-		
-	}
-
-	private void getAllStructures(){
-		
+	private Structure getAllStructures(){
+		return null;
 	}
 	
 	private void displayStructureStatus(Structure structure){
+		
+	}
+
+	public void updateView() {
+		
+	}
+
+	public void displayView() {
 		
 	}
 }

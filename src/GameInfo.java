@@ -4,6 +4,7 @@
 public class GameInfo {
     public static final int MAX_UNITS = 25, MAX_PER_TYPE = 10, MAX_ARMIES = 10;
 
+    //Number of Types of different Units and Structures
     public static final int UNIT_TYPES = 4, STRUCTURE_TYPES = 1;
 
     public final static int EXPLORER     	= 0;
@@ -21,6 +22,4 @@ public class GameInfo {
     public final static int ARMYMODE       	= 1;
     public final static int UNITMODE       	= 2;
     public final static int STRUCTUREMODE   = 3;
-
-
 }

@@ -1,20 +1,16 @@
 /**
- * Created by Trevor on 1/31/2017.
+ * Created by Tyler Barkley on 2/1/2017.
  */
-public class Stats {
-    int offensiveDamage;
+public abstract class  Stats {
+    private int offensiveDamage;
 
-    int defensiveDamage;
+    private int defensiveDamage;
 
-    int armor;
+    private int armor;
 
-    int movement;
+    private int health;
 
-    int health;
-
-    int UpKeep;
-
-    double ProductionRates;
+    private int UpKeep;
 
     void setOffensiveDamage(int offensiveDamage){this.offensiveDamage=offensiveDamage;}
 
@@ -22,26 +18,18 @@ public class Stats {
 
     void setArmor(int armor){this.armor=armor;}
 
-    void setMovement(int movement){this.movement=movement;}
-
     void setHealth(int health){this.health=health;}
 
     void setUpKeep(int UpKeep){this.UpKeep=UpKeep;}
 
-    void setProductionRates(double ProductionRates){this.ProductionRates=ProductionRates;}
+    int getOffensiveDamage(){return offensiveDamage;}
 
-    void print(){
-        System.out.print("Health: "+health);
-        System.out.print(" Offensive Damage: "+offensiveDamage);
-        System.out.print(" Defensive Damage: "+defensiveDamage);
-        System.out.print(" Armor: "+armor);
-        System.out.print(" Movement: "+movement);
-        System.out.print(" UpKeep: "+UpKeep);
-        System.out.print(" Production Rates: "+ProductionRates);
-        System.out.println();
+    int getDefensiveDamage(){return defensiveDamage;}
 
-    }
+    int getArmor(){return armor;}
 
-    Stats(){
-    }
+    int getHealth(){return health;}
+
+    int getUpKeep(){return UpKeep;}
+
 }

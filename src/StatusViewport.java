@@ -10,8 +10,8 @@ public class StatusViewport extends Viewport{
 	private int width, height;
 	private JTextArea structureArea, unitArea;
 	
-	public StatusViewport(int height, int width) {
-		super(height, width);
+	public StatusViewport(Player player, int width, int height) {
+		super(player, width, height);
 		this.width = width;
 		this.height = height;
 		
@@ -37,46 +37,20 @@ public class StatusViewport extends Viewport{
 		
 	}
 
-	@Override
 	public void updateView() {
-		// TODO Auto-generated method stub
 		
 	}
 	
 	public void displayView() {
 		
-		JPanel panelA = new JPanel() {
-			public Dimension getMinimumSize() {
-				return getPreferredSize();
-			}
-			
-			public Dimension getPreferredSize() {
-				return new Dimension(width/2 - 20 ,height);
-			}
-			
-			public Dimension getMaximumSize() {
-				return getPreferredSize();
-			}
-		};
+		FixedPanel panelA= new FixedPanel(width/2-20, height);
 		panelA.setLayout(new BoxLayout(panelA,BoxLayout.Y_AXIS));
 		panelA.add(new JLabel("Structures"));
 		panelA.add(new JScrollPane(structureArea));
 		
 		
 		
-		JPanel panelB = new JPanel() {
-			public Dimension getMinimumSize() {
-				return getPreferredSize();
-			}
-			
-			public Dimension getPreferredSize() {
-				return new Dimension(width/2 - 20,height);
-			}
-			
-			public Dimension getMaximumSize() {
-				return getPreferredSize();
-			}
-		};
+		FixedPanel panelB= new FixedPanel(width/2-20, height);
 		panelB.setLayout(new BoxLayout(panelB,BoxLayout.Y_AXIS));
 		panelB.add(new JLabel("Units",JLabel.CENTER));
 		panelB.add(new JScrollPane(unitArea));
@@ -96,18 +70,7 @@ public class StatusViewport extends Viewport{
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		this.add(title);
-		this.add(panelAB);
-		
-		
-		
-	}
-	
-	public static void main(String args[]) {
-		JFrame frame = new JFrame();
-		frame.setSize(600,600);
-		frame.add(new StatusViewport(600,600));
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.add(panelAB);	
 	}
 }
 
