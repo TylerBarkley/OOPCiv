@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -25,7 +26,16 @@ public class StatusViewport extends Viewport{
 	}
 
 	public void displayAllStatuses(){
+		ArrayList<ArrayList<Unit>> units = this.player.getUnits();
+		ArrayList<ArrayList<Structure>> strucs = this.player.getStructures();
 		
+		for(int i = 0; i < units.size();i++) {
+			for(int j = 0; j < units.get(i).size()) {
+				String unitType = units.get(i).get(j).getUnitType();
+				Stats unitStats = units.get(i).get(j).getUnitStats();
+				unitArea.setText(unitType +":" + "\n" + "Health: " + unitStats.getHealth() + unitStats.getUpKeep());
+			}
+		}
 		
 	}
 	
@@ -65,6 +75,7 @@ public class StatusViewport extends Viewport{
 		//panelAB.setBackground(Color.blue);
 		
 		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+		this.setBackground(Color.orange);
 		//this.add(Box.createVerticalGlue());
 		JLabel title = new JLabel("Status ViewPort");
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
