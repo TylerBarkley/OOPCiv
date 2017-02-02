@@ -31,12 +31,6 @@ public class Player {
     }
     ArrayList<Army> getArmies(){
         return armies;
-
-
-
-
-
-
     }
     ArrayList<RallyPoint> getRallyPoints(){
         return rallyPoints;

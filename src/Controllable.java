@@ -7,6 +7,7 @@ public abstract class Controllable {
     Location loc;
     Map map;
     CommandQueue commandQueue;
+    Stats myStats;
 
     int currentHealth;
     int actionPoints;
@@ -14,7 +15,10 @@ public abstract class Controllable {
     abstract void endTurn();
 
     void healMe(int ammount){
-        this.currentHealth += ammount;
+
+        if((this.currentHealth += ammount) > myStats.getHealth()) {
+            this.currentHealth = myStats.getHealth();
+        }
     }
 
     void damageMe(int ammount){

@@ -3,7 +3,6 @@
  */
 public class Structure extends Controllable {
 
-    StructureStats structurestats;
     double state;
 
     void powerDown(){
@@ -28,16 +27,14 @@ public class Structure extends Controllable {
 //      map.getTile(getLoc()).removeStructure();
     }
 
-    void printStats(){
-        structurestats.print();
-    }
+    void printStats(){ }
 
 //    public UnitStats getStats() {return StructureStats;    }
 
     //TODO BE FULLY IMPLEMENTED FOR STRUCTURES
     Structure(String structureType,Tile tileCreatedOn, Map currentMap){
 //        tileCreatedOn.addStructure(this);
-        structurestats=StructureStatsFactory.produceStructureStats(structureType);
+        myStats = StructureStatsFactory.produceStructureStats(structureType);
 //        currentTileOn=tileCreatedOn;
         map=currentMap;
     }
