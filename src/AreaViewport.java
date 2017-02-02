@@ -1,7 +1,7 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -27,8 +27,11 @@ public class AreaViewport extends Viewport{
 	}
 	
 	public void displayView(){
-		this.add(new JScrollPane (new JLabel( new ImageIcon (image))));
-		this.validate();
+		this.setBackground(Color.blue);
+		g2d.setColor(Color.green);   		//For testing only 
+		g2d.fillRect(0, 0, width, height);
+		//this.add(new JScrollPane (new JLabel( new ImageIcon (image))));
+		//this.validate();
 	}
 	
 	public void updateView(){
