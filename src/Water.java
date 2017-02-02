@@ -2,8 +2,20 @@
  * Created by Trevor on 1/31/2017.
  */
 public class Water extends Terrain {
-    Water(){
-        isTraversable=false;
+    Water(AOEInterface aoe){
         tileCharacter='W';
+        movePenalty = 2;
+        tileAOE = aoe;
+    }
+
+    @Override
+    boolean isTraversableBy(Unit unit) {
+        return true;
+    }
+
+    @Override
+    void effect(Unit unit) {
+        unit.actionPoints -= movePenalty;
+        tileAOE.doEffect(unit);
     }
 }

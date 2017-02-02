@@ -24,7 +24,15 @@
         //TODO Resource Consumption at end of turn
 
         //Reset the unit's action points
-        actionPoints = myArmy == null ? ((UnitStats) myStats).getMovement() : myArmy.stats.movement;
+        int possibleMovement = myArmy == null ? ((UnitStats) myStats).getMovement() : myArmy.getAvailableMovement();
+        if((actionPoints += possibleMovement) < possibleMovement){
+            actionPoints = possibleMovement;
+        }
+    }
+
+    void clearCommands(){
+        this.getCommandQueue().clear();
+        this.actionPoints = myArmy == null ? ((UnitStats) myStats).getMovement() : myArmy.getAvailableMovement();
     }
 
     void move(Map.MapDirection md){

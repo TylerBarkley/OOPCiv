@@ -35,9 +35,7 @@ public abstract class Controllable {
         commandQueue.add(incomingCommand);
     }
 
-    void clearCommands(){
-        commandQueue.clear();
-    }
+    abstract void clearCommands();
 
     public abstract void doTurn();
 
