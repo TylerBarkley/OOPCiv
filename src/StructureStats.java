@@ -8,6 +8,7 @@ public class StructureStats extends Stats{
     void setProductionRates(double ProductionRates){this.ProductionRates=ProductionRates;}
 
     double getProductionRates(){return ProductionRates;}
+    int getMovement(){return 0;}
 
     void print(){
         System.out.print("Health: "+getHealth());

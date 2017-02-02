@@ -31,5 +31,7 @@ public abstract class  Stats {
     int getHealth(){return health;}
 
     int getUpKeep(){return UpKeep;}
+    abstract int getMovement();
+    abstract void print();
 
 }

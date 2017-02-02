@@ -17,7 +17,7 @@ public class Map {
         tileMatrix = new Tile [mapXSize][mapYSize];
         for(int i=0;i<mapXSize;i++){
             for(int j=0;j<mapYSize;j++) {
-                tileMatrix[i][j] = new Tile(i,j,tileTypes[rn.nextInt(3)]);
+                tileMatrix[i][j] = new Tile(new Location(i,j),tileTypes[rn.nextInt(3)]);
             }
         }
     }
@@ -28,7 +28,7 @@ public class Map {
         tileMatrix = new Tile [mapXSize][mapYSize];
         for(int i=0;i<mapXSize;i++){
             for(int j=0;j<mapYSize;j++) {
-                tileMatrix[i][j]=  new Tile(i,j,'G');
+                tileMatrix[i][j]=  new Tile(new Location(i,j),'G');
             }
         }
     }
@@ -36,26 +36,22 @@ public class Map {
     Tile getTile(Location loc){
         return tileMatrix[loc.x][loc.y];
     }
-
-    void print(){
+//TODO: Make a print function for map for debugging
+    /*void print(){
         for(int i=0;i<mapXSize;i++){
             for(int j=0;j<mapYSize;j++){
                 System.out.print("  ");
-                tileMatrix[i][j].print();
+                //tileMatrix[i][j].print();
                 System.out.print("  ");
             }
             System.out.println();
         }
-    }
+    }*/
 
 public static void main(String argsp[]){
     Map map=new Map(10,10,true);
-    Unit u=new MeleeFighter("MeleeFighter",map.tileMatrix[0][1],map);
-    u.move('W');
-    u.printStats();
-    map.print();
-    u.move('S');
-    map.print();
+    Unit u=UnitFactory.createUnit("RangedFighter",map);
+    u.getUnitStats().print();
     return;
     }
 }

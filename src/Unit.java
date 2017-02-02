@@ -6,7 +6,9 @@
 
     Army myArmy;
     double state;
-
+    String unitType;
+    Stats myStats;
+    
     /*Player ownedByPlayer */
     void Standby(){
         state=1;
@@ -52,10 +54,19 @@
         player.remove(this);
         map.getTile(getLoc()).removeUnit(this);
     }
+    
+    String getUnitType() {
+    	return unitType;
+    }
+    
+    Stats getUnitStats() {
+    	return myStats;
+    }
 
     Unit(String unitType, Map currentMap){
         myStats = UnitStatsFactory.produceUnitStats(unitType);
         map=currentMap;
         actionPointCap = ((UnitStats) myStats).getMovement();
+        this.unitType = unitType;
     }
 }
