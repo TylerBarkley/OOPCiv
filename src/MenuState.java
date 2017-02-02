@@ -15,6 +15,8 @@ import java.util.ArrayList;
   * */
 public class MenuState {
 
+    //The following 4 stats define what happens when a player hits Enter
+    //They should be visible to the player in the main menu
     int currentMode = 0;
     int currentType = 0;
     int currentInstance = 0;

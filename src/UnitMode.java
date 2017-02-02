@@ -7,6 +7,7 @@ public class UnitMode extends Mode {
 
     ArrayList<ArrayList<Unit>> units;
 
+
     UnitMode(Player player){
         this.player = player;
         units = player.getUnits();
@@ -40,5 +41,10 @@ public class UnitMode extends Mode {
             currentInstance = 0;
         else currentInstance++;
         return currentInstance;
+    }
+
+    int cycleInstructionL(){
+
+        return currentInstruction;
     }
 }
