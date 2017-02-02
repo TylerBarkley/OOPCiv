@@ -7,7 +7,7 @@
     Army myArmy;
     double state;
     String unitType;
-    Stats stats; 
+    UnitStats unitstats;
     
     /*Player ownedByPlayer */
     void Standby(){
@@ -59,8 +59,8 @@
     	return unitType;
     }
     
-    Stats getUnitStats() {
-    	return stats;
+    UnitStats getUnitStats() {
+    	return unitstats;
     }
 
     Unit(String unitType, Map currentMap){
