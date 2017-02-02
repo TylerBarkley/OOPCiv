@@ -4,7 +4,7 @@
 public class UnitStatsFactory {
     static UnitStats produceUnitStats(String orderableToBeCreated){
         UnitStats statsOfOrderable=new UnitStats();
-        /*MeleeFighter Stats Construction*/
+        /*MeleeFighter UnitStats Construction*/
         if(orderableToBeCreated.equals("MeleeFighter")) {
             statsOfOrderable.setArmor(3);
             statsOfOrderable.setDefensiveDamage(3);
@@ -13,7 +13,7 @@ public class UnitStatsFactory {
             statsOfOrderable.setUpKeep(3);
             statsOfOrderable.setMovement(1);
         }
-        /*RangedFighter Stats Construction*/
+        /*RangedFighter UnitStats Construction*/
         else if(orderableToBeCreated.equals("RangedFighter")) {
             statsOfOrderable.setArmor(2);
             statsOfOrderable.setDefensiveDamage(1);
@@ -22,7 +22,7 @@ public class UnitStatsFactory {
             statsOfOrderable.setUpKeep(3);
             statsOfOrderable.setMovement(2);
         }
-        /*Explorer Stats Construction*/
+        /*Explorer UnitStats Construction*/
         else if(orderableToBeCreated.equals("Explorer")) {
             statsOfOrderable.setArmor(1);
             statsOfOrderable.setDefensiveDamage(1);
@@ -31,7 +31,7 @@ public class UnitStatsFactory {
             statsOfOrderable.setUpKeep(2);
             statsOfOrderable.setMovement(3);
         }
-        /*Colonist Stats Construction*/
+        /*Colonist UnitStats Construction*/
         else if(orderableToBeCreated.equals("Colonist")) {
             statsOfOrderable.setArmor(1);
             statsOfOrderable.setDefensiveDamage(1);

@@ -1,42 +1,22 @@
 /**
  * Created by Tyler Barkley on 2/1/2017.
  */
-public class StructureStats {
-    int offensiveDamage;
+public class StructureStats extends Stats{
 
-    int defensiveDamage;
-
-    int armor;
-
-    int movement;
-
-    int health;
-
-    int UpKeep;
-
-    double ProductionRates;
-
-    void setOffensiveDamage(int offensiveDamage){this.offensiveDamage=offensiveDamage;}
-
-    void setDefensiveDamage(int defensiveDamage){this.defensiveDamage=defensiveDamage;}
-
-    void setArmor(int armor){this.armor=armor;}
-
-    void setHealth(int health){this.health=health;}
-
-    void setUpKeep(int UpKeep){this.UpKeep=UpKeep;}
+    private double ProductionRates;
 
     void setProductionRates(double ProductionRates){this.ProductionRates=ProductionRates;}
 
-    void print(){
-        System.out.print("Health: "+health);
-        System.out.print(" Offensive Damage: "+offensiveDamage);
-        System.out.print(" Defensive Damage: "+defensiveDamage);
-        System.out.print(" Armor: "+armor);
-        System.out.print(" UpKeep: "+UpKeep);
-        System.out.print(" Production Rates: "+ProductionRates);
-        System.out.println();
+    double getProductionRates(){return ProductionRates;}
 
+    void print(){
+        System.out.print("Health: "+getHealth());
+        System.out.print(" Offensive Damage: "+getOffensiveDamage());
+        System.out.print(" Defensive Damage: "+getDefensiveDamage());
+        System.out.print(" Armor: "+getArmor());
+        System.out.print(" UpKeep: "+getUpKeep());
+        System.out.print(" Production Rates: "+getProductionRates());
+        System.out.println();
     }
 
     StructureStats(){
