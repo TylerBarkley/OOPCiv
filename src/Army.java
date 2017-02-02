@@ -43,8 +43,8 @@ public class Army {
     }
 
     public void Reinforce(Unit arrived){
-        if(arrived.getStats().getMovement() < getAvailableMovement()){
-            setAvailableMovement(arrived.getStats().getMovement());
+        if(arrived.getUnitStats().getMovement() < getAvailableMovement()){
+            setAvailableMovement(arrived.getUnitStats().getMovement());
         }
     }
     void move(char cardinalDirection){

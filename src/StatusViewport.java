@@ -30,7 +30,7 @@ public class StatusViewport extends Viewport{
 		ArrayList<ArrayList<Structure>> strucs = this.player.getStructures();
 		
 		for(int i = 0; i < units.size();i++) {
-			for(int j = 0; j < units.get(i).size()) {
+			for(int j = 0; j < units.get(i).size(); j++) {
 				String unitType = units.get(i).get(j).getUnitType();
 				Stats unitStats = units.get(i).get(j).getUnitStats();
 				unitArea.setText(unitType +":" + "\n" + "Health: " + unitStats.getHealth() + unitStats.getUpKeep());
