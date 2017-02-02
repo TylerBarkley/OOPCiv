@@ -20,6 +20,10 @@ public class CommandQueue {
         queue.add(command);
     }
 
+    public boolean isEmpty(){
+        return queue.isEmpty();
+    }
+
     public void clear(){
         queue.clear();
     }

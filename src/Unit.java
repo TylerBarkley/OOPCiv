@@ -32,7 +32,7 @@
 
     void clearCommands(){
         this.getCommandQueue().clear();
-        this.actionPoints = myArmy == null ? ((UnitStats) myStats).getMovement() : myArmy.getAvailableMovement();
+        this.actionPoints = myArmy == null ? actionPointCap : myArmy.getAvailableMovement();
     }
 
     void move(Map.MapDirection md){
@@ -53,12 +53,9 @@
         map.getTile(getLoc()).removeUnit(this);
     }
 
-    void printStats(){  }
-
-    public UnitStats getStats() {return UnitStats;    }
-
     Unit(String unitType, Map currentMap){
         myStats = UnitStatsFactory.produceUnitStats(unitType);
         map=currentMap;
+        actionPointCap = ((UnitStats) myStats).getMovement();
     }
 }

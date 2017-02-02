@@ -27,6 +27,12 @@ public class Structure extends Controllable {
 //      map.getTile(getLoc()).removeStructure();
     }
 
+    @Override
+    void clearCommands() {
+        this.getCommandQueue().clear();
+        this.actionPoints = actionPointCap;
+    }
+
     void printStats(){ }
 
 //    public UnitStats getStats() {return StructureStats;    }
@@ -37,5 +43,6 @@ public class Structure extends Controllable {
         myStats = StructureStatsFactory.produceStructureStats(structureType);
 //        currentTileOn=tileCreatedOn;
         map=currentMap;
+        actionPointCap = 1;
     }
 }

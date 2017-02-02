@@ -41,7 +41,7 @@ public class Player {
 
     public void remove(Unit target){
         if(target.myArmy != null){
-            target.myArmy.remove(target);
+            //TODO target.myArmy.remove(target);
         }
 
         units.get(target.getCID().typeID).remove(target.getCID().personelID);

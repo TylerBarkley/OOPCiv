@@ -36,6 +36,7 @@ public class Tile {
         if(!isTraversable(toBeAddedUnit)){ return false; }
         unitsOnTile.add(toBeAddedUnit);
         terrainType.effect(toBeAddedUnit);
+        return true;
     }
 
     void removeUnit(Unit toBeDeletedUnit){
@@ -43,13 +44,4 @@ public class Tile {
         unitsOnTile.remove(toBeDeletedUnit);
         System.out.println(unitsOnTile.size());
     }
-
-    void print(){
-        if(unitsOnTile.size()>0){
-            System.out.print(unitsOnTile.get(0).displayCharacter);
-        }else {
-            terrainType.print();
-        }
-    }
-
 }

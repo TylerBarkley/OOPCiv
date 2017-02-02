@@ -11,6 +11,7 @@ public abstract class Controllable {
 
     int currentHealth;
     int actionPoints;
+    int actionPointCap;
 
     abstract void endTurn();
 
@@ -37,7 +38,16 @@ public abstract class Controllable {
 
     abstract void clearCommands();
 
-    public abstract void doTurn();
+    public void doTurn(){
+
+        while(actionPoints > 0 && !commandQueue.isEmpty()) {
+            commandQueue.carryOut();
+        }
+
+        if(commandQueue.isEmpty()){
+            actionPoints = actionPointCap;
+        }
+    }
 
     public Player getPlayer() {
         return player;
