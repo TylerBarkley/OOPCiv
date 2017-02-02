@@ -146,6 +146,36 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
             System.out.println("Enter");
         }
+        if(e.getKeyCode() == KeyEvent.VK_0){
+            System.out.println("10");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_1){
+            System.out.println("01");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_2){
+            System.out.println("02");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_3){
+            System.out.println("03");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_4){
+            System.out.println("04");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_5){
+            System.out.println("05");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_6){
+            System.out.println("06");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_7){
+            System.out.println("07");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_8){
+            System.out.println("08");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_9){
+            System.out.println("09");
+        }
 
     }
 
