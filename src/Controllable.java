@@ -13,9 +13,17 @@ public abstract class Controllable {
 
     abstract void endTurn();
 
-    abstract void healMe();
+    void healMe(int ammount){
+        this.currentHealth += ammount;
+    }
 
-    abstract void damageMe();
+    void damageMe(int ammount){
+        this.currentHealth -= ammount;
+
+        if(this.currentHealth <= 0){
+            this.killMe();
+        }
+    }
 
     abstract void killMe();
 

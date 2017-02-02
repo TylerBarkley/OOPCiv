@@ -22,19 +22,10 @@ public class Structure extends Controllable {
         //TODO Unit Production at end of turn
     }
 
-
-    void healMe(){
-
-    }
-
-    void damageMe(){
-
-    }
-
     void killMe(){
         player.remove(this);
-        //TODO IMPLEMEN BELOW FOR STRUCTURES
-//        map.getTile(getLoc()).removeStructure(this);
+
+//      map.getTile(getLoc()).removeStructure();
     }
 
     void printStats(){

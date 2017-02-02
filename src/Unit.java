@@ -41,14 +41,6 @@
         }
     }
 
-    void healMe(){
-
-    }
-
-    void damageMe(){
-
-    }
-
     void killMe(){
         player.remove(this);
         map.getTile(getLoc()).removeUnit(this);

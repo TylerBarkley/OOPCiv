@@ -31,6 +31,12 @@ public class Player {
     }
     ArrayList<Army> getArmies(){
         return armies;
+
+
+
+
+
+
     }
     ArrayList<RallyPoint> getRallyPoints(){
         return rallyPoints;
@@ -44,10 +50,10 @@ public class Player {
             target.myArmy.remove(target);
         }
 
-        units[target.getCID().typeID][target.getCID().personelID] = null;
+        units.get(target.getCID().typeID).remove(target.getCID().personelID);
     }
 
     public void remove(Structure target){
-        structures[target.getCID().typeID][target.getCID().personelID] = null;
+        structures.get(target.getCID().typeID).remove(target.getCID().personelID);
     }
 }
