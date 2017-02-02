@@ -144,6 +144,7 @@ public class KeyListenerTester extends JFrame implements KeyListener {
             System.out.println("N09");
         }
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            held = 0;
             System.out.println("Enter");
         }
 
