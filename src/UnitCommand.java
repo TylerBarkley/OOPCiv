@@ -3,4 +3,5 @@
  */
 public abstract class UnitCommand implements Command{
     Unit target;
+    UnitInstruction u_inst;
 }

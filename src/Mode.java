@@ -2,7 +2,7 @@
  * Created by hankerins on 1/31/17.
  */
 
-//TODO: add constructors to modes
+
 
 public abstract class Mode {
 
@@ -10,6 +10,7 @@ public abstract class Mode {
 
     int currentType = 0;
     int currentInstance = 0;
+    int currentInstruction = 0;
 
     abstract int cycleTypeL();
     abstract int cycleTypeR();
