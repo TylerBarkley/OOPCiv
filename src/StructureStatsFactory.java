@@ -4,7 +4,7 @@
 public class StructureStatsFactory {
     static StructureStats produceStructureStats(String orderableToBeCreated){
         StructureStats statsOfOrderable=new StructureStats();
-        /*Base Stats Construction*/
+        /*Base StuctureStats Construction*/
         if(orderableToBeCreated.equals("Base")) {
             statsOfOrderable.setArmor(4);
             statsOfOrderable.setDefensiveDamage(2);

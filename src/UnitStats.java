@@ -1,41 +1,23 @@
 /**
  * Created by Tyler Barkley on 2/1/2017.
  */
-public class UnitStats {
-    int offensiveDamage;
+public class UnitStats extends Stats {
 
-    int defensiveDamage;
-
-    int armor;
-
-    int movement;
-
-    int health;
-
-    int UpKeep;
-
-    void setOffensiveDamage(int offensiveDamage){this.offensiveDamage=offensiveDamage;}
-
-    void setDefensiveDamage(int defensiveDamage){this.defensiveDamage=defensiveDamage;}
-
-    void setArmor(int armor){this.armor=armor;}
+    private int movement;
 
     void setMovement(int movement){this.movement=movement;}
 
-    void setHealth(int health){this.health=health;}
-
-    void setUpKeep(int UpKeep){this.UpKeep=UpKeep;}
+    int getMovement(){return movement;}
 
 
     void print(){
-        System.out.print("Health: "+health);
-        System.out.print(" Offensive Damage: "+offensiveDamage);
-        System.out.print(" Defensive Damage: "+defensiveDamage);
-        System.out.print(" Armor: "+armor);
-        System.out.print(" Movement: "+movement);
-        System.out.print(" UpKeep: "+UpKeep);
+        System.out.print("Health: "+getHealth());
+        System.out.print(" Offensive Damage: "+getOffensiveDamage());
+        System.out.print(" Defensive Damage: "+getDefensiveDamage());
+        System.out.print(" Armor: "+getArmor());
+        System.out.print(" UpKeep: "+getUpKeep());
+        System.out.print(" Production Rates: "+getMovement());
         System.out.println();
-
     }
 
     UnitStats(){
