@@ -3,7 +3,6 @@
  */
 public abstract class Controllable {
     Player player;
-    Stats stats;
     CID cid;
     Location loc;
     Map map;
@@ -40,10 +39,6 @@ public abstract class Controllable {
 
     public Location getLoc() {
         return loc;
-    }
-
-    public Stats getStats() {
-        return stats;
     }
 
     public Map getMap() {

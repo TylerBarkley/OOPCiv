@@ -3,8 +3,9 @@
  */
 
     public abstract class Unit extends Controllable {
-    Army myArmy;
 
+    Army myArmy;
+    UnitStats unitstats;
     double state;
 
     /*Player ownedByPlayer */
@@ -24,7 +25,7 @@
         //TODO Resource Consumption at end of turn
 
         //Reset the unit's action points
-        actionPoints = myArmy == null ? stats.movement : myArmy.stats.movement;
+        actionPoints = myArmy == null ? unitstats.movement : myArmy.stats.movement;
     }
 
     void move(Map.MapDirection md){
@@ -54,12 +55,14 @@
     }
 
     void printStats(){
-        unitStats.print();
+        unitstats.print();
     }
+
+    public UnitStats getStats() {return UnitStats;    }
 
     Unit(String unitType,Tile tileCreatedOn, Map currentMap){
         tileCreatedOn.addUnit(this);
-        unitStats=StatsFactory.produceStats(unitType);
+        unitstats=UnitStatsFactory.produceUnitStats(unitType);
         currentTileOn=tileCreatedOn;
         map=currentMap;
     }

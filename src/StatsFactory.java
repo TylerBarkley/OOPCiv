@@ -6,7 +6,7 @@ public class StatsFactory {
         Stats statsOfOrderable=new Stats();
         /* Example of MeleeFigther Stats Construction*/
         if(orderableToBeCreated.equals("MeleeFighter")) {
-            statsOfOrderable.setArmor(1);
+            statsOfOrderable.setArmor(3);
             statsOfOrderable.setDefensiveDamage(1);
             statsOfOrderable.setHealth(2);
             statsOfOrderable.setOffensiveDamage(3);

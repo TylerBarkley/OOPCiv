@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Army {
     BattleGroup battleGroup;
     Reinforcements reinforcements;
+    UnitStats stats;
 
     void move(char cardinalDirection){
 
