@@ -4,7 +4,9 @@
 public class Structure extends Controllable {
 
     double state;
-
+    String structureType;
+    StructureStats structureStats;
+    
     void powerDown(){
         state=.75;
     }
@@ -34,7 +36,15 @@ public class Structure extends Controllable {
     }
 
     void printStats(){ }
-
+    
+    StructureStats getStructureStats() {
+    	return structureStats;
+    }
+    
+    String getStructureType() {
+    	return structureType;
+    }
+    
 //    public UnitStats getStats() {return StructureStats;    }
 
     //TODO BE FULLY IMPLEMENTED FOR STRUCTURES
