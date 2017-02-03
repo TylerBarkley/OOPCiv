@@ -69,4 +69,10 @@
         actionPointCap = ((UnitStats) myStats).getMovement();
         this.unitType = unitType;
     }
+
+//TODO: get rid of empty constructor for units below (used for testing)
+
+    Unit(){
+        unitType = "placeholder";
+    }
 }

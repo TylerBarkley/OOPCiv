@@ -55,4 +55,9 @@ public class Structure extends Controllable {
         map=currentMap;
         actionPointCap = 1;
     }
+
+    //TODO: delete or fix this default constructor
+    Structure(){
+
+    }
 }

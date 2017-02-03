@@ -17,4 +17,9 @@ public class RallyPoint extends Controllable {
     void clearCommands() {
 
     }
+
+    //TODO: delete or fix this default constructor
+    RallyPoint(){
+
+    }
 }

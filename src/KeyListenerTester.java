@@ -1,5 +1,6 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -8,7 +9,9 @@ public class KeyListenerTester extends JFrame implements KeyListener {
 
     JLabel label;
     boolean ctrl;
-    public KeyListenerTester(String s) {
+    Player player;
+
+    public KeyListenerTester(String s, Player player) {
         super(s);
         JPanel p = new JPanel();
         label = new JLabel("Key Listener!");
@@ -17,6 +20,7 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         addKeyListener(this);
         setSize(200, 100);
         setVisible(true);
+        this.player = player;
 
     }
 
@@ -81,33 +85,41 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             if(ctrl == true){
                 System.out.println("Cycle Type right");
+                player.getMenuState().cycleTypeR();
             }
             else{
                 System.out.println("Cycle Type instance right");
+                player.getMenuState().cycleInstanceR();
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             if(ctrl == true){
                 System.out.println("Cycle Type left");
+                player.getMenuState().cycleTypeL();
             }
             else{
                 System.out.println("Cycle Type instance left");
+                player.getMenuState().cycleInstanceL();
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             if(ctrl == true){
                 System.out.println("Cycle Mode up");
+                player.getMenuState().cycleModeL();
             }
             else{
                 System.out.println("Cycle Command up");
+                player.getMenuState().cycleInstructionL();
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             if(ctrl == true){
                 System.out.println("Cycle Mode down");
+                player.getMenuState().cycleModeR();
             }
             else{
                 System.out.println("Cycle Type Command down");
+                player.getMenuState().cycleInstructionR();
             }
         }
         if(e.getKeyCode() == KeyEvent.VK_CONTROL){
@@ -176,7 +188,10 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_9){
             System.out.println("09");
         }
-
+        System.out.println("Current Mode: " + player.getMenuState().currentMode + "\n");
+        System.out.println("Current Type: " + player.getMenuState().currentType + "\n");
+        System.out.println("Current Instance: " + player.getMenuState().currentInstanceIndex + "\n");
+        System.out.println("Current Mode: " + player.getMenuState().currentInstruction.getInstString() + "\n");
     }
 
     @Override
@@ -192,7 +207,27 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         }
     }
 
+    //test program, makes a player with 4 of each controllable
+    //makes a key listener and does the major navigation operations
+    //prints results
     public static void main(String[] args) {
-        new KeyListenerTester("Key Listener Tester");
+        Player player1 = new Player();
+        for(int i = 0; i < GameInfo.UNIT_TYPES; i++){
+            for(int j = 0; j < 4; j++){
+                player1.getUnits().get(i).add(new Unit_Test());
+            }
+        }
+        for(int i = 0; i < GameInfo.STRUCTURE_TYPES; i++){
+            for(int j = 0; j < 4; j++){
+                player1.getStructures().get(i).add(new Structure());
+            }
+        }
+        for(int i = 0; i < 4; i++){
+            player1.getArmies().add(new Army());
+        }
+        for(int i = 0; i < 4; i++){
+            player1.getRallyPoints().add(new RallyPoint());
+        }
+        new KeyListenerTester("Key Listener Tester", player1);
     }
 }

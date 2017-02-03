@@ -67,4 +67,9 @@ public class Army extends Controllable {
     void clearCommands() {
 
     }
+
+    //TODO: delete this default army constructor (or make it useful
+    Army(){
+
+    }
 }
