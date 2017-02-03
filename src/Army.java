@@ -3,7 +3,9 @@ import java.util.ArrayList;
 /**
  * Created by hankerins on 1/31/17.
  */
-public class Army {
+
+//TODO: implement abstract methods
+public class Army extends Controllable {
     ArrayList<Unit> battleGroup;
     ArrayList<Unit> reinforcements;
     ArrayList<Unit> entireArmy;
@@ -48,6 +50,21 @@ public class Army {
         }
     }
     void move(char cardinalDirection){
+
+    }
+
+    @Override
+    void endTurn() {
+
+    }
+
+    @Override
+    void killMe() {
+
+    }
+
+    @Override
+    void clearCommands() {
 
     }
 }
