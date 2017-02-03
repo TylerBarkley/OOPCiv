@@ -46,4 +46,8 @@ public class UnitOverview extends Overview{
 	public void displayView() {
 		
 	}
+	
+	public void updateMenu(MenuState menuState){
+		
+	}
 }
