@@ -6,10 +6,19 @@ import java.util.ArrayList;
 public class StructureMode extends Mode {
 
     ArrayList<ArrayList<Structure>> structures;
+    ArrayList<StructureInstruction> structureInstructions;
 
     StructureMode(Player player){
         this.player = player;
         structures = player.getStructures();
+        //this loop adds each possible structure instruction to the list of instructions
+
+        for(int i = StructureInstruction.S_ATTACK; i <= StructureInstruction.S_CANCELQUEUE; i++){
+            structureInstructions.add(new StructureInstruction(i));
+        }
+        //initialize the first instruction into currentInstruction
+        currentInstruction = structureInstructions.get(0);
+        currentInstructionIndex = 0;
     }
 
 
@@ -34,5 +43,21 @@ public class StructureMode extends Mode {
             currentInstance = 0;
         else currentInstance++;
         return currentInstance;
+    }
+    Instruction cycleInstructionL(){
+        int lastInstruction = structureInstructions.size() - 1;
+        if(currentInstructionIndex == 0)
+            currentInstructionIndex = lastInstruction; //cycle back to last instruction
+        else currentInstructionIndex--;
+        currentInstruction = structureInstructions.get(currentInstructionIndex);
+        return currentInstruction;
+    }
+    Instruction cycleInstructionR(){
+        int lastInstruction = structureInstructions.size() - 1;
+        if(currentInstructionIndex == lastInstruction)
+            currentInstructionIndex = 0; //cycle back to last instruction
+        else currentInstructionIndex++;
+        currentInstruction = structureInstructions.get(currentInstructionIndex);
+        return currentInstruction;
     }
 }
