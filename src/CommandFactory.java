@@ -3,7 +3,7 @@
  */
 public class CommandFactory {
 
-    Command create(Instruction inst, Controllable target){
+    static Command create(Instruction inst, Controllable target){
         //at any given point, MenuState holds a current instance (target) and current Instruction
         //When player hits KP-Enter, call CommandFactory.create(MenuState.getCurrentInstruction(), Menustate.getCurrentInstance())
         //inside this large method is the logic of what kind of command gets created
