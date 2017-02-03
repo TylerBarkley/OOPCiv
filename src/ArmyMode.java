@@ -19,8 +19,9 @@ public class ArmyMode extends Mode {
             armyInstructions.add(new ArmyInstruction(i));
         }
         //initialize the first instruction into currentInstruction
-        currentInstruction = armyInstructions.get(0);
         currentInstructionIndex = 0;
+        currentInstruction = armyInstructions.get(0);
+
     }
 
 
@@ -39,19 +40,19 @@ public class ArmyMode extends Mode {
         else currentType++;
         return currentType;
     }
-    int cycleInstanceL(){
+    Controllable cycleInstanceL(){
         int lastInstance = armies.size() -1;
-        if(currentInstance == 0)
-            currentInstance = lastInstance;
-        else currentInstance--;
-        return currentInstance;
+        if(currentInstanceIndex == 0)
+            currentInstanceIndex = lastInstance;
+        else currentInstanceIndex--;
+        return armies.get(currentInstanceIndex);
     }
-    int cycleInstanceR(){
+    Controllable cycleInstanceR(){
         int lastInstance = armies.size() - 1;
-        if(currentInstance == lastInstance)
-            currentInstance = 0;
-        else currentInstance++;
-        return currentInstance;
+        if(currentInstanceIndex == lastInstance)
+            currentInstanceIndex = 0;
+        else currentInstanceIndex++;
+        return armies.get(currentInstanceIndex);
     }
     Instruction cycleInstructionL(){
         int lastInstruction = armyInstructions.size() - 1;
