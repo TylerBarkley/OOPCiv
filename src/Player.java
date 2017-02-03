@@ -13,9 +13,13 @@ public class Player {
     MenuState menuState;
 
     public Player(){
+        armies = new ArrayList<Army>();
+        rallyPoints = new ArrayList<RallyPoint>();
+        units = new ArrayList<ArrayList<Unit>>();
         for(int i = 0; i < GameInfo.UNIT_TYPES; i++){
             units.add(new ArrayList<Unit>());
         }
+        structures = new ArrayList<ArrayList<Structure>>();
         for(int i = 0; i < GameInfo.STRUCTURE_TYPES; i++){
             structures.add(new ArrayList<Structure>());
         }

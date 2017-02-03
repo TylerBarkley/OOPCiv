@@ -13,6 +13,7 @@ public class ArmyMode extends Mode {
     ArmyMode(Player player){
         this.player = player;
         armies = player.getArmies();
+        armyInstructions = new ArrayList<ArmyInstruction>();
         //this loop adds each possible army instruction to the list of instructions
 
         for(int i = ArmyInstruction.A_ATTACK; i <= ArmyInstruction.A_CANCELQUEUE; i++){

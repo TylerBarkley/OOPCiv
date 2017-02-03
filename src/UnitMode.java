@@ -13,6 +13,7 @@ public class UnitMode extends Mode {
     UnitMode(Player player){
         this.player = player;
         units = player.getUnits();
+        unitInstructions = new ArrayList<UnitInstruction>();
         //this loop adds each possible unit instruction (besides move directions) to the list of instructions
         //TODO: decide how to move units not in an army, for now those instructions aren't in the instruction list
         for(int i = UnitInstruction.U_MAKEARMY; i <= UnitInstruction.U_MOVEENTER; i++){

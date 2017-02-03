@@ -11,8 +11,8 @@ public class StructureMode extends Mode {
     StructureMode(Player player){
         this.player = player;
         structures = player.getStructures();
+        structureInstructions = new ArrayList<StructureInstruction>();
         //this loop adds each possible structure instruction to the list of instructions
-
         for(int i = StructureInstruction.S_ATTACK; i <= StructureInstruction.S_CANCELQUEUE; i++){
             structureInstructions.add(new StructureInstruction(i));
         }

@@ -7,6 +7,6 @@ public class ArmyMoveCommand implements Command {
 
     @Override
     public void execute() {
-        targetArmy.orderMove(md);
+        //targetArmy.orderMove(md);
     }
 }

@@ -33,6 +33,7 @@ public class MenuState {
         Mode a = new ArmyMode(player);
         Mode u = new UnitMode(player);
         Mode s = new StructureMode(player);
+        ModeList = new ArrayList<Mode>();
         ModeList.add(rp);
         ModeList.add(a);
         ModeList.add(u);

@@ -11,8 +11,8 @@ public class RallyPointMode extends Mode {
     RallyPointMode(Player player){
         this.player = player;
         this.rallyPoints = player.getRallyPoints();
+        rallyPointInstructions = new ArrayList<RallyPointInstruction>();
         //this loop adds each possible RP instruction to the list of instructions
-
         for(int i = RallyPointInstruction.RP_MOVEENTER; i <= RallyPointInstruction.RP_DELETE; i++){
             rallyPointInstructions.add(new RallyPointInstruction(i));
         }
