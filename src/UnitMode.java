@@ -6,11 +6,21 @@ import java.util.ArrayList;
 public class UnitMode extends Mode {
 
     ArrayList<ArrayList<Unit>> units;
+    ArrayList<UnitInstruction> unitInstructions;
+
 
 
     UnitMode(Player player){
         this.player = player;
         units = player.getUnits();
+        //this loop adds each possible unit instruction (besides move directions) to the list of instructions
+        //TODO: decide how to move units not in an army, for now those instructions aren't in the instruction list
+        for(int i = UnitInstruction.U_MAKEARMY; i <= UnitInstruction.U_MOVEENTER; i++){
+            unitInstructions.add(new UnitInstruction(i));
+        }
+        //initialize the first instruction into currentInstruction
+        currentInstruction = unitInstructions.get(0);
+        currentInstructionIndex = 0;
     }
 
     //CycleType methods reset the instance to 0 because we have different #s of different troops.
@@ -43,8 +53,21 @@ public class UnitMode extends Mode {
         return currentInstance;
     }
 
-    int cycleInstructionL(){
-
+    Instruction cycleInstructionL(){
+        int lastInstruction = unitInstructions.size() - 1;
+        if(currentInstructionIndex == 0)
+            currentInstructionIndex = lastInstruction; //cycle back to last instruction
+        else currentInstructionIndex--;
+        currentInstruction = unitInstructions.get(currentInstructionIndex);
         return currentInstruction;
     }
+    Instruction cycleInstructionR(){
+        int lastInstruction = unitInstructions.size() - 1;
+        if(currentInstructionIndex == lastInstruction)
+            currentInstructionIndex = 0; //cycle back to last instruction
+        else currentInstructionIndex++;
+        currentInstruction = unitInstructions.get(currentInstructionIndex);
+        return currentInstruction;
+    }
+
 }

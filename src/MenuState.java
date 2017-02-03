@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import java.util.ArrayList;
 
 /**
@@ -17,10 +19,10 @@ public class MenuState {
 
     //The following 4 stats define what happens when a player hits Enter
     //They should be visible to the player in the main menu
-    int currentMode = 0;
+    int currentMode = GameInfo.RALLYPOINTMODE;
     int currentType = 0;
     int currentInstance = 0;
-    int currentInstruction = 0;
+    Instruction currentInstruction;
 
     Player player;
 
@@ -37,12 +39,14 @@ public class MenuState {
         ModeList.add(a);
         ModeList.add(u);
         ModeList.add(s);
+        currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
     }
 
     int cycleModeL(){
         if(currentMode == GameInfo.RALLYPOINTMODE)
             currentMode = GameInfo.STRUCTUREMODE;
         else currentMode--;
+        currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
         return currentMode;
     }
     int cycleModeR(){
@@ -72,6 +76,16 @@ public class MenuState {
     int cycleInstanceR(){
         currentInstance = ModeList.get(currentMode).cycleInstanceR();
         return currentInstance;
+    }
+
+    Instruction cycleInstructionL(){
+        currentInstruction = ModeList.get(currentMode).cycleInstructionL();
+        return currentInstruction;
+    }
+
+    Instruction cycleInstructionR(){
+        currentInstruction = ModeList.get(currentMode).cycleInstructionR();
+        return currentInstruction;
     }
 
 

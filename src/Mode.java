@@ -10,12 +10,20 @@ public abstract class Mode {
 
     int currentType = 0;
     int currentInstance = 0;
-    int currentInstruction = 0;
+    int currentInstructionIndex;
+    Instruction currentInstruction;
 
     abstract int cycleTypeL();
     abstract int cycleTypeR();
 
     abstract int cycleInstanceL();
     abstract int cycleInstanceR();
+
+    abstract Instruction cycleInstructionL();
+    abstract Instruction cycleInstructionR();
+
+    Instruction getCurrentInstruction(){
+        return currentInstruction;
+    }
 
 }
