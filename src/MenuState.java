@@ -22,6 +22,67 @@ public class MenuState {
     Controllable currentInstance;
     Instruction currentInstruction;
 
+    int getCurrentMode(){
+        return currentMode;
+    }
+
+    int getCurrentType(){
+        return currentType;
+    }
+
+    int getCurrentInstanceIndex(){
+        return currentInstanceIndex;
+    }
+
+    Controllable getCurrentInstance(){
+        return currentInstance;
+    }
+
+    Instruction getCurrentInstruction(){
+        return currentInstruction;
+    }
+
+    void setCurrentMode(int currentMode){
+        this.currentMode = currentMode;
+    }
+
+    void setCurrentType(int currentType){
+        this.currentType = currentType;
+    }
+
+    void setCurrentInstanceIndex(int currentInstanceIndex){
+        this.currentInstanceIndex = currentInstanceIndex;
+    }
+
+    void setCurrentInstance(Controllable currentInstance){
+        this.currentInstance = currentInstance;
+    }
+
+    void setCurrentInstruction(Instruction currentInstruction){
+        this.currentInstruction = currentInstruction;
+    }
+
+    String getCurrentTypeString(){
+        if(currentMode == GameInfo.RALLYPOINTMODE){
+            return "Rally Point";
+        }
+        if(currentMode == GameInfo.UNITMODE){
+            if(currentType == GameInfo.EXPLORER){
+                return "Explorer";
+            }
+            else if(currentType == GameInfo.COLONIST){
+                return "Colonist";
+            }
+            else if(currentType == GameInfo.MELEEUNIT){
+                return "Melee Unit";
+            }
+            else if(currentType == GameInfo.RANGEDUNIT){
+                return "Ranged Unit";
+            }
+        }
+        return "blah";
+    }
+
     Player player;
 
     ArrayList<Mode> ModeList;

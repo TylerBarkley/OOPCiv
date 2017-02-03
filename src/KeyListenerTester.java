@@ -188,10 +188,10 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_9){
             System.out.println("09");
         }
-        System.out.println("Current Mode: " + player.getMenuState().getCurrentMode() + "\n");
-        System.out.println("Current Type: " + player.getMenuState().getCurrentTypeString() + "\n");
-        System.out.println("Current Instance: " + player.getMenuState().getCurrentInstanceIndex() + "\n");
-        System.out.println("Current Mode: " + player.getMenuState().getCurrentInstruction.getInstString() + "\n");
+        System.out.println("Current Mode: " + player.getMenuState().currentMode + "\n");
+        System.out.println("Current Type: " + player.getMenuState().currentType + "\n");
+        System.out.println("Current Instance: " + player.getMenuState().currentInstanceIndex + "\n");
+        System.out.println("Current Mode: " + player.getMenuState().currentInstruction.getInstString() + "\n");
     }
 
     @Override
