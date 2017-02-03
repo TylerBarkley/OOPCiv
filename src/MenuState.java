@@ -66,6 +66,9 @@ public class MenuState {
         if(currentMode == GameInfo.RALLYPOINTMODE){
             return "Rally Point";
         }
+        if(currentMode == GameInfo.ARMYMODE){
+            return "Army";
+        }
         if(currentMode == GameInfo.UNITMODE){
             if(currentType == GameInfo.EXPLORER){
                 return "Explorer";
@@ -79,6 +82,26 @@ public class MenuState {
             else if(currentType == GameInfo.RANGEDUNIT){
                 return "Ranged Unit";
             }
+        }
+        if(currentMode == GameInfo.STRUCTUREMODE){
+            if(currentType == GameInfo.BASE){
+                return "Base";
+            }
+        }
+        return "blah";
+    }
+    String getCurrentModeString(){
+        if(currentMode == GameInfo.RALLYPOINTMODE){
+            return "Rally Point";
+        }
+        if(currentMode == GameInfo.ARMYMODE){
+            return "Army";
+        }
+        if(currentMode == GameInfo.UNITMODE){
+            return "Unit";
+        }
+        if(currentMode == GameInfo.STRUCTUREMODE){
+            return "Structure";
         }
         return "blah";
     }
