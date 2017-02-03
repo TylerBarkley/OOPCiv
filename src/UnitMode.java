@@ -19,37 +19,48 @@ public class UnitMode extends Mode {
             unitInstructions.add(new UnitInstruction(i));
         }
         //initialize the first instruction into currentInstruction
-        currentInstruction = unitInstructions.get(0);
         currentInstructionIndex = 0;
+        currentInstruction = unitInstructions.get(0);
+
     }
 
     //CycleType methods reset the instance to 0 because we have different #s of different troops.
     int cycleTypeL(){
-        currentInstance = 0;
         if(currentType == GameInfo.EXPLORER)
             currentType = GameInfo.RANGEDUNIT;
         else currentType--;
+
+        currentInstanceIndex = 0;
+        currentInstance = units.get(currentType).get(currentInstanceIndex);
+
         return currentType;
     }
     int cycleTypeR(){
-        currentInstance = 0;
+
         if(currentType == GameInfo.RANGEDUNIT)
             currentType = GameInfo.EXPLORER;
         else currentType++;
+        currentInstance = units.get(currentType).get(0);
+
+        currentInstanceIndex = 0;
+        currentInstance = units.get(currentType).get(currentInstanceIndex);
+
         return currentType;
     }
-    int cycleInstanceL(){
+    Controllable cycleInstanceL(){
         int lastInstance = units.get(currentType).size() -1;
-        if(currentInstance == 0)
-            currentInstance = lastInstance;
-        else currentInstance--;
+        if(currentInstanceIndex == 0)
+            currentInstanceIndex = lastInstance;
+        else currentInstanceIndex--;
+        currentInstance = units.get(currentType).get(currentInstanceIndex);
         return currentInstance;
     }
-    int cycleInstanceR(){
+    Controllable cycleInstanceR(){
         int lastInstance = units.size() - 1;
-        if(currentInstance == lastInstance)
-            currentInstance = 0;
-        else currentInstance++;
+        if(currentInstanceIndex == lastInstance)
+            currentInstanceIndex = 0;
+        else currentInstanceIndex++;
+        currentInstance = units.get(currentType).get(currentInstanceIndex);
         return currentInstance;
     }
 

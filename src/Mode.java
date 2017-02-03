@@ -9,15 +9,17 @@ public abstract class Mode {
     Player player;
 
     int currentType = 0;
-    int currentInstance = 0;
+    int currentInstanceIndex = 0;
+    Controllable currentInstance;
+
     int currentInstructionIndex;
     Instruction currentInstruction;
 
     abstract int cycleTypeL();
     abstract int cycleTypeR();
 
-    abstract int cycleInstanceL();
-    abstract int cycleInstanceR();
+    abstract Controllable cycleInstanceL();
+    abstract Controllable cycleInstanceR();
 
     abstract Instruction cycleInstructionL();
     abstract Instruction cycleInstructionR();
@@ -25,5 +27,9 @@ public abstract class Mode {
     Instruction getCurrentInstruction(){
         return currentInstruction;
     }
+
+    int getCurrentInstanceIndex(){ return currentInstanceIndex; }
+
+    Controllable getCurrentInstance(){ return currentInstance; }
 
 }

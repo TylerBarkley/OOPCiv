@@ -17,26 +17,27 @@ public class RallyPointMode extends Mode {
             rallyPointInstructions.add(new RallyPointInstruction(i));
         }
         //initialize the first instruction into currentInstruction
-        currentInstruction = rallyPointInstructions.get(0);
         currentInstructionIndex = 0;
+        currentInstruction = rallyPointInstructions.get(0);
+
     }
 
     int cycleTypeL(){ return 0; } //no types in RP mode
     int cycleTypeR(){ return 0; }
 
-    int cycleInstanceL(){
+    Controllable cycleInstanceL(){
         int lastInstance = rallyPoints.size() -1;
-        if(currentInstance == 0)
-            currentInstance = lastInstance;
-        else currentInstance--;
-        return currentInstance;
+        if(currentInstanceIndex == 0)
+            currentInstanceIndex = lastInstance;
+        else currentInstanceIndex--;
+        return rallyPoints.get(currentInstanceIndex);
     }
-    int cycleInstanceR(){
+    Controllable cycleInstanceR(){
         int lastInstance = rallyPoints.size() - 1;
-        if(currentInstance == lastInstance)
-            currentInstance = 0;
-        else currentInstance++;
-        return currentInstance;
+        if(currentInstanceIndex == lastInstance)
+            currentInstanceIndex = 0;
+        else currentInstanceIndex++;
+        return rallyPoints.get(currentInstanceIndex);
     }
     Instruction cycleInstructionL(){
         int lastInstruction = rallyPointInstructions.size() - 1;

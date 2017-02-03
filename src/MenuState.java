@@ -1,5 +1,3 @@
-import com.sun.org.apache.xpath.internal.operations.Mod;
-
 import java.util.ArrayList;
 
 /**
@@ -11,17 +9,17 @@ import java.util.ArrayList;
   * The individual Mode classes retain whatever state they had last time they were accessed.
   *
   * MENU STATE, MODES, TYPE MENUS, ETC ARE NOT STATIC SO THAT WE CAN HAVE 2 INSTANCES OF EACH: ONE FOR EITHER PLAYER
-  * ^^ After discussing the above w/ an OOP alum, I've learned we should avoid static classes.
   *
   *
   * */
 public class MenuState {
 
-    //The following 4 stats define what happens when a player hits Enter
+    //The following stats define what happens when a player hits Enter: currentInstance, currentInstruction
     //They should be visible to the player in the main menu
     int currentMode = GameInfo.RALLYPOINTMODE;
     int currentType = 0;
-    int currentInstance = 0;
+    int currentInstanceIndex = 0;
+    Controllable currentInstance;
     Instruction currentInstruction;
 
     Player player;
@@ -53,28 +51,33 @@ public class MenuState {
         if(currentMode == GameInfo.STRUCTUREMODE)
             currentMode = GameInfo.RALLYPOINTMODE;
         else currentMode++;
+        currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
         return currentMode;
     }
 
     int cycleTypeL(){
         currentType = ModeList.get(currentMode).cycleTypeL();
-        currentInstance = ModeList.get(currentMode).currentInstance; //needed because this method may change currentInstance in UnitMode
+        currentInstanceIndex = ModeList.get(currentMode).getCurrentInstanceIndex(); //needed because this method may change currentInstanceIndex in UnitMode
+        currentInstance = ModeList.get(currentMode).getCurrentInstance();
         return currentType;
     }
 
     int cycleTypeR(){
         currentType = ModeList.get(currentMode).cycleTypeR();
-        currentInstance = ModeList.get(currentMode).currentInstance; //needed because this method may change currentInstance in UnitMode
+        currentInstanceIndex = ModeList.get(currentMode).getCurrentInstanceIndex(); //needed because this method may change currentInstanceIndex in UnitMode
+        currentInstance = ModeList.get(currentMode).getCurrentInstance();
         return currentType;
     }
 
-    int cycleInstanceL(){
+    Controllable cycleInstanceL(){
         currentInstance = ModeList.get(currentMode).cycleInstanceL();
+        currentInstanceIndex = ModeList.get(currentMode).getCurrentInstanceIndex();
         return currentInstance;
     }
 
-    int cycleInstanceR(){
+    Controllable cycleInstanceR(){
         currentInstance = ModeList.get(currentMode).cycleInstanceR();
+        currentInstanceIndex = ModeList.get(currentMode).getCurrentInstanceIndex();
         return currentInstance;
     }
 

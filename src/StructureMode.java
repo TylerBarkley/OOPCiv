@@ -17,32 +17,29 @@ public class StructureMode extends Mode {
             structureInstructions.add(new StructureInstruction(i));
         }
         //initialize the first instruction into currentInstruction
-        currentInstruction = structureInstructions.get(0);
         currentInstructionIndex = 0;
+        currentInstruction = structureInstructions.get(0);
+
     }
 
 
 
-    int cycleTypeL(){
-        return currentType;
-    } //These do nothing while there is only one structure type
-    int cycleTypeR(){
-        return currentType;
-    } //When we add more structure types, copy UnitMode.java
+    int cycleTypeL(){ return currentType; } //always returns 0.  These do nothing while there is only one structure type
+    int cycleTypeR(){ return currentType; } //always returns 0.  When we add more structure types, copy UnitMode.java
 
-    int cycleInstanceL(){
+    Controllable cycleInstanceL(){
         int lastInstance = structures.get(currentType).size() -1;
-        if(currentInstance == 0)
-            currentInstance = lastInstance;
-        else currentInstance--;
-        return currentInstance;
+        if(currentInstanceIndex == 0)
+            currentInstanceIndex = lastInstance;
+        else currentInstanceIndex--;
+        return structures.get(currentType).get(currentInstanceIndex);
     }
-    int cycleInstanceR(){
+    Controllable cycleInstanceR(){
         int lastInstance = structures.size() - 1;
-        if(currentInstance == lastInstance)
-            currentInstance = 0;
-        else currentInstance++;
-        return currentInstance;
+        if(currentInstanceIndex == lastInstance)
+            currentInstanceIndex = 0;
+        else currentInstanceIndex++;
+        return structures.get(currentType).get(currentInstanceIndex);
     }
     Instruction cycleInstructionL(){
         int lastInstruction = structureInstructions.size() - 1;
