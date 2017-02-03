@@ -10,10 +10,10 @@ public class MainScreen extends Overview{
 	private StatusViewport statusView;
 	private AreaViewport areaView;
 	
-	public MainScreen(Player player, Map map, int width, int height){
+	public MainScreen(Player player, Player opponent, Map map, int width, int height){
 		super(player, width, height);
 		statusView=new StatusViewport(player, width/3, height);
-		areaView=new AreaViewport(player, (2 * width)/3, height, map);
+		areaView=new AreaViewport(player, opponent, (2 * width)/3, height, map);
 		displayView();
 	}
 	
@@ -45,7 +45,7 @@ public class MainScreen extends Overview{
 	}
 	
 	public static void main(String args[]) throws IOException { //for testing purposes only!
-		MainScreen main=new MainScreen(null,new Map(7, 7, true),1200,800);
+		MainScreen main=new MainScreen(null,null,new Map(7, 7, true),1200,800);
 		JFrame frame = new JFrame();
 		frame.setSize(1200, 800);
 		frame.add(main);
