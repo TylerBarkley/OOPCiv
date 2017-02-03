@@ -24,10 +24,10 @@ public class TileViewFactory {
 		if(terrain instanceof Water){
 			return new TileView(waterImage);
 		}
-		if(terrain instanceof Water){
+		if(terrain instanceof Ground){
 			return new TileView(groundImage);
 		}
-		if(terrain instanceof Water){
+		if(terrain instanceof Mountain){
 			return new TileView(mountainImage);
 		}
 		return null;

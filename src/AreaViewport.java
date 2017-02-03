@@ -15,11 +15,15 @@ public class AreaViewport extends Viewport{
 	private ArrayList<int[]> decalLocations;
 	private BufferedImage image;
 	private Graphics2D g2d;
+	
 	public AreaViewport(Player player, int width, int height, Map map){
 		super(player, width, height);
 		this.height=height;
 		this.width=width;
 		this.map=map;
+		this.decals=new ArrayList<Decal>();
+		this.decalLocations= new ArrayList<int[]>();
+		
 		image=new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g2d=image.createGraphics();
 		
@@ -28,8 +32,9 @@ public class AreaViewport extends Viewport{
 	
 	public void displayView(){
 		this.setBackground(Color.blue);
-		g2d.setColor(Color.green);   		//For testing only 
-		g2d.fillRect(0, 0, width, height);
+		updateView();
+		//g2d.setColor(Color.green);   		//For testing only 
+		//g2d.fillRect(0, 0, width, height);
 		//this.add(new JScrollPane (new JLabel( new ImageIcon (image))));
 		//this.validate();
 	}

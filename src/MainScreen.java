@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
@@ -32,21 +36,22 @@ public class MainScreen extends Overview{
 		this.add(statusView);
 	}
 	
-	public void placeDecal(){
-		
+	public void placeDecal(Decal decal, int x, int y){
+		areaView.placeDecal(decal, x, y);
 	}
 	
 	public void updateMenu(MenuState menuState) {
 		
 	}
 	
-	public static void main(String args[]) { //for testing purposes only!
+	public static void main(String args[]) throws IOException { //for testing purposes only!
+		MainScreen main=new MainScreen(null,new Map(7, 7, true),1200,800);
 		JFrame frame = new JFrame();
 		frame.setSize(1200, 800);
-		frame.add(new MainScreen(null,null,1200,800));
+		frame.add(main);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
+		main.placeDecal(new Decal(ImageIO.read(new File("RedCross.jpg"))), 1, 2);
+		main.placeDecal(new Decal(ImageIO.read(new File("SkullCrossBones.jpg"))), 4, 4);
 	}
 }
