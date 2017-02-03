@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -10,6 +12,7 @@ public class StatusViewport extends Viewport{
 
 	private int width, height;
 	private JTextArea structureArea, unitArea;
+	private JLabel currentMode, currentInstance,currentType,currentInstruction;
 	
 	public StatusViewport(Player player, int width, int height) {
 		super(player, width, height);
@@ -22,6 +25,11 @@ public class StatusViewport extends Viewport{
 		structureArea.setEditable(false);
 		unitArea.setEditable(false);
 		
+		currentMode = new JLabel("CURRENT MODE= "); //TODO: player1.getMenuState().getCurrentModeString() 
+		currentInstance = new JLabel("CURRENT INSTANCE= "); 
+		currentType = new JLabel("CURRENT TYPE= ");
+		currentInstruction = new JLabel("CURRENT INSTRUCTION= ");
+		
 		displayView();
 	}
 
@@ -33,34 +41,51 @@ public class StatusViewport extends Viewport{
 			for(int j = 0; j < units.get(i).size(); j++) {
 				String unitType = units.get(i).get(j).getUnitType();
 				Stats unitStats = units.get(i).get(j).getUnitStats();
-				unitArea.setText(unitType +":" + "\n" + "Health: " + unitStats.getHealth() + unitStats.getUpKeep());
+				unitArea.append(unitType +":" + "\n" + "Health: " + unitStats.getHealth() + unitStats.getUpKeep());
+			}
+		}
+		
+		for(int i = 0; i < strucs.size();i++) {
+			for(int j = 0; j < strucs.get(i).size(); j++) {
+				String structureType = strucs.get(i).get(j).getStructureType();
+				Stats structureStats = strucs.get(i).get(j).getStructureStats();
+				structureArea.append(structureType +":" + "\n" + "Health: " + structureStats.getHealth() +  structureStats.getUpKeep());
 			}
 		}
 		
 	}
 	
 	private void displayUnitStatus(Unit unit){
-		
+		//not safe, possibility of listing the same unit twice
+		String unitType = unit.getUnitType();
+		Stats unitStats = unit.getUnitStats();
+		unitArea.append(unitType +":" + "\n" + "Health: " + unitStats.getHealth() + unitStats.getUpKeep());
 	}
 	
 	private void displayStructureStatus(Structure structure){
-		
+		//not safe, possibility of listing same structure twice
+		String structureType = structure.getStructureType();
+		Stats structureStats = structure.getStructureStats();
+		structureArea.append(structureType +":" + "\n" + "Health: " + structureStats.getHealth() + structureStats.getUpKeep());
+	
 	}
 
 	public void updateView() {
-		
+		unitArea.setText("");
+		structureArea.setText("");
+		displayAllStatuses();
 	}
 	
 	public void displayView() {
 		
-		FixedPanel panelA= new FixedPanel(width/2-20, height);
+		FixedPanel panelA= new FixedPanel(width/2, height/2);
 		panelA.setLayout(new BoxLayout(panelA,BoxLayout.Y_AXIS));
 		panelA.add(new JLabel("Structures"));
 		panelA.add(new JScrollPane(structureArea));
 		
 		
 		
-		FixedPanel panelB= new FixedPanel(width/2-20, height);
+		FixedPanel panelB= new FixedPanel(width/2, height/2);
 		panelB.setLayout(new BoxLayout(panelB,BoxLayout.Y_AXIS));
 		panelB.add(new JLabel("Units",JLabel.CENTER));
 		panelB.add(new JScrollPane(unitArea));
@@ -74,7 +99,12 @@ public class StatusViewport extends Viewport{
 		panelAB.add(Box.createHorizontalStrut(10));
 		//panelAB.setBackground(Color.blue);
 		
-		this.setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+		JPanel textPanel = new FixedPanel(width,height/5);
+		textPanel.setLayout(new BoxLayout(textPanel,BoxLayout.Y_AXIS));
+		
+		
+		
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		this.setBackground(Color.orange);
 		//this.add(Box.createVerticalGlue());
 		JLabel title = new JLabel("Status ViewPort");
@@ -82,6 +112,30 @@ public class StatusViewport extends Viewport{
 		
 		this.add(title);
 		this.add(panelAB);	
+		JLabel menu = new JLabel("MENU STATE");
+		menu.setAlignmentX(CENTER_ALIGNMENT);
+		this.add(menu);
+		this.add(currentMode);
+		
+		this.add(currentType);
+		this.add(currentInstance);
+		this.add(currentInstruction);
+	}
+	
+	void setCurrentMode(String mode) {
+		currentMode.setText("CURRENT MODE= " + mode);
+	}
+	
+	void setCurrentInstance(String instance) {
+		currentInstance.setText("CURRENT INSTANCE= " + instance);
+	}
+	
+	void setCurrentType(String type) {
+		currentType.setText("CURRENT TYPE= " + type);
+	}
+	
+	void setCurrentInstruction(String instruction) {
+		currentInstruction.setText("CURRENT INSTRUCTION= " + instruction);
 	}
 }
 
