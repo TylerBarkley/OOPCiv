@@ -10,6 +10,7 @@ public class KeyListenerTester extends JFrame implements KeyListener {
     JLabel label;
     boolean ctrl;
     Player player;
+    MenuState ms;
 
     public KeyListenerTester(String s, Player player) {
         super(s);
@@ -21,6 +22,7 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         setSize(200, 100);
         setVisible(true);
         this.player = player;
+        ms = player.getMenuState();
 
     }
 
@@ -155,8 +157,20 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD9){
             System.out.println("N09");
         }
+        //
+        //
+        //
+        //
+        //
+        //ZAC THIS IS WHERE THE COMMANDS GET MADE!!
+        //
+        //
+        //
+        //
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
             System.out.println("Enter");
+            Command co = CommandFactory.create(ms.getCurrentInstruction(), ms.getCurrentInstance());
+            ms.getCurrentInstance().giveCommand(co);
         }
         if(e.getKeyCode() == KeyEvent.VK_0){
             System.out.println("10");
@@ -188,10 +202,10 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_9){
             System.out.println("09");
         }
-        System.out.println("Current Mode: " + player.getMenuState().getCurrentModeString() + "\n");
-        System.out.println("Current Type: " + player.getMenuState().getCurrentTypeString() + "\n");
-        System.out.println("Current Instance: " + player.getMenuState().currentInstanceIndex + "\n");
-        System.out.println("Current Instruction: " + player.getMenuState().currentInstruction.getInstString() + "\n");
+        System.out.println("Current Mode: " + ms.getCurrentModeString() + "\n");
+        System.out.println("Current Type: " + ms.getCurrentTypeString() + "\n");
+        System.out.println("Current Instance: " + ms.currentInstanceIndex + "\n");
+        System.out.println("Current Instruction: " + ms.getCurrentInstruction().getInstString() + "\n");
     }
 
     @Override
