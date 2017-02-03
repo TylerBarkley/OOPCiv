@@ -36,6 +36,10 @@ public class MainScreen extends Overview{
 		
 	}
 	
+	public void updateMenu(MenuState menuState) {
+		
+	}
+	
 	public static void main(String args[]) { //for testing purposes only!
 		JFrame frame = new JFrame();
 		frame.setSize(1200, 800);

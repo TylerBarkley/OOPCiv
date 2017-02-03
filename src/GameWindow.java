@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 public class GameWindow extends JFrame{
 	private Player player;
@@ -7,28 +8,35 @@ public class GameWindow extends JFrame{
 	private int width;
 	private int height;
 
+	private JTabbedPane tabbedPane;
+	
 	private MainScreen mainScreen;
 	private UnitOverview unitOverview;
-	private StatusViewport statusOverview;
+	private StructureOverview structureOverview;
 
 	public GameWindow(Player player, Map map, int width, int height) {
 		this.player = player;
 		this.map = map;
 		this.width = width;
 		this.height = height;
+		
+		this.tabbedPane=new JTabbedPane();
+		
 		this.mainScreen=new MainScreen(null,null,width,height);
 		this.unitOverview=new UnitOverview(player, width, height);
-		this.statusOverview=new StatusViewport(player, width, height);
+		this.structureOverview=new StructureOverview(player, width, height);
+		
+		setUpTabbedPane();
+	}
+
+	public GameWindow(Player player, Map map) {
+		this(player, map, 1080, 720);
 	}
 	
-	public GameWindow(Player player, Map map) {
-		this.player = player;
-		this.map = map;
-		this.width = 1080;
-		this.height = 720;
-		this.mainScreen=new MainScreen(null,null,width,height);
-		this.unitOverview=new UnitOverview(player, width, height);
-		this.statusOverview=new StatusViewport(player, width, height);
+	private void setUpTabbedPane() {
+		tabbedPane.addTab("Main Screen", mainScreen);
+		tabbedPane.addTab("Structure Overview", mainScreen);
+		tabbedPane.addTab("Unit Overview", mainScreen);
 	}
 	
 	public void openWindow(){
@@ -42,34 +50,40 @@ public class GameWindow extends JFrame{
 	}
 	
 	public void switchToUnitOverview(){
-		
+		tabbedPane.setSelectedComponent(unitOverview);
 	}
 	
 	public void switchToStructureOverview(){
-		
+		tabbedPane.setSelectedComponent(structureOverview);
 	}
 	
 	public void switchToMainScreen(){
-		
+		tabbedPane.setSelectedComponent(mainScreen);
 	}
 	
-	//If map is visible, updates the map
 	public void updateMapView(){ 
-		
+		mainScreen.updateAreaView();
 	}
 	
-	//If unit overview or main screen are visible, updates unit stats
 	public void updateUnitViews(){  
-		
+		mainScreen.updateSatusView();
+		unitOverview.updateView();
 	}
 	
-	//If structure overview or main screen are visible, update structure stats
 	public void updateStructureViews(){ 
-		
+		mainScreen.updateSatusView();
+		structureOverview.updateView();
 	}
 	
-	//updates everything in the current view that is visible
 	public void updateView(){
-		
+		mainScreen.updateSatusView();
+		unitOverview.updateView();
+		structureOverview.updateView();
+	}
+	
+	public void updateMenu(MenuState menuState){
+		mainScreen.updateMenu(menuState);
+		unitOverview.updateMenu(menuState);
+		structureOverview.updateMenu(menuState);
 	}
 }

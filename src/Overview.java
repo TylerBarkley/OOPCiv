@@ -15,19 +15,5 @@ public abstract class Overview extends JPanel{
 		this.height=height;
 	}
 	
-	public void displayMenu(String[] options, int selectedOption){
-		
-	}
-	
-	public void optionUp(){
-		
-	}
-	
-	public void optionDown(){
-		
-	}
-	
-	public void hideMenu(){
-		
-	}
+	public abstract void updateMenu(MenuState menuState);
 }
