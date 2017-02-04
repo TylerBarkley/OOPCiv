@@ -25,7 +25,7 @@ public class StatusViewport extends Viewport{
 		structureArea.setEditable(false);
 		unitArea.setEditable(false);
 		
-		currentMode = new JLabel("CURRENT MODE= "); //TODO: player1.getMenuState().getCurrentModeString() 
+		currentMode = new JLabel("CURRENT MODE= "); 
 		currentInstance = new JLabel("CURRENT INSTANCE= "); 
 		currentType = new JLabel("CURRENT TYPE= ");
 		currentInstruction = new JLabel("CURRENT INSTRUCTION= ");
@@ -74,6 +74,7 @@ public class StatusViewport extends Viewport{
 		unitArea.setText("");
 		structureArea.setText("");
 		displayAllStatuses();
+		updateMenuStates();
 	}
 	
 	public void displayView() {
@@ -122,20 +123,12 @@ public class StatusViewport extends Viewport{
 		this.add(currentInstruction);
 	}
 	
-	void setCurrentMode(String mode) {
-		currentMode.setText("CURRENT MODE= " + mode);
+	void updateMenuStates() {
+		currentMode.setText("CURRENT MODE= " + player.getMenuState().getCurrentModeString());
+		currentInstance.setText("CURRENT INSTANCE= " + player.getMenuState().getCurrentInstance());
+		currentType.setText("CURRENT TYPE= " + player.getMenuState().getCurrentTypeString());
+		currentInstruction.setText("CURRENT INSTRUCTION= " + player.getMenuState().getCurrentTypeString());
 	}
 	
-	void setCurrentInstance(String instance) {
-		currentInstance.setText("CURRENT INSTANCE= " + instance);
-	}
-	
-	void setCurrentType(String type) {
-		currentType.setText("CURRENT TYPE= " + type);
-	}
-	
-	void setCurrentInstruction(String instruction) {
-		currentInstruction.setText("CURRENT INSTRUCTION= " + instruction);
-	}
 }
 

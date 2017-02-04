@@ -15,5 +15,5 @@ public abstract class Overview extends JPanel{
 		this.height=height;
 	}
 	
-	public abstract void updateMenu(MenuState menuState);
+	public abstract void updateMenu();
 }

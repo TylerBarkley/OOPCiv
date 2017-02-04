@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -8,13 +10,24 @@ public class UnitOverview extends Overview{
 
 	private JTable unitTable;
 	private JTextArea unitStatsArea;
+	private JLabel currentMode, currentInstance,currentType,currentInstruction;
 	
 	public UnitOverview(Player player, int width, int height) {
 		super(player, width, height);
 		unitTable = new JTable(new UnitTableModel());
-		unitStatsArea = new JTextArea(5,40);
+		unitStatsArea = new JTextArea();
 		unitStatsArea.setEditable(false);
-		unitTable.setFillsViewportHeight(true);
+		
+		
+		currentMode = new JLabel("CURRENT MODE= "); 
+		currentMode.setAlignmentX(Component.CENTER_ALIGNMENT);
+		currentInstance = new JLabel("CURRENT INSTANCE= "); 
+		currentInstance.setAlignmentX(Component.CENTER_ALIGNMENT);
+		currentType = new JLabel("CURRENT TYPE= ");
+		currentType.setAlignmentX(Component.CENTER_ALIGNMENT);
+		currentInstruction = new JLabel("CURRENT INSTRUCTION= ");
+		currentInstruction.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
 		displayView();
 	}
 	
@@ -59,14 +72,29 @@ public class UnitOverview extends Overview{
 		JLabel title = new JLabel("Unit Overview");
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(title);
-		this.add(new JScrollPane(unitTable));
-		this.add(new JScrollPane(unitStatsArea));
+	
+		this.add(new FixedScrollPane(unitTable,width,height/3));
+		this.add(new FixedScrollPane(unitStatsArea,width,height/3));
 		
+		JLabel menuTitle = new JLabel("MENU STATE: ");
+		menuTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.add(menuTitle);
+		this.add(currentMode);
+		this.add(currentType);
+		this.add(currentInstance);
+		this.add(currentInstruction);
 		
 	}
 	
-	public void updateMenu(MenuState menuState){
+	public void updateMenu(){
 		
+	}
+	
+	void updateMenuStates() {
+		currentMode.setText("CURRENT MODE= " + player.getMenuState().getCurrentModeString());
+		currentInstance.setText("CURRENT INSTANCE= " + player.getMenuState().getCurrentInstance());
+		currentType.setText("CURRENT TYPE= " + player.getMenuState().getCurrentTypeString());
+		currentInstruction.setText("CURRENT INSTRUCTION= " + player.getMenuState().getCurrentTypeString());
 	}
 	
 	public static void main(String[] args) { //For testing purposes only! 
@@ -81,7 +109,7 @@ public class UnitOverview extends Overview{
 class UnitTableModel extends AbstractTableModel {
 
 	private String[] columnNames;
-	private Object[][] data; 
+	private Object[][] data;
 	
 	public UnitTableModel() {
 		generateColumnNames();
@@ -106,7 +134,7 @@ class UnitTableModel extends AbstractTableModel {
 					data[i][j] = GameInfo.UNIT_TYPES_NAMES[i];
 				}
 				else {
-					data[i][j] = new String("");
+					//data[i][j] = new String("");
 				}
 			}
 		}
