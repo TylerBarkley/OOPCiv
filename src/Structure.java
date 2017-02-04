@@ -3,7 +3,7 @@
  */
 public class Structure extends Concrete {
 
-    double state;
+    private double state;
     private String structureType;
     private StructureStats structureStats;
     
@@ -67,5 +67,13 @@ public class Structure extends Concrete {
 
     public void setStructureType(String structureType) {
         this.structureType = structureType;
+    }
+
+    public double getState() {
+        return state;
+    }
+
+    public void setState(double state) {
+        this.state = state;
     }
 }
