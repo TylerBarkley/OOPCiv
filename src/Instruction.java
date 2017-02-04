@@ -33,10 +33,11 @@ public abstract class Instruction {
         else if(inst_num == SE)     inst = "SE";
     }
 
-    public int getInstNum(){
+    public int toInt(){
         return inst_num;
     }
-    public String getInstString() {
+    @Override
+    public String toString() {
         return inst;
     }
 

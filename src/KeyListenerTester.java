@@ -1,6 +1,5 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -217,7 +216,7 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         System.out.println("Current Mode: " + ms.getCurrentModeString() + "\n");
         System.out.println("Current Type: " + ms.getCurrentTypeString() + "\n");
         System.out.println("Current Instance: " + ms.currentInstanceIndex + "\n");
-        System.out.println("Current Instruction: " + ms.getCurrentInstruction().getInstString() + "\n");
+        System.out.println("Current Instruction: " + ms.getCurrentInstruction().toString() + "\n");
     }
 
     @Override
