@@ -18,7 +18,7 @@ public abstract class Controllable {
 
     abstract void clearCommands();
 
-    public abstract void doTurn();
+    abstract void doTurn();
 
     public Player getPlayer() {
         return player;
