@@ -9,6 +9,14 @@ public abstract class Concrete extends Controllable{
     private int actionPoints;
     private int actionPointCap;
 
+    public Concrete(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap) {
+        super(player, loc, map, cid);
+        this.myStats = myStats;
+        this.currentHealth = myStats.getHealth();
+        this.actionPointCap = actionPointCap;
+        this.actionPoints = actionPointCap;
+    }
+
 
     void healMe(int ammount){
 

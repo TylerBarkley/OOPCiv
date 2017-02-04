@@ -8,9 +8,15 @@ public abstract class Controllable {
     private CommandQueue commandQueue;
     CID cid;
 
+    public Controllable(Player player, Location loc, Map map, CID cid){
+        this.player = player;
+        this.loc = loc;
+        this.map = map;
+        this.cid = cid;
+        commandQueue = new CommandQueue();
+    }
+
     abstract void endTurn();
-
-
 
     void giveCommand(Command incomingCommand){
         commandQueue.add(incomingCommand);
