@@ -22,6 +22,10 @@ public class MenuState {
     Controllable currentInstance;
     Instruction currentInstruction;
 
+    Player player;
+
+    ArrayList<Mode> ModeList;
+
     int getCurrentMode(){
         return currentMode;
     }
@@ -106,9 +110,7 @@ public class MenuState {
         return "blah";
     }
 
-    Player player;
 
-    ArrayList<Mode> ModeList;
 
     //Constructor
     MenuState(Player player){
@@ -174,6 +176,10 @@ public class MenuState {
     Instruction cycleInstructionR(){
         currentInstruction = ModeList.get(currentMode).cycleInstructionR();
         return currentInstruction;
+    }
+
+    ArrayList<Mode> getModeList(){
+        return ModeList;
     }
 
 

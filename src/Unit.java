@@ -88,6 +88,12 @@
         return army;
     }
 
+    void joinArmy(Army army){
+        myArmy = army;
+        army.getEntireArmy().add(this);
+        army.getReinforcements().add(this);
+    }
+
 //TODO: get rid of empty constructor for units below (used for testing)
 
     Unit(){

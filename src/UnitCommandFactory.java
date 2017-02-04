@@ -14,10 +14,12 @@ public class UnitCommandFactory extends CommandFactory {
                 target.makeArmy();
                 break;
             case UnitInstruction.U_JOINARMY:
-
+                //access the last selected instance of army
+                Army army = (Army)target.getPlayer().getMenuState().getModeList().get(GameInfo.ARMYMODE).getCurrentInstance();
+                target.joinArmy(army);
                 break;
             case UnitInstruction.U_BUILDBASE:
-
+                //TODO: write for colonist
                 break;
             case UnitInstruction.U_STANDBY:
                 target.standby();
