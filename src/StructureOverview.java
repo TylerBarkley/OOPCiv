@@ -21,7 +21,7 @@ public class StructureOverview extends Overview{
 		
 	}
 	
-	public void updateMenu(MenuState menuState){
+	public void updateMenu(){
 		
 	}
 }

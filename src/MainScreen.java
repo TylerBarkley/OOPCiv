@@ -40,7 +40,7 @@ public class MainScreen extends Overview{
 		areaView.placeDecal(decal, x, y);
 	}
 	
-	public void updateMenu(MenuState menuState) {
+	public void updateMenu() {
 		
 	}
 	/*
