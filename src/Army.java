@@ -5,10 +5,14 @@ import java.util.ArrayList;
  */
 
 //TODO: implement abstract methods
-public class Army extends Controllable {
-    ArrayList<Unit> battleGroup;
-    ArrayList<Unit> reinforcements;
-    ArrayList<Unit> entireArmy;
+public class Army extends Concrete {
+    private ArrayList<Unit> battleGroup;
+    private ArrayList<Unit> reinforcements;
+    private ArrayList<Unit> entireArmy;
+
+    public void doTurn(){
+        //TODO Make method that does every available command
+    }
 
     public ArrayList<Unit> getBattleGroup() {
         return battleGroup;

@@ -3,12 +3,19 @@
  */
 
 public class RallyPoint extends Controllable {
+
+
     @Override
     void endTurn() {
 
     }
 
     @Override
+    void doTurn(){
+
+    }
+
+
     void killMe() {
 
     }
