@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Queue;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -12,12 +14,12 @@ public class UnitOverview extends Overview{
 	private JTextArea unitStatsArea;
 	private JLabel currentMode, currentInstance,currentType,currentInstruction;
 	
+	
 	public UnitOverview(Player player, int width, int height) {
 		super(player, width, height);
 		unitTable = new JTable(new UnitTableModel());
 		unitStatsArea = new JTextArea();
 		unitStatsArea.setEditable(false);
-		
 		
 		currentMode = new JLabel("CURRENT MODE= "); 
 		currentMode.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -59,8 +61,18 @@ public class UnitOverview extends Overview{
 		return player.getArmies();
 	}
 	
-	private void displayUnitStatus(Unit unit){
+	private void displayCurrentUnitStatus(){
+		unitStatsArea.setText("");
 		
+		UnitStats status =  player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getUnitStats();
+		unitStatsArea.setText(status.toString() + "\n");
+		CommandQueue unitCommandQueue = player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getCommandQueue();
+		
+		Queue<Command> unitQueue = unitCommandQueue.getCommandQueue();
+		Iterator<Command> iterator = unitQueue.iterator();
+		while(iterator.hasNext()) {
+			unitStatsArea.append(iterator.next().toString() + " ");
+		}
 	}
 
 	public void updateView() {
@@ -91,10 +103,10 @@ public class UnitOverview extends Overview{
 	}
 	
 	void updateMenuStates() {
-		currentMode.setText("CURRENT MODE= " + player.getMenuState().getCurrentModeString());
-		currentInstance.setText("CURRENT INSTANCE= " + player.getMenuState().getCurrentInstance());
-		currentType.setText("CURRENT TYPE= " + player.getMenuState().getCurrentTypeString());
-		currentInstruction.setText("CURRENT INSTRUCTION= " + player.getMenuState().getCurrentTypeString());
+		currentMode.setText("CURRENT MODE= " + this.ms.getCurrentModeString());
+		currentInstance.setText("CURRENT INSTANCE= " + this.ms.getCurrentInstanceIndex());
+		currentType.setText("CURRENT TYPE= " + this.ms.getCurrentTypeString());
+		currentInstruction.setText("CURRENT INSTRUCTION= " + this.ms.getCurrentTypeString());
 	}
 	
 	public static void main(String[] args) { //For testing purposes only! 
@@ -103,6 +115,7 @@ public class UnitOverview extends Overview{
 		frame.add(new UnitOverview(null,1200,800));
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 	}
 }
 

@@ -2,6 +2,7 @@ import javax.swing.JPanel;
 
 public abstract class Overview extends JPanel{
 	protected Player player;
+	protected MenuState ms;
 	protected int selectedOption;	
 	protected int width;
 	protected int height;
@@ -11,6 +12,7 @@ public abstract class Overview extends JPanel{
 	
 	public Overview(Player player, int width, int height){
 		this.player=player;
+		if(player != null) ms = player.getMenuState(); //if statement for testing only
 		this.width=width;
 		this.height=height;
 	}

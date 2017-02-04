@@ -27,4 +27,8 @@ public class CommandQueue {
     public void clear(){
         queue.clear();
     }
+    
+    public Queue<Command> getCommandQueue() {
+    	return queue;
+    }
 }
