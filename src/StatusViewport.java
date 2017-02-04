@@ -125,7 +125,7 @@ public class StatusViewport extends Viewport{
 	
 	void updateMenuStates() {
 		currentMode.setText("CURRENT MODE= " + player.getMenuState().getCurrentModeString());
-		currentInstance.setText("CURRENT INSTANCE= " + player.getMenuState().getCurrentInstance());
+		currentInstance.setText("CURRENT INSTANCE= " + player.getMenuState().getCurrentInstanceIndex());
 		currentType.setText("CURRENT TYPE= " + player.getMenuState().getCurrentTypeString());
 		currentInstruction.setText("CURRENT INSTRUCTION= " + player.getMenuState().getCurrentTypeString());
 	}
