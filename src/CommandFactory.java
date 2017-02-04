@@ -1,79 +1,41 @@
+import java.util.ArrayList;
+
 /**
  * Created by zrgam_000 on 2/2/2017.
  */
+
+//TODO: fill in all the command factories' cases
 public class CommandFactory {
 
-    static Command create(Instruction inst, Controllable target){
-        //at any given point, MenuState holds a current instance (target) and current Instruction
-        //When player hits KP-Enter, call CommandFactory.create(MenuState.getCurrentInstruction(), Menustate.getCurrentInstance())
-        //inside this large method is the logic of what kind of command gets created
+    static Command create(Instruction inst, Controllable target) {
+        Unit u;
+        Structure s;
+        Army a;
+        RallyPoint rp;
 
-        switch (inst.toInt()){
-            case UnitInstruction.U_MAKEARMY:
-
-                break;
-            case UnitInstruction.U_JOINARMY:
-
-                break;
-            case UnitInstruction.U_BUILDBASE:
-
-                break;
-            case UnitInstruction.U_STANDBY:
-
-                break;
-            case UnitInstruction.U_POWERDOWN:
-
-                break;
-            case UnitInstruction.U_POWERUP:
-
-                break;
-            case UnitInstruction.U_CANCELQUEUE:
-
-                break;
-            case UnitInstruction.U_MOVEENTER:
-
-                break;
-
-
-            case StructureInstruction.S_ATTACK:
-
-                break;
-            case StructureInstruction.S_DEFEND:
-
-                break;
-            case StructureInstruction.S_MAKE_EXPLORER:
-
-                break;
-            case StructureInstruction.S_MAKE_COLONIST:
-
-                break;
-            case StructureInstruction.S_MAKE_MELEE:
-
-                break;
-            case StructureInstruction.S_MAKE_RANGED:
-
-                break;
-            case StructureInstruction.S_HEALUNIT:
-
-                break;
-            case StructureInstruction.S_DECOMMISSION:
-
-                break;
-            case StructureInstruction.S_POWERDOWN:
-
-                break;
-            case StructureInstruction.S_POWERUP:
-
-                break;
-            case StructureInstruction.S_CANCELQUEUE:
-
-                break;
-
-
+        if(target instanceof Unit){
+            u = (Unit)target;
+            return UnitCommandFactory.create(inst, u);
         }
 
-        return  null;  //will return an object of a specific command type, which will hold a target and logic
+        if(target instanceof Structure){
+            s = (Structure)target;
+            return StructureCommandFactory.create(inst, s);
+        }
+
+        if(target instanceof Army){
+            a = (Army)target;
+            return  ArmyCommandFactory.create(inst, a);
+        }
+
+        if(target instanceof RallyPoint){
+            rp = (RallyPoint)target;
+            return RallyPointCommandFactory.create(inst, rp);
+        }
+
+        return null;
     }
+
 
 
 }
