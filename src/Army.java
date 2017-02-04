@@ -10,6 +10,9 @@ public class Army extends Concrete {
     private ArrayList<Unit> reinforcements;
     private ArrayList<Unit> entireArmy;
 
+    Player player;
+    RallyPoint rallyPoint;
+
     public void doTurn(){
         //TODO Make method that does every available command
     }
@@ -75,5 +78,21 @@ public class Army extends Concrete {
     //TODO: delete this default army constructor (or make it useful
     Army(){
 
+    }
+    //Make an army with a unit, also creates its rally point
+    Army(Unit unit, Player player){
+        entireArmy.add(unit);
+        battleGroup.add(unit);
+        player.getArmies().add(this);
+        RallyPoint rallyPoint = new RallyPoint(this);
+        this.rallyPoint = rallyPoint;
+        player.getRallyPoints().add(rallyPoint);
+    }
+    //Make an army, also creates its rally point
+    Army(Player player){
+        player.getArmies().add(this);
+        RallyPoint rallyPoint = new RallyPoint(this);
+        this.rallyPoint = rallyPoint;
+        player.getRallyPoints().add(rallyPoint);
     }
 }

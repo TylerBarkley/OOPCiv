@@ -8,9 +8,10 @@
     double state;
     String unitType;
     UnitStats unitstats;
-    
-    /*Player ownedByPlayer */
-    void Standby(){
+
+    Player player;
+
+    void standby(){
         state=1;
     }
     void powerDown(){
@@ -82,9 +83,20 @@
         this.unitType = unitType;
     }
 
+    Army makeArmy(){
+        Army army = new Army(this, player);
+        return army;
+    }
+
 //TODO: get rid of empty constructor for units below (used for testing)
 
     Unit(){
+        unitType = "placeholder";
+    }
+
+    Unit(Player player){
+        this.player = player;
+        this.standby();
         unitType = "placeholder";
     }
 }

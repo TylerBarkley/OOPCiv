@@ -22,7 +22,7 @@ public class UnitInstruction extends Instruction {
         if(inst_num == U_MAKEARMY)			inst = "MakeArmy";
         else if(inst_num == U_JOINARMY)		inst = "JoinArmy";
         else if(inst_num == U_BUILDBASE)	inst = "BuildBase";
-        else if(inst_num == U_STANDBY)  	inst = "Standby";
+        else if(inst_num == U_STANDBY)  	inst = "standby";
         else if(inst_num == U_POWERDOWN)	inst = "PowerDown";
         else if(inst_num == U_POWERUP)      inst = "PowerUp";
         else if(inst_num == U_CANCELQUEUE)  inst = "CancelQueue";
