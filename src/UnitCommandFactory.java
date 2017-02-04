@@ -34,7 +34,6 @@ public class UnitCommandFactory extends CommandFactory {
             case UnitInstruction.U_MOVEENTER:
 
                 break;
-
         }
         return  null;  //will return an object of a specific command type, which will hold a target and logic
     }
