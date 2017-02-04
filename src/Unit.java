@@ -2,7 +2,7 @@
  * Created by Trevor on 1/30/2017.
  */
 
-    public abstract class Unit extends Controllable {
+    public abstract class Unit extends Concrete {
 
     Army myArmy;
     double state;
@@ -22,27 +22,39 @@
 
     /*TODO: make a  Move Rally Point*/
 
+    public void doTurn(){
+
+        while(getActionPointCap() > 0 && !getCommandQueue().isEmpty()) {
+            getCommandQueue().carryOut();
+        }
+
+        if(getCommandQueue().isEmpty()){
+            setActionPoints(getActionPointCap());
+        }
+    }
+
     void endTurn(){
         //TODO Resource Consumption at end of turn
 
         //Reset the unit's action points
         int possibleMovement = myArmy == null ? ((UnitStats) myStats).getMovement() : myArmy.getAvailableMovement();
-        if((actionPoints += possibleMovement) < possibleMovement){
-            actionPoints = possibleMovement;
+        setActionPoints(getActionPoints() + possibleMovement);
+        if(getActionPoints() > possibleMovement){
+            setActionPoints(possibleMovement);
         }
     }
 
     void clearCommands(){
         this.getCommandQueue().clear();
-        this.actionPoints = myArmy == null ? actionPointCap : myArmy.getAvailableMovement();
+        setActionPoints(myArmy == null ? getActionPointCap() : myArmy.getAvailableMovement());
     }
 
     void move(Map.MapDirection md){
-        Location targetLoc = loc.getAdjacent(md);
-        Tile targetTile = map.getTile(targetLoc);
+        Location targetLoc = getLoc().getAdjacent(md);
+        Tile targetTile = getMap().getTile(targetLoc);
 
         if(targetTile.addUnit(this)){
-           map.getTile(this.getLoc()).removeUnit(this);
+           getMap().getTile(this.getLoc()).removeUnit(this);
            this.setLoc(targetLoc);
         }
         else{
@@ -51,8 +63,8 @@
     }
 
     void killMe(){
-        player.remove(this);
-        map.getTile(getLoc()).removeUnit(this);
+        getPlayer().remove(this);
+        getMap().getTile(getLoc()).removeUnit(this);
     }
     
     String getUnitType() {
@@ -64,9 +76,9 @@
     }
 
     Unit(String unitType, Map currentMap){
-        myStats = UnitStatsFactory.produceUnitStats(unitType);
-        map=currentMap;
-        actionPointCap = ((UnitStats) myStats).getMovement();
+        setMyStats(UnitStatsFactory.produceUnitStats(unitType));
+        setMap(currentMap);
+        setActionPointCap(((UnitStats) myStats).getMovement());
         this.unitType = unitType;
     }
 

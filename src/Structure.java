@@ -1,11 +1,11 @@
 /**
  * Created by hankerins on 1/31/17.
  */
-public class Structure extends Controllable {
+public class Structure extends Concrete {
 
     double state;
-    String structureType;
-    StructureStats structureStats;
+    private String structureType;
+    private StructureStats structureStats;
     
     void powerDown(){
         state=.75;
@@ -24,7 +24,7 @@ public class Structure extends Controllable {
     }
 
     void killMe(){
-        player.remove(this);
+        getPlayer().remove(this);
 
 //      map.getTile(getLoc()).removeStructure();
     }
@@ -32,7 +32,7 @@ public class Structure extends Controllable {
     @Override
     void clearCommands() {
         this.getCommandQueue().clear();
-        this.actionPoints = actionPointCap;
+        setActionPoints(getActionPointCap());
     }
 
     void printStats(){ }
@@ -52,12 +52,20 @@ public class Structure extends Controllable {
 //        tileCreatedOn.addStructure(this);
         myStats = StructureStatsFactory.produceStructureStats(structureType);
 //        currentTileOn=tileCreatedOn;
-        map=currentMap;
-        actionPointCap = 1;
+        setMap(currentMap);
+        setActionPointCap(1);
     }
 
     //TODO: delete or fix this default constructor
     Structure(){
 
+    }
+
+    public void setStructureStats(StructureStats structureStats) {
+        this.structureStats = structureStats;
+    }
+
+    public void setStructureType(String structureType) {
+        this.structureType = structureType;
     }
 }
