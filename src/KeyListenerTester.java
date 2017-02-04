@@ -83,6 +83,8 @@ public class KeyListenerTester extends JFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
 
+        //TODO: all key presses should update view, single function to do so
+
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             if(ctrl == true){
                 System.out.println("Cycle Type right");
