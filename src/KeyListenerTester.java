@@ -172,35 +172,47 @@ public class KeyListenerTester extends JFrame implements KeyListener {
             Command co = CommandFactory.create(ms.getCurrentInstruction(), ms.getCurrentInstance());
             ms.getCurrentInstance().giveCommand(co);
         }
-        if(e.getKeyCode() == KeyEvent.VK_0){
-            System.out.println("10");
-        }
         if(e.getKeyCode() == KeyEvent.VK_1){
             System.out.println("01");
+            //TODO check for unit existence
+            shortcutInstance(1);
         }
         if(e.getKeyCode() == KeyEvent.VK_2){
             System.out.println("02");
+            //TODO check for unit existence
+            shortcutInstance(2);
         }
         if(e.getKeyCode() == KeyEvent.VK_3){
             System.out.println("03");
+            shortcutInstance(3);
         }
         if(e.getKeyCode() == KeyEvent.VK_4){
             System.out.println("04");
+            shortcutInstance(4);
         }
         if(e.getKeyCode() == KeyEvent.VK_5){
             System.out.println("05");
+            shortcutInstance(5);
         }
         if(e.getKeyCode() == KeyEvent.VK_6){
             System.out.println("06");
+            shortcutInstance(6);
         }
         if(e.getKeyCode() == KeyEvent.VK_7){
             System.out.println("07");
+            shortcutInstance(7);
         }
         if(e.getKeyCode() == KeyEvent.VK_8){
             System.out.println("08");
+            shortcutInstance(8);
         }
         if(e.getKeyCode() == KeyEvent.VK_9){
             System.out.println("09");
+            shortcutInstance(9);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_0){
+            System.out.println("10");
+            shortcutInstance(10);
         }
         System.out.println("Current Mode: " + ms.getCurrentModeString() + "\n");
         System.out.println("Current Type: " + ms.getCurrentTypeString() + "\n");
@@ -243,5 +255,22 @@ public class KeyListenerTester extends JFrame implements KeyListener {
             player1.getRallyPoints().add(new RallyPoint());
         }
         new KeyListenerTester("Key Listener Tester", player1);
+    }
+
+    public void shortcutInstance(int input){
+        int currentIndex = ms.getCurrentInstanceIndex();
+        int wantedIndex = input;
+        int diff = wantedIndex - currentIndex;
+        if(diff < 0){
+            diff = Math.abs(diff);
+            for(int i = 0; i < diff; i++) {
+                player.getMenuState().cycleInstanceL();
+            }
+        }
+        else if(diff > 0){
+            for(int i = 0; i < diff; i++){
+                player.getMenuState().cycleInstanceR();
+            }
+        }
     }
 }
