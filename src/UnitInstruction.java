@@ -12,12 +12,11 @@ public class UnitInstruction extends Instruction {
     public final static int U_CANCELQUEUE   = 16;
     public final static int U_MOVEENTER     = 17;
 
-
     public UnitInstruction(int inst_num){
         super(inst_num);
         setString();
-
     }
+
     public void setString(){
         setStringDirection();
         if(inst_num == U_MAKEARMY)			inst = "MakeArmy";
@@ -28,7 +27,5 @@ public class UnitInstruction extends Instruction {
         else if(inst_num == U_POWERUP)      inst = "PowerUp";
         else if(inst_num == U_CANCELQUEUE)  inst = "CancelQueue";
         else if(inst_num == U_MOVEENTER)    inst = "MoveEnter";
-
     }
-
 }
