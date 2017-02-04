@@ -43,7 +43,7 @@ public class MainScreen extends Overview{
 	public void updateMenu(MenuState menuState) {
 		
 	}
-	
+	/*
 	public static void main(String args[]) throws IOException { //for testing purposes only!
 		MainScreen main=new MainScreen(null,null,new Map(7, 7, true),1200,800);
 		JFrame frame = new JFrame();
@@ -54,4 +54,5 @@ public class MainScreen extends Overview{
 		main.placeDecal(new Decal(ImageIO.read(new File("RedCross.jpg"))), 1, 2);
 		main.placeDecal(new Decal(ImageIO.read(new File("SkullCrossBones.jpg"))), 4, 4);
 	}
+	*/
 }

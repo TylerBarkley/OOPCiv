@@ -113,7 +113,7 @@ public class StatusViewport extends Viewport{
 		this.add(title);
 		this.add(panelAB);	
 		JLabel menu = new JLabel("MENU STATE");
-		menu.setAlignmentX(CENTER_ALIGNMENT);
+		menu.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(menu);
 		this.add(currentMode);
 		
