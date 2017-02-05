@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -26,13 +27,61 @@ public class RallyPoint extends Controllable {
 
             for(Location loc : adjacency.keySet()){
 
-                if(paths[loc.x][loc.y] == null && !this.getLoc().equals(loc) && getMap().getTile(loc).openTile(getPlayer())){
+                if(paths[loc.x][loc.y] == null && !this.getLoc().equals(loc) && getMap().getTile(loc).isTraversable(null) && getMap().getTile(loc).openTile(getPlayer())){
                     paths[loc.x][loc.y] = adjacency.get(loc);
                     bfsQueue.add(loc);
                 }
 
             }
         }
+    }
+
+    public void redoPaths(){
+        for(Unit target : this.army.getEntireArmy()){
+            target.clearCommands();
+        }
+        moveRallyPoint(this.getLoc());
+    }
+
+    public void moveRallyPoint(Location loc){
+        this.setLoc(loc);
+        generatePaths();
+
+        ArrayList<Map.MapDirection> path = null;
+
+        if(!army.getBattleGroup().isEmpty()){
+
+            for(Unit target : army.getBattleGroup()) {
+                if (path != null) {
+                    path = givePath(target.getLoc());
+                }
+                for(Map.MapDirection md : path){
+                    target.giveCommand(new MoveCommand(target, md));
+                }
+            }
+
+            for(Unit target : army.getReinforcements()) {
+                path = givePath(target.getLoc());
+
+                for(Map.MapDirection md : path){
+                    target.giveCommand(new MoveCommand(target, md));
+                }
+            }
+        }
+    }
+
+    public ArrayList<Map.MapDirection> givePath(Location loc){
+        ArrayList<Map.MapDirection> path = new ArrayList<Map.MapDirection>();
+
+        Map.MapDirection nextMove;
+
+        while(loc != null){
+            nextMove = getPath(loc);
+            path.add(nextMove);
+            loc = loc.getAdjacent(nextMove);
+        }
+
+        return path;
     }
 
     Map.MapDirection getPath(Location loc){

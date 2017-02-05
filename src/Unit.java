@@ -57,17 +57,19 @@
     }
 
     void move(Map.MapDirection md){
+
         Location targetLoc = getLoc().getAdjacent(md);
         Tile targetTile = getMap().getTile(targetLoc);
 
-        if(targetTile.addUnit(this)){
-           getMap().getTile(this.getLoc()).removeUnit(this);
-           this.setLoc(targetLoc);
-           this.setFacingDirection(md);
+        if(!targetTile.openTile(this.getPlayer())){
+            this.myArmy.getRallyPoint().redoPaths();
         }
-        else{
-            this.clearCommands();
-        }
+
+        targetTile.addUnit(this);
+        getMap().getTile(this.getLoc()).removeUnit(this);
+        this.setLoc(targetLoc);
+        this.setFacingDirection(md);
+
     }
 
     void killMe(){

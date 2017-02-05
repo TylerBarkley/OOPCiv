@@ -1,5 +1,3 @@
-import sun.plugin2.message.GetAppletMessage;
-
 import java.util.ArrayList;
 
 /**
@@ -134,6 +132,10 @@ public class Army extends Concrete {
         RallyPoint rallyPoint = new RallyPoint(this);
         this.rallyPoint = rallyPoint;
         player.getRallyPoints().add(getCID().getPersonelID(), rallyPoint);
+    }
+
+    public RallyPoint getRallyPoint() {
+        return rallyPoint;
     }
     //Make an army, also creates its rally point
    /*
