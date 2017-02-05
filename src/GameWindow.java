@@ -88,4 +88,16 @@ public class GameWindow extends JFrame{
 		unitOverview.updateMenu();
 		structureOverview.updateMenu();
 	}
+	
+	public void focusOn(Location loc){
+		mainScreen.focusOn(loc);
+	}
+	
+	public void focusOn(Unit unit){
+		mainScreen.focusOn(unit);
+	}
+	
+	public void focusOn(Structure structure){
+		mainScreen.focusOn(structure);
+	}
 }

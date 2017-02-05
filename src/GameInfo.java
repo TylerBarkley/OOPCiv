@@ -22,7 +22,10 @@ public class GameInfo {
     public final static int BATTLEGROUP    	= 1;
     public final static int REINFORCEMENTS 	= 2;
 
-
+    public final static int TILE_SIZE		=100;
+    public final static int DECAL_SIZE		=10;
+    public final static int UNIT_SIZE		=40;
+    public final static int STRUCTURE_SIZE	=80;
 
     public final static int RALLYPOINTMODE  = 0;
     public final static int ARMYMODE       	= 1;
