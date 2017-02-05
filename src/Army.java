@@ -116,6 +116,9 @@ public class Army extends Concrete {
     //Make an army with a unit, also creates its rally point
     Army(Unit unit, Player player){
 
+        super(player, unit.getLoc(), unit.getMap(),null, null, unit.getActionPointCap());
+
+
         int personelID;
 
         ArrayList<Army> armies = getPlayer().getArmies();
@@ -128,9 +131,8 @@ public class Army extends Concrete {
             return;
         }
 
-        super(player, unit.getLoc(), unit.getMap(),new CID(GameInfo.ARMY, personelID), new Stats(), -1);
-
         commandFactory = new CommandFactory();
+
         entireArmy.add(unit);
         battleGroup.add(unit);
         player.getArmies().add(personelID, this);
