@@ -68,7 +68,7 @@ public class UnitTableModel extends AbstractTableModel {
 		for(int j = 1; j <GameInfo.MAX_PER_TYPE + 1;j++ ) {
 			for(int i = 0; i <GameInfo.UNIT_TYPES; i++) {
 				if(units.get(i).size() >= j) {
-					data[i][j] = units.get(i).get(j);
+					data[i][j] = units.get(i).get(j-1);
 				} 
 				else {
 					data[i][j] = new String("");
