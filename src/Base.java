@@ -14,12 +14,8 @@ public class Base extends Structure {
     }
 
     boolean ProduceUnit (int unitType){
-        /*
+
         int personelID;
-
-        //StatsFactory unitStats = new StatsFactory();
-        //unitStats.create(unitType);
-
 
         ArrayList<Unit> units = getPlayer().getUnits().get(unitType);
 
@@ -31,11 +27,10 @@ public class Base extends Structure {
             return false;
         }
 
-        Unit placedUnit = new Unit(getPlayer(), getLoc(), getMap(), new CID(unitType, personelID), myStats, getActionPointCap(), 2);
-
+        Unit placedUnit = UnitFactory.createUnit(unitType, getPlayer(), getLoc(), getMap());
 
         getMap().getTile(getLoc()).addUnit(placedUnit);
-        */
+
         return true;
     }
 
