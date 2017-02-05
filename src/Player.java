@@ -65,9 +65,9 @@ public class Player {
         structures.get(target.getCID().typeID).remove(target.getCID().personelID);
     }
 
-    public boolean getIfAnyOrderableExistsForMode(int modeType){
-        if(modeType==GameInfo.UNITMODE) {
-            for (int i = 0; i < units.size(); i++) {
+    public boolean orderableExists(int modeType){
+        if(modeType == GameInfo.UNITMODE) {
+            for (int i = 0; i < GameInfo.UNIT_TYPES; i++) {
                 for (int j = 0; j < units.get(i).size(); j++) {
                     if (units.get(i).get(j) != null){
                         return true;
@@ -99,6 +99,6 @@ public class Player {
             }
             return false;
         }
-        return true;
+        return false;
     }
 }

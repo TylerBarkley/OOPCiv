@@ -128,13 +128,17 @@ public class MenuState {
     }
 
     int cycleModeL(){
-        int startedMode=currentMode;
-        do{
+        int startedMode = currentMode;
+        currentMode--;
+        if(currentMode < GameInfo.RALLYPOINT) {
+            currentMode = GameInfo.STRUCTUREMODE;
+        }
+        while(!player.orderableExists(currentMode) && currentMode != startedMode){
             currentMode--;
-            if(currentMode<GameInfo.RALLYPOINT) {
+            if(currentMode < GameInfo.RALLYPOINT) {
                 currentMode = GameInfo.STRUCTUREMODE;
             }
-        }while(!player.getIfAnyOrderableExistsForMode(currentMode)&&currentMode!=startedMode);
+        };
         currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
         return currentMode;
     }
@@ -145,7 +149,7 @@ public class MenuState {
             if(currentMode>GameInfo.STRUCTUREMODE) {
                 currentMode = GameInfo.RALLYPOINT;
             }
-        }while(!player.getIfAnyOrderableExistsForMode(currentMode)&&currentMode!=startedMode);
+        }while(!player.orderableExists(currentMode)&&currentMode!=startedMode);
         currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
         return currentMode;
     }
