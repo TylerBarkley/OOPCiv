@@ -22,6 +22,8 @@ public class GameInfo {
     public final static int BATTLEGROUP    	= 1;
     public final static int REINFORCEMENTS 	= 2;
 
+    public final static int MAP_SIZE        = 10;
+
     public final static int TILE_SIZE		=100;
     public final static int DECAL_SIZE		=10;
     public final static int UNIT_SIZE		=40;

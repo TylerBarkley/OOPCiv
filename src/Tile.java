@@ -30,6 +30,24 @@ public class Tile {
 
     }
 
+    boolean openTile(Player player){
+        if(structOnTile.getPlayer() != player){
+            return false;
+        }
+
+        for(Unit unit : unitsOnTile){
+            if(unit.getPlayer() != player){
+                return false;
+            }
+
+            else{
+                return true;
+            }
+        }
+
+        return true;
+    }
+
     boolean isTraversable(Unit unitMovingToTile){
         return terrainType.isTraversableBy(unitMovingToTile);
     }
