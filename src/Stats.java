@@ -1,7 +1,7 @@
 /**
  * Created by Tyler Barkley on 2/1/2017.
  */
-public abstract class  Stats {
+public class  Stats {
     private int offensiveDamage;
 
     private int defensiveDamage;
@@ -12,6 +12,8 @@ public abstract class  Stats {
 
     private int UpKeep;
 
+    private int movement;
+
     void setOffensiveDamage(int offensiveDamage){this.offensiveDamage=offensiveDamage;}
 
     void setDefensiveDamage(int defensiveDamage){this.defensiveDamage=defensiveDamage;}
@@ -19,7 +21,7 @@ public abstract class  Stats {
     void setArmor(int armor){this.armor=armor;}
 
     void setHealth(int health){this.health=health;}
-
+    void setMovement(int movement){this.health=health;}
     void setUpKeep(int UpKeep){this.UpKeep=UpKeep;}
 
     int getOffensiveDamage(){return offensiveDamage;}
@@ -32,6 +34,8 @@ public abstract class  Stats {
 
     int getUpKeep(){return UpKeep;}
 
+    int getMovement(){return movement;}
+
     public String toString(){
         String s = "";
         s += ("Health: "+getHealth());
@@ -41,6 +45,9 @@ public abstract class  Stats {
         s += (" UpKeep: "+getUpKeep());
 
         return s;
+    }
+    Stats(){
+        //DEFAULT
     }
 
 }

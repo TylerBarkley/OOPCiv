@@ -2,28 +2,29 @@
  * Created by Trevor on 2/2/2017.
  */
 public class UnitFactory {
-    static Unit createUnit(String orderableToBeCreated, Map currentMap){
+    static Unit createUnit(int orderableToBeCreated,Player player, Location loc, Map map){
         Unit unitToBeCreated;
-        if(orderableToBeCreated.equals("MeleeFighter")) {
-            unitToBeCreated=new MeleeFighter(orderableToBeCreated,currentMap);
+        if(orderableToBeCreated==GameInfo.MELEEUNIT) {
+            unitToBeCreated=new MeleeFighter(player, loc, map,CID.giveCID(player,orderableToBeCreated), StatsFactory.createStats(orderableToBeCreated),2);
             return unitToBeCreated;
         }
+        //TODO: NEED TO IMPLEMENT THESE CONSTRUCTION
         /*RangedFighter UnitStats Construction*/
-        else if(orderableToBeCreated.equals("RangedFighter")) {
-            unitToBeCreated=new RangedFighter(orderableToBeCreated,currentMap);
+      /*  else if(orderableToBeCreated.equals("RangedFighter")) {
+            unitToBeCreated=new RangedFighter(player, loc, map, cid, StatsFactory.createStats("RANGEDFIGHTER"),2);
             return unitToBeCreated;
-        }
+        }*/
         /*Explorer UnitStats Construction*/
-        else if(orderableToBeCreated.equals("Explorer")) {
-            unitToBeCreated=new Explorer(orderableToBeCreated,currentMap);
+       /* else if(orderableToBeCreated.equals("Explorer")) {
+            unitToBeCreated=new Explorer(player, loc, map, cid, StatsFactory.createStats("EXPLORER"),1);
             return unitToBeCreated;
 
-        }
+        }*/
         /*Colonist UnitStats Construction*/
-        else if(orderableToBeCreated.equals("Colonist")) {
-            unitToBeCreated=new Colonist(orderableToBeCreated,currentMap);
+        /*else if(orderableToBeCreated.equals("Colonist")) {
+            unitToBeCreated=new Colonist(player, loc, map, cid, StatsFactory.createStats("COLONIST"),2);
             return unitToBeCreated;
-        }
+        }*/
         return null;
     }
 }

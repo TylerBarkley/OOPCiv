@@ -3,7 +3,7 @@
  */
 
     public abstract class Unit extends Concrete {
-
+    String unitType;
     Army myArmy;
     double state;
 
@@ -79,6 +79,9 @@
         myArmy = army;
         army.getEntireArmy().add(this);
         army.getReinforcements().add(this);
+    }
+    public String toString(){
+        return unitType;
     }
 
 //TODO: get rid of empty constructor for units below (used for testing)
