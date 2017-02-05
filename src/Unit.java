@@ -3,14 +3,17 @@
  */
 
     public abstract class Unit extends Concrete {
-    String unitType;
     Army myArmy;
     double state;
 
-    public Unit(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap) {
-        super(player, loc, map, cid, myStats, actionPointCap);
+
+    //CONSTRUCTOR
+
+    public Unit(Player player, Location loc, Map map, CID cid, Stats myStats) {
+        super(player, loc, map, cid, myStats);
         myArmy = null;
         state = 1.0;
+        this.setFacingDirection(Map.MapDirection.NORTH);
     }
 
     void standby(){
@@ -31,9 +34,6 @@
             getCommandQueue().carryOut();
         }
 
-        if(getCommandQueue().isEmpty()){
-            setActionPoints(getActionPointCap());
-        }
     }
 
     void endTurn(){
@@ -59,6 +59,7 @@
         if(targetTile.addUnit(this)){
            getMap().getTile(this.getLoc()).removeUnit(this);
            this.setLoc(targetLoc);
+           this.setFacingDirection(md);
         }
         else{
             this.clearCommands();
@@ -79,9 +80,6 @@
         myArmy = army;
         army.getEntireArmy().add(this);
         army.getReinforcements().add(this);
-    }
-    public String toString(){
-        return unitType;
     }
 
 //TODO: get rid of empty constructor for units below (used for testing)

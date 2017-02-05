@@ -250,7 +250,7 @@ public class KeyListenerTester extends JFrame implements KeyListener {
             }
         }
         for(int i = 0; i < 4; i++){
-            player1.getArmies().add(new Army());
+            player1.getArmies().add(new Army(player1.getUnits().get(GameInfo.EXPLORER).get(0), player1));
         }
         for(int i = 0; i < 4; i++){
             player1.getRallyPoints().add(new RallyPoint());

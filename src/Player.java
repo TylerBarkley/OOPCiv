@@ -9,6 +9,7 @@ public class Player {
     ArrayList<ArrayList<Structure>>  structures;
     ArrayList<Army> armies;
     ArrayList<RallyPoint>  rallyPoints;
+    ArrayList<ArrayList<Controllable>> controllables;
 
     MenuState menuState;
 
@@ -28,6 +29,8 @@ public class Player {
         for(int i = 0; i < GameInfo.STRUCTURE_TYPES; i++){
             structures.add(new ArrayList<Structure>());
         }
+
+
 
         menuState = new MenuState(this);
     }

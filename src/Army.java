@@ -1,3 +1,5 @@
+import sun.plugin2.message.GetAppletMessage;
+
 import java.util.ArrayList;
 
 /**
@@ -13,8 +15,47 @@ public class Army extends Concrete {
     Player player;
     RallyPoint rallyPoint;
 
+    CommandFactory commandFactory;
+
     public void doTurn(){
-        //TODO Make method that does every available command
+        while(!getCommandQueue().isEmpty()){
+            getCommandQueue().carryOut();
+        }
+    }
+
+    public void addToBattleGroup(Unit target){
+        int population = battleGroup.size();
+        battleGroup.add(target);
+        Stats workingStats = getMyStats();
+        workingStats.setArmor((((population*workingStats.getArmor()) + target.getMyStats().getArmor()) / (population+1) ));
+        workingStats.setDefensiveDamage((((population*workingStats.getDefensiveDamage()) + target.getMyStats().getDefensiveDamage()) / (population+1) ));
+        workingStats.setHealth((((population*workingStats.getHealth()) + target.getMyStats().getHealth()) / (population+1) ));
+        workingStats.setOffensiveDamage((((population*workingStats.getOffensiveDamage()) + target.getMyStats().getOffensiveDamage()) / (population+1) ));
+        workingStats.setUpKeep((((population*workingStats.getUpKeep()) + target.getMyStats().getUpKeep()) / (population+1) ));
+
+        if(this.getActionPointCap() > target.getActionPointCap()){
+            this.setActionPointCap(target.getActionPointCap());
+        }
+    }
+
+    public void addToReinforcements(Unit target){
+        reinforcements.add(target);
+    }
+
+    public void addToArmy(Unit target){
+        entireArmy.add(target);
+    }
+
+    public void orderMove(Map.MapDirection md){
+        for(Unit target : battleGroup){
+            //target.getCommandQueue().add(target.commandFactory.create(Move Instruction, target));
+        }
+    }
+
+    public void powerDown(){
+        for(Unit target : battleGroup){
+            //target.getCommandQueue().add(target.commandFactory.create(PowerDown, target));
+        }
     }
 
     public ArrayList<Unit> getBattleGroup() {
@@ -59,17 +100,19 @@ public class Army extends Concrete {
 
     @Override
     void endTurn() {
-
+        //TODO SPAGHETTI
     }
 
     @Override
     void killMe() {
-
+        for(Unit target : entireArmy){
+            target.killMe();
+        }
     }
 
     @Override
     void clearCommands() {
-
+        getCommandQueue().clear();
     }
 
     void remove(Unit target){
@@ -80,13 +123,19 @@ public class Army extends Concrete {
 
     //Make an army with a unit, also creates its rally point
     Army(Unit unit, Player player){
-        super(player, unit.getLoc(), unit.getMap(),null, null);
-        entireArmy.add(unit);
-        battleGroup.add(unit);
-        player.getArmies().add(this);
+
+        super(player, unit.getLoc(), unit.getMap(),CID.giveCID(player, GameInfo.ARMY), StatsFactory.createStats(GameInfo.ARMY));
+
+        commandFactory = new CommandFactory();
+
+        this.addToArmy(unit);
+
+        this.addToBattleGroup(unit);
+
+        player.getArmies().add(getCID().personelID, this);
         RallyPoint rallyPoint = new RallyPoint(this);
         this.rallyPoint = rallyPoint;
-        player.getRallyPoints().add(rallyPoint);
+        player.getRallyPoints().add(getCID().personelID, rallyPoint);
     }
     //Make an army, also creates its rally point
    /*
