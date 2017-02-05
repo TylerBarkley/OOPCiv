@@ -7,33 +7,20 @@ public class Base extends Structure {
 
     //UnitFactory unitFactory;
 
-    public Base(Player player, Location loc, Map map, CID cid, Stats myStats) {
-        super(player, loc, map, cid, myStats);
+    public Base(Player player, Location loc, Map map) {
+        super(player, loc, map, CID.giveCID(player, GameInfo.BASE), StatsFactory.createStats(GameInfo.BASE));
     }
+
     public Base(Colonist colonist) {
         super(colonist.getPlayer(), colonist.getLoc(), colonist.getMap(), CID.giveCID(colonist.getPlayer(),
                 GameInfo.BASE), StatsFactory.createStats(GameInfo.BASE));
     }
 
 
-    boolean ProduceUnit (int unitType){
+    void ProduceUnit (int unitType){
 
-        int personelID;
-
-        ArrayList<Unit> units = getPlayer().getUnits().get(unitType);
-
-        for (personelID = 0; personelID < GameInfo.MAX_PER_TYPE; personelID++){
-            if(units.get(personelID) == null) break;
-        }
-
-        if(personelID == GameInfo.MAX_PER_TYPE){
-            return false;
-        }
-
-        Unit placedUnit = UnitFactory.createUnit(unitType, getPlayer(), getLoc(), getMap());
+        Unit placedUnit = UnitFactory.createUnit(this, unitType);
 
         getMap().getTile(getLoc()).addUnit(placedUnit);
-
-        return true;
     }
 }
