@@ -9,11 +9,13 @@ public class Player {
     ArrayList<ArrayList<Structure>>  structures;
     ArrayList<Army> armies;
     ArrayList<RallyPoint>  rallyPoints;
-    ArrayList<ArrayList<Controllable>> controllables;
 
+
+    Location location; //this is the player's point of focus
     MenuState menuState;
+    Map map; //made before player
 
-    public Player(){
+    public Player(Map map){
         armies = new ArrayList<Army>();
 
         rallyPoints = new ArrayList<RallyPoint>();
@@ -30,7 +32,8 @@ public class Player {
             structures.add(new ArrayList<Structure>());
         }
 
-
+        this.map = map;
+        this.location = new Location(0, 0);
 
         menuState = new MenuState(this);
     }
