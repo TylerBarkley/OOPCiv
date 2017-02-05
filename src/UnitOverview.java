@@ -6,18 +6,27 @@ import java.util.Iterator;
 import java.util.Queue;
 
 import javax.swing.*;
+
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class UnitOverview extends Overview{
 
 	private JTable unitTable;
 	private JTextArea unitStatsArea;
 	private JLabel currentMode, currentInstance,currentType,currentInstruction;
-	
+	private UnitTableModel model;
+	private UnitTableRenderer renderer;
 	
 	public UnitOverview(Player player, int width, int height) {
 		super(player, width, height);
 		unitTable = new JTable(new UnitTableModel());
+		
+		unitTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		unitTable.setRowSelectionAllowed(true);
+		unitTable.setColumnSelectionAllowed(true);
+		unitTable.setEnabled(false);
+		
 		unitStatsArea = new JTextArea();
 		unitStatsArea.setEditable(false);
 		
@@ -30,6 +39,8 @@ public class UnitOverview extends Overview{
 		currentInstruction = new JLabel("CURRENT INSTRUCTION= ");
 		currentInstruction.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
+		renderer = new UnitTableRenderer();
+		setRenderer();
 		displayView();
 	}
 	
@@ -76,7 +87,8 @@ public class UnitOverview extends Overview{
 	}
 
 	public void updateView() {
-
+		model.updateData(this.player);
+		
 	}
 
 	public void displayView() {
@@ -85,21 +97,30 @@ public class UnitOverview extends Overview{
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(title);
 	
-		this.add(new FixedScrollPane(unitTable,width,height/3));
-		this.add(new FixedScrollPane(unitStatsArea,width,height/3));
-		
+		this.add(Box.createVerticalStrut(30));
 		JLabel menuTitle = new JLabel("MENU STATE: ");
 		menuTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(menuTitle);
+		this.add(Box.createVerticalStrut(10));
 		this.add(currentMode);
 		this.add(currentType);
 		this.add(currentInstance);
 		this.add(currentInstruction);
+		this.add(Box.createVerticalStrut(15));
+		
+		this.add(new FixedScrollPane(unitTable,width,height/3));
+		this.add(new FixedScrollPane(unitStatsArea,width,height/3));
+		
 		
 	}
 	
 	public void updateMenu(){
-		
+		updateMenuStates();
+		renderer.updateSelectedUnit(this.ms.getCurrentMode(), this.ms.getCurrentType(), this.ms.getCurrentInstanceIndex());
+		if(this.ms.getCurrentMode() == GameInfo.UNITMODE || this.ms.getCurrentMode() == GameInfo.ARMYMODE) {
+			displayCurrentUnitStatus();
+			model.updateCell(this.ms.getCurrentType(), this.ms.getCurrentInstanceIndex() + 1);
+		}
 	}
 	
 	void updateMenuStates() {
@@ -111,22 +132,34 @@ public class UnitOverview extends Overview{
 	
 	public static void main(String[] args) { //For testing purposes only! 
 		JFrame frame = new JFrame();
+		
 		frame.setSize(1200, 800);
 		frame.add(new UnitOverview(null,1200,800));
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
+	
+	private void setRenderer() {
+		for(int i = 1; i < GameInfo.MAX_PER_TYPE + 1;i++) {
+			unitTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
+		}
+	}
 }
 
 class UnitTableModel extends AbstractTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String[] columnNames;
 	private Object[][] data;
 	
 	public UnitTableModel() {
 		generateColumnNames();
 		generateData();
+	
 	}
 	
 	private void generateColumnNames() {
@@ -147,7 +180,7 @@ class UnitTableModel extends AbstractTableModel {
 					data[i][j] = GameInfo.UNIT_TYPES_NAMES[i];
 				}
 				else {
-					//data[i][j] = new String("");
+					data[i][j] = new String("");
 				}
 			}
 		}
@@ -174,4 +207,78 @@ class UnitTableModel extends AbstractTableModel {
 		return data[rowIndex][columnIndex];
 	}
 	
+	public Class getColumnClass(int c) {
+		return getValueAt(0,c).getClass();
+	}
+	
+	public void updateData(Player player) {
+		ArrayList<ArrayList<Unit>> units = player.getUnits();
+		
+		for(int j = 1; j <GameInfo.MAX_PER_TYPE + 1;j++ ) {
+			for(int i = 0; i <GameInfo.UNIT_TYPES; i++) {
+				if(units.get(i).size() >= j) {
+					data[i][j] = units.get(i).get(j);
+				} 
+				else {
+					data[i][j] = new String("");
+				}
+			}
+		}
+		
+		ArrayList<Army> armies = player.getArmies();
+		int j = 1;
+		for(j = 1; j <= armies.size();j++) {
+			data[GameInfo.UNIT_TYPES][j] = player.getArmies().get(j-1);
+		}
+		
+		
+		for(; j < GameInfo.MAX_PER_TYPE + 1;j++) {
+			data[GameInfo.UNIT_TYPES][j] = new String("");
+			}
+		
+		
+	}
+	
+	public void updateCell(int row, int column) {
+		this.fireTableCellUpdated(row,column);
+	}
+	
+}
+
+class UnitTableRenderer extends DefaultTableCellRenderer {
+	private int currentType = -1;
+	private int currentInstance = -1;
+	
+	
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+		
+		JLabel label;
+		if(row == currentType && column == currentInstance + 1) {
+			isSelected = true;
+			label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			label.setBorder(BorderFactory.createLineBorder(Color.RED));
+		}
+		else {
+			isSelected = false;
+			label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		}
+		
+		if(value instanceof Unit  || value instanceof Army) {
+			label.setText("");
+			label.setBackground(Color.GREEN);
+		}
+		
+		return label;
+	}
+	
+	public void updateSelectedUnit(int currentMode, int currentType, int currentInstance) {
+		if(currentMode == GameInfo.ARMYMODE || currentMode == GameInfo.UNITMODE) {
+			this.currentType = currentType;
+			this.currentInstance = currentInstance;
+		}
+		else {
+			currentType = -1;
+			currentInstance = -1;
+		}
+	}
 }
