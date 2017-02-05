@@ -7,6 +7,9 @@
     Army myArmy;
     double state;
 
+
+    //CONSTRUCTOR
+
     public Unit(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap) {
         super(player, loc, map, cid, myStats, actionPointCap);
         myArmy = null;
