@@ -5,8 +5,18 @@ import java.util.ArrayList;
  */
 public class Colonist extends Unit {
 
-    public Colonist(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap) {
-        super(player, loc, map, cid, myStats, actionPointCap);
+    Colonist(Player player, Location loc, Map map, CID cid, Stats myStats){
+        super(player, loc, map,cid, myStats);
+    };
+
+    Colonist(Base base){
+        super(base.getPlayer(), base.getLoc(), base.getMap(), CID.giveCID(base.getPlayer(), GameInfo.COLONIST),
+                StatsFactory.createStats(GameInfo.COLONIST));
+
+    }
+
+    public String toString(){
+        return "Explorer";
     }
 
 

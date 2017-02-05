@@ -5,13 +5,16 @@ import java.util.ArrayList;
  */
 public class Base extends Structure {
 
-    UnitFactory unitFactory;
+    //UnitFactory unitFactory;
 
-    public Base(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap, int ProductionRates) {
-        super(player, loc, map, cid, myStats, actionPointCap, ProductionRates);
-
-        unitFactory = new UnitFactory();
+    public Base(Player player, Location loc, Map map, CID cid, Stats myStats) {
+        super(player, loc, map, cid, myStats);
     }
+    public Base(Colonist colonist) {
+        super(colonist.getPlayer(), colonist.getLoc(), colonist.getMap(), CID.giveCID(colonist.getPlayer(),
+                GameInfo.BASE), StatsFactory.createStats(GameInfo.BASE));
+    }
+
 
     boolean ProduceUnit (int unitType){
 

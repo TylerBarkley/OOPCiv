@@ -10,11 +10,11 @@ public abstract class Concrete extends Controllable{
     private int actionPointCap;
     Map.MapDirection facingDirection;
 
-    public Concrete(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap) {
+    public Concrete(Player player, Location loc, Map map, CID cid, Stats myStats) {
         super(player, loc, map, cid);
         this.myStats = myStats;
         this.currentHealth = myStats.getHealth();
-        this.actionPointCap = actionPointCap;
+        this.actionPointCap = myStats.getRate();
         this.actionPoints = actionPointCap;
     }
 

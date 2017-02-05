@@ -3,15 +3,14 @@
  */
 
     public abstract class Unit extends Concrete {
-    String unitType;
     Army myArmy;
     double state;
 
 
     //CONSTRUCTOR
 
-    public Unit(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap) {
-        super(player, loc, map, cid, myStats, actionPointCap);
+    public Unit(Player player, Location loc, Map map, CID cid, Stats myStats) {
+        super(player, loc, map, cid, myStats);
         myArmy = null;
         state = 1.0;
         this.setFacingDirection(Map.MapDirection.NORTH);
@@ -81,9 +80,6 @@
         myArmy = army;
         army.getEntireArmy().add(this);
         army.getReinforcements().add(this);
-    }
-    public String toString(){
-        return unitType;
     }
 
 //TODO: get rid of empty constructor for units below (used for testing)

@@ -5,11 +5,9 @@ public class Structure extends Concrete {
 
     private double state;
     private String structureType;
-    private double ProductionRates;
 
-    public Structure(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap, int ProductionRates) {
-        super(player, loc, map, cid, myStats, actionPointCap);
-        this.ProductionRates = ProductionRates;
+    public Structure(Player player, Location loc, Map map, CID cid, Stats myStats) {
+        super(player, loc, map, cid, myStats);
     }
 
     void powerDown(){
