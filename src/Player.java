@@ -67,15 +67,16 @@ public class Player {
 
     public boolean orderableExists(int modeType){
         if(modeType == GameInfo.UNITMODE) {
-            for (int i = 0; i < GameInfo.UNIT_TYPES; i++) {
+            System.out.println("CHECKING UNITMODE");
+            for (int i = 0; i < units.size(); i++) {
                 for (int j = 0; j < units.get(i).size(); j++) {
-                    if (units.get(i).get(j) != null){
+                    if (units.get(i).get(j) != null) {
                         return true;
                     }
                 }
             }
-            return false;
         } else if(modeType==GameInfo.STRUCTUREMODE){
+            System.out.println("CHECKING STRUCTUREMODE");
             for (int i = 0; i < structures.size(); i++) {
                 for (int j = 0; j < structures.get(i).size(); j++) {
                     if (structures.get(i).get(j) != null){
@@ -83,22 +84,22 @@ public class Player {
                     }
                 }
             }
-            return false;
         } else if(modeType==GameInfo.RALLYPOINTMODE){
+            System.out.println("CHECKING RALLYPOINT");
             for (int i = 0; i < rallyPoints.size(); i++) {
                 if (rallyPoints.get(i) != null){
                     return true;
                 }
             }
-            return false;
         } else if(modeType==GameInfo.ARMYMODE){
+            System.out.println("CHECKING ARMYMODE");
             for (int i = 0; i < rallyPoints.size(); i++) {
                 if (armies.get(i) != null){
                     return true;
                 }
             }
-            return false;
         }
+        System.out.println(modeType);
         return false;
     }
 }
