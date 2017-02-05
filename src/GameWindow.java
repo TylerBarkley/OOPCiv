@@ -83,9 +83,9 @@ public class GameWindow extends JFrame{
 		structureOverview.updateView();
 	}
 	
-	public void updateMenu(MenuState menuState){
-		mainScreen.updateMenu(menuState);
-		unitOverview.updateMenu(menuState);
-		structureOverview.updateMenu(menuState);
+	public void updateMenu(){
+		mainScreen.updateMenu();
+		unitOverview.updateMenu();
+		structureOverview.updateMenu();
 	}
 }
