@@ -13,15 +13,17 @@ public class UnitTableRenderer extends DefaultTableCellRenderer {
 	
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		
-		JLabel label;
-		if(row == currentType && column == currentInstance + 1) {
-			isSelected = true;
-			label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		
+		if(row == currentType && column == currentInstance + 1) isSelected = true;
+		else isSelected = false;
+			
+		JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		
+		if(isSelected) {
 			label.setBorder(BorderFactory.createLineBorder(Color.RED));
-		}
+		} 
 		else {
-			isSelected = false;
-			label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			label.setBorder(BorderFactory.createEmptyBorder());
 		}
 		
 		if(value instanceof Unit  || value instanceof Army) {
