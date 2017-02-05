@@ -97,20 +97,17 @@ public class UnitOverview extends Overview{
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(title);
 	
-		this.add(Box.createVerticalStrut(30));
-		JLabel menuTitle = new JLabel("MENU STATE: ");
-		menuTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.add(menuTitle);
-		this.add(Box.createVerticalStrut(10));
-		this.add(currentMode);
-		this.add(currentType);
-		this.add(currentInstance);
-		this.add(currentInstruction);
-		this.add(Box.createVerticalStrut(15));
 		
 		this.add(new FixedScrollPane(unitTable,width,height/3));
 		this.add(new FixedScrollPane(unitStatsArea,width,height/3));
 		
+		JLabel menuTitle = new JLabel("MENU STATE: ");
+		menuTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+		this.add(menuTitle);
+		this.add(currentMode);
+		this.add(currentType);
+		this.add(currentInstance);
+		this.add(currentInstruction);
 		
 	}
 	
