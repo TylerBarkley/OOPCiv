@@ -80,7 +80,7 @@ public class Army extends Concrete {
 
     //Make an army with a unit, also creates its rally point
     Army(Unit unit, Player player){
-        super(player, unit.getLoc(), unit.getMap(),null, null);
+        super(player, unit.getLoc(), unit.getMap(),null, null, unit.getActionPointCap());
         entireArmy.add(unit);
         battleGroup.add(unit);
         player.getArmies().add(this);
