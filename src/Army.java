@@ -3,10 +3,19 @@ import java.util.ArrayList;
 /**
  * Created by hankerins on 1/31/17.
  */
-public class Army {
-    ArrayList<Unit> battleGroup;
-    ArrayList<Unit> reinforcements;
-    ArrayList<Unit> entireArmy;
+
+//TODO: implement abstract methods
+public class Army extends Concrete {
+    private ArrayList<Unit> battleGroup;
+    private ArrayList<Unit> reinforcements;
+    private ArrayList<Unit> entireArmy;
+
+    Player player;
+    RallyPoint rallyPoint;
+
+    public void doTurn(){
+        //TODO Make method that does every available command
+    }
 
     public ArrayList<Unit> getBattleGroup() {
         return battleGroup;
@@ -43,11 +52,49 @@ public class Army {
     }
 
     public void Reinforce(Unit arrived){
-        if(arrived.getStats().getMovement() < getAvailableMovement()){
-            setAvailableMovement(arrived.getStats().getMovement());
+        if(arrived.getActionPointCap() < getAvailableMovement()){
+            setAvailableMovement(arrived.getActionPointCap());
         }
     }
-    void move(char cardinalDirection){
+
+    @Override
+    void endTurn() {
 
     }
+
+    @Override
+    void killMe() {
+
+    }
+
+    @Override
+    void clearCommands() {
+
+    }
+
+    void remove(Unit target){
+        entireArmy.remove(target);
+        battleGroup.remove(target);
+        reinforcements.remove(target);
+    }
+
+    //Make an army with a unit, also creates its rally point
+    Army(Unit unit, Player player){
+        super(player, unit.getLoc(), unit.getMap(),null, null);
+        entireArmy.add(unit);
+        battleGroup.add(unit);
+        player.getArmies().add(this);
+        RallyPoint rallyPoint = new RallyPoint(this);
+        this.rallyPoint = rallyPoint;
+        player.getRallyPoints().add(rallyPoint);
+    }
+    //Make an army, also creates its rally point
+   /*
+    Army(Player player){
+        player.getArmies().add(this);
+        RallyPoint rallyPoint = new RallyPoint(this);
+        this.rallyPoint = rallyPoint;
+        player.getRallyPoints().add(rallyPoint);
+    }
+    */
 }

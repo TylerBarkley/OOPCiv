@@ -32,4 +32,15 @@ public abstract class  Stats {
 
     int getUpKeep(){return UpKeep;}
 
+    public String toString(){
+        String s = "";
+        s += ("Health: "+getHealth());
+        s += (" Offensive Damage: "+getOffensiveDamage());
+        s += (" Defensive Damage: "+getDefensiveDamage());
+        s += (" Armor: "+getArmor());
+        s += (" UpKeep: "+getUpKeep());
+
+        return s;
+    }
+
 }

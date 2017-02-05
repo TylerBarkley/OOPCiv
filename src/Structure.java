@@ -1,9 +1,16 @@
 /**
  * Created by hankerins on 1/31/17.
  */
-public class Structure extends Controllable {
+public class Structure extends Concrete {
 
-    double state;
+    private double state;
+    private String structureType;
+    private double ProductionRates;
+
+    public Structure(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap, int ProductionRates) {
+        super(player, loc, map, cid, myStats, actionPointCap);
+        this.ProductionRates = ProductionRates;
+    }
 
     void powerDown(){
         state=.75;
@@ -22,7 +29,7 @@ public class Structure extends Controllable {
     }
 
     void killMe(){
-        player.remove(this);
+        getPlayer().remove(this);
 
 //      map.getTile(getLoc()).removeStructure();
     }
@@ -30,19 +37,27 @@ public class Structure extends Controllable {
     @Override
     void clearCommands() {
         this.getCommandQueue().clear();
-        this.actionPoints = actionPointCap;
+        setActionPoints(getActionPointCap());
     }
-
-    void printStats(){ }
-
+    
+    String getStructureType() {
+    	return structureType;
+    }
+    
 //    public UnitStats getStats() {return StructureStats;    }
 
     //TODO BE FULLY IMPLEMENTED FOR STRUCTURES
-    Structure(String structureType,Tile tileCreatedOn, Map currentMap){
-//        tileCreatedOn.addStructure(this);
-        myStats = StructureStatsFactory.produceStructureStats(structureType);
-//        currentTileOn=tileCreatedOn;
-        map=currentMap;
-        actionPointCap = 1;
+
+
+    public void setStructureType(String structureType) {
+        this.structureType = structureType;
+    }
+
+    public double getState() {
+        return state;
+    }
+
+    public void setState(double state) {
+        this.state = state;
     }
 }

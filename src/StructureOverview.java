@@ -20,4 +20,8 @@ public class StructureOverview extends Overview{
 	public void displayView() {
 		
 	}
+	
+	public void updateMenu(){
+		
+	}
 }
