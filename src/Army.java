@@ -52,12 +52,9 @@ public class Army extends Concrete {
     }
 
     public void Reinforce(Unit arrived){
-        if(arrived.getUnitStats().getMovement() < getAvailableMovement()){
-            setAvailableMovement(arrived.getUnitStats().getMovement());
+        if(arrived.getActionPointCap() < getAvailableMovement()){
+            setAvailableMovement(arrived.getActionPointCap());
         }
-    }
-    void move(char cardinalDirection){
-
     }
 
     @Override
@@ -75,12 +72,15 @@ public class Army extends Concrete {
 
     }
 
-    //TODO: delete this default army constructor (or make it useful
-    Army(){
-
+    void remove(Unit target){
+        entireArmy.remove(target);
+        battleGroup.remove(target);
+        reinforcements.remove(target);
     }
+
     //Make an army with a unit, also creates its rally point
     Army(Unit unit, Player player){
+        super(player, unit.getLoc(), unit.getMap(),null, null);
         entireArmy.add(unit);
         battleGroup.add(unit);
         player.getArmies().add(this);
@@ -89,10 +89,12 @@ public class Army extends Concrete {
         player.getRallyPoints().add(rallyPoint);
     }
     //Make an army, also creates its rally point
+   /*
     Army(Player player){
         player.getArmies().add(this);
         RallyPoint rallyPoint = new RallyPoint(this);
         this.rallyPoint = rallyPoint;
         player.getRallyPoints().add(rallyPoint);
     }
+    */
 }

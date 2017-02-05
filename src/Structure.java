@@ -5,8 +5,13 @@ public class Structure extends Concrete {
 
     private double state;
     private String structureType;
-    private StructureStats structureStats;
-    
+    private double ProductionRates;
+
+    public Structure(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap, int ProductionRates) {
+        super(player, loc, map, cid, myStats, actionPointCap);
+        this.ProductionRates = ProductionRates;
+    }
+
     void powerDown(){
         state=.75;
     }
@@ -34,12 +39,6 @@ public class Structure extends Concrete {
         this.getCommandQueue().clear();
         setActionPoints(getActionPointCap());
     }
-
-    void printStats(){ }
-    
-    StructureStats getStructureStats() {
-    	return structureStats;
-    }
     
     String getStructureType() {
     	return structureType;
@@ -48,22 +47,7 @@ public class Structure extends Concrete {
 //    public UnitStats getStats() {return StructureStats;    }
 
     //TODO BE FULLY IMPLEMENTED FOR STRUCTURES
-    Structure(String structureType,Tile tileCreatedOn, Map currentMap){
-//        tileCreatedOn.addStructure(this);
-        myStats = StructureStatsFactory.produceStructureStats(structureType);
-//        currentTileOn=tileCreatedOn;
-        setMap(currentMap);
-        setActionPointCap(1);
-    }
 
-    //TODO: delete or fix this default constructor
-    Structure(){
-
-    }
-
-    public void setStructureStats(StructureStats structureStats) {
-        this.structureStats = structureStats;
-    }
 
     public void setStructureType(String structureType) {
         this.structureType = structureType;

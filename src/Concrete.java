@@ -43,6 +43,10 @@ public abstract class Concrete extends Controllable{
         this.myStats = myStats;
     }
 
+    public Stats getMyStats() {
+        return myStats;
+    }
+
     public int getActionPoints() {
         return actionPoints;
     }

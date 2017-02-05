@@ -40,7 +40,7 @@
         //TODO Resource Consumption at end of turn
 
         //Reset the unit's action points
-        int possibleMovement = myArmy == null ? ((UnitStats) myStats).getMovement() : myArmy.getAvailableMovement();
+        int possibleMovement = myArmy == null ? this.getActionPointCap() : myArmy.getAvailableMovement();
         setActionPoints(getActionPoints() + possibleMovement);
         if(getActionPoints() > possibleMovement){
             setActionPoints(possibleMovement);
@@ -67,12 +67,12 @@
 
     void killMe(){
         getPlayer().remove(this);
+        myArmy.remove(this);
         getMap().getTile(getLoc()).removeUnit(this);
     }
 
     Army makeArmy(){
-        Army army = new Army(this, getPlayer());
-        return army;
+        return new Army(this, getPlayer());
     }
 
     void joinArmy(Army army){
