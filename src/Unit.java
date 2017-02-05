@@ -4,7 +4,6 @@
 
     public abstract class Unit extends Concrete {
     Army myArmy;
-    double state;
 
 
     //CONSTRUCTOR
@@ -18,16 +17,6 @@
         myArmy = null;
         state = 1.0;
         this.setFacingDirection(Map.MapDirection.NORTH);
-    }
-
-    void standby(){
-        state=1;
-    }
-    void powerDown(){
-        state=.75;
-    }
-    void powerUp(){
-        state=1.25;
     }
 
     /*TODO: make a  Move Rally Point*/

@@ -30,7 +30,7 @@ public class StructureInstruction extends Instruction {
         else if(inst_num == S_MAKE_MELEE)       inst = "MakeMelee";
         else if(inst_num == S_MAKE_RANGED)      inst = "MakeRanged";
         else if(inst_num == S_HEALUNIT)         inst = "HealUnit";
-        else if(inst_num == S_DECOMMISSION)		inst = "Decommission";
+        else if(inst_num == S_DECOMMISSION)		inst = "DecommissionCommand";
         else if(inst_num == S_POWERDOWN)        inst = "PowerDown";
         else if(inst_num == S_POWERUP)		    inst = "PowerUp";
         else if(inst_num == S_CANCELQUEUE)      inst = "CancelQueue";
