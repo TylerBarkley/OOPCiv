@@ -2,11 +2,11 @@
  * Created by zrgam_000 on 1/31/2017.
  */
 public class CID {
-    int typeID;
-    int personelID;
+    int typeID;  //Type, as defined by GameInfo constants
+    int personelID;  //index in the relevant array where this object will be stored
 
-    //CID is combination of type (GameInfo.EXPLORER, for example) and personelID is the place in the Unit array where
-    //this unit is going to go
+    //CID is combination of type (GameInfo.EXPLORER, for example) and
+    // personelID == the place in the Type array where this controllable is going to go
 
     public static CID giveCID(Player player,int controllableTypeID){
         int typeId=controllableTypeID;
@@ -46,5 +46,12 @@ public class CID {
     public CID(int TID, int PID){
         typeID = TID;
         personelID = PID;
+    }
+
+    public int getTypeID(){
+        return typeID;
+    }
+    public int getPersonelID(){
+        return personelID;
     }
 }

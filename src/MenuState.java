@@ -16,7 +16,7 @@ public class MenuState {
 
     //The following stats define what happens when a player hits Enter: currentInstance, currentInstruction
     //They should be visible to the player in the main menu
-    int currentMode = GameInfo.RALLYPOINTMODE;
+    int currentMode = GameInfo.UNITMODE;
     int currentType = 0;
     int currentInstanceIndex = 0;
     Controllable currentInstance;
@@ -128,6 +128,29 @@ public class MenuState {
     }
 
     int cycleModeL(){
+        int startedMode = currentMode;
+        do{
+            currentMode--;
+            if(currentMode < GameInfo.RALLYPOINTMODE) {
+                currentMode = GameInfo.STRUCTUREMODE;
+            }
+        } while(!player.orderableExists(currentMode) && currentMode != startedMode);
+        currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
+        return currentMode;
+    }
+    int cycleModeR(){
+        int startedMode=currentMode;
+        do{
+            currentMode++;
+            if(currentMode>GameInfo.STRUCTUREMODE) {
+                currentMode = GameInfo.RALLYPOINTMODE;
+            }
+        }while(!player.orderableExists(currentMode)&&currentMode!=startedMode);
+        currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
+        return currentMode;
+    }
+
+    /*int cycleModeL(){
         if(currentMode == GameInfo.RALLYPOINTMODE)
             currentMode = GameInfo.STRUCTUREMODE;
         else currentMode--;
@@ -140,7 +163,7 @@ public class MenuState {
         else currentMode++;
         currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
         return currentMode;
-    }
+    }*/
 
     int cycleTypeL(){
         currentType = ModeList.get(currentMode).cycleTypeL();

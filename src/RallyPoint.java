@@ -12,26 +12,6 @@ public class RallyPoint extends Controllable {
 
     Map.MapDirection[][] paths;
 
-    @Override
-    void endTurn() {
-
-    }
-
-    @Override
-    void doTurn(){
-
-    }
-
-
-    void killMe() {
-
-    }
-
-    @Override
-    void clearCommands() {
-
-    }
-
     public void generatePaths(){
         Queue<Location> bfsQueue = new LinkedList<Location>();
         bfsQueue.add(this.getLoc());
@@ -59,12 +39,24 @@ public class RallyPoint extends Controllable {
         return paths[loc.x][loc.y];
     }
 
-    //TODO: delete or fix this default constructor
-    RallyPoint(){
+    RallyPoint(Army army){
+        super(army.getPlayer(), army.getLoc(), army.getMap(), CID.giveCID(army.getPlayer(), GameInfo.RALLYPOINT));
+        this.army = army;
         paths = new Map.MapDirection[GameInfo.MAP_SIZE][GameInfo.MAP_SIZE];
+        }
+
+    @Override
+    void endTurn() {
 
     }
-    RallyPoint(Army army){
-        this.army = army;
+
+    @Override
+    void clearCommands() {
+
+    }
+
+    @Override
+    void doTurn() {
+
     }
 }

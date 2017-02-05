@@ -1,4 +1,12 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.*;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -21,14 +29,31 @@ public class GameWindow extends JFrame{
 		this.map = map;
 		this.width = width;
 		this.height = height;
+		this.setTitle("Lost In the Sauce");
 		
 		this.tabbedPane=new JTabbedPane();
+		tabbedPane.setFocusable(false);
 		
 		this.mainScreen=new MainScreen(player,opponent,map,width,height);
 		this.unitOverview=new UnitOverview(player, width, height);
 		this.structureOverview=new StructureOverview(player, width, height);
 		
+		//for testing only
+		try {
+			mainScreen.placeDecal(new Decal(ImageIO.read(new File("RedCross.jpg"))), 1, 2);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			mainScreen.placeDecal(new Decal(ImageIO.read(new File("SkullCrossBones.jpg"))), 4, 4);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		setUpTabbedPane();
+		addGameMenu();
 	}
 
 	public GameWindow(Player player, Player opponent, Map map) {
@@ -37,8 +62,9 @@ public class GameWindow extends JFrame{
 	
 	private void setUpTabbedPane() {
 		tabbedPane.addTab("Main Screen", mainScreen);
-		tabbedPane.addTab("Structure Overview", mainScreen);
-		tabbedPane.addTab("Unit Overview", mainScreen);
+		tabbedPane.addTab("Structure Overview", structureOverview);
+		tabbedPane.addTab("Unit Overview", unitOverview);
+		this.add(tabbedPane);
 	}
 	
 	public void openWindow(){
@@ -87,5 +113,44 @@ public class GameWindow extends JFrame{
 		mainScreen.updateMenu();
 		unitOverview.updateMenu();
 		structureOverview.updateMenu();
+	}
+	
+	public void focusOn(Location loc){
+		mainScreen.focusOn(loc);
+	}
+	
+	public void focusOn(Unit unit){
+		mainScreen.focusOn(unit);
+	}
+	
+	public void focusOn(Structure structure){
+		mainScreen.focusOn(structure);
+	}
+	
+	public static void main(String[] args) {
+		Map map=new Map(10, 10, false);
+		Player player=new Player(map);
+		Player opponent=new Player(map);
+		GameWindow game = new GameWindow(player,opponent,map,1275,850);
+		game.openWindow();
+	}
+	
+	public void addGameMenu() {
+		
+		JMenu fileMenu = new JMenu("File");
+		
+		JMenuItem exitItem = new JMenuItem("Exit");
+		exitItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		
+		fileMenu.add(exitItem);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.add(fileMenu);
+		this.setJMenuBar(menuBar);
+		
 	}
 }

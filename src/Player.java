@@ -9,11 +9,13 @@ public class Player {
     ArrayList<ArrayList<Structure>>  structures;
     ArrayList<Army> armies;
     ArrayList<RallyPoint>  rallyPoints;
-    ArrayList<ArrayList<Controllable>> controllables;
 
+
+    Location location; //this is the player's point of focus
     MenuState menuState;
+    Map map; //made before player
 
-    public Player(){
+    public Player(Map map){
         armies = new ArrayList<Army>();
 
         rallyPoints = new ArrayList<RallyPoint>();
@@ -30,10 +32,13 @@ public class Player {
             structures.add(new ArrayList<Structure>());
         }
 
-
+        this.map = map;
+        this.location = new Location(0, 0);
 
         menuState = new MenuState(this);
     }
+
+
 
     ArrayList<ArrayList<Unit>> getUnits(){
         return units;
@@ -57,7 +62,44 @@ public class Player {
     }
 
     public void remove(Structure target){
-
         structures.get(target.getCID().typeID).remove(target.getCID().personelID);
+    }
+
+    public boolean orderableExists(int modeType){
+        if(modeType == GameInfo.UNITMODE) {
+            System.out.println("CHECKING UNITMODE");
+            for (int i = 0; i < units.size(); i++) {
+                for (int j = 0; j < units.get(i).size(); j++) {
+                    if (units.get(i).get(j) != null) {
+                        return true;
+                    }
+                }
+            }
+        } else if(modeType==GameInfo.STRUCTUREMODE){
+            System.out.println("CHECKING STRUCTUREMODE");
+            for (int i = 0; i < structures.size(); i++) {
+                for (int j = 0; j < structures.get(i).size(); j++) {
+                    if (structures.get(i).get(j) != null){
+                        return true;
+                    }
+                }
+            }
+        } else if(modeType==GameInfo.RALLYPOINTMODE){
+            System.out.println("CHECKING RALLYPOINT");
+            for (int i = 0; i < rallyPoints.size(); i++) {
+                if (rallyPoints.get(i) != null){
+                    return true;
+                }
+            }
+        } else if(modeType==GameInfo.ARMYMODE){
+            System.out.println("CHECKING ARMYMODE");
+            for (int i = 0; i < rallyPoints.size(); i++) {
+                if (armies.get(i) != null){
+                    return true;
+                }
+            }
+        }
+        System.out.println(modeType);
+        return false;
     }
 }

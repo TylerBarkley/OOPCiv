@@ -40,19 +40,64 @@ public class MainScreen extends Overview{
 		areaView.placeDecal(decal, x, y);
 	}
 	
+	public void focusOn(Location loc){
+		areaView.focusOn(loc);
+	}
+	
+	public void focusOn(Unit unit){
+		areaView.focusOn(unit);
+	}
+	
+	public void focusOn(Structure structure){
+		areaView.focusOn(structure);
+	}
+	
 	public void updateMenu() {
 		
 	}
-	/*
+	
 	public static void main(String args[]) throws IOException { //for testing purposes only!
-		MainScreen main=new MainScreen(null,null,new Map(7, 7, true),1200,800);
+		Map map=new Map(10, 10, false);
+		Player player=new Player(map);
+		Player opponent=new Player(map);
+		MainScreen main=new MainScreen(player,opponent,map,1275,850);
 		JFrame frame = new JFrame();
-		frame.setSize(1200, 800);
+		frame.setSize(1275, 850);
 		frame.add(main);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		main.placeDecal(new Decal(ImageIO.read(new File("RedCross.jpg"))), 1, 2);
 		main.placeDecal(new Decal(ImageIO.read(new File("SkullCrossBones.jpg"))), 4, 4);
+		
+		main.focusOn(new Location(0,0));
+		main.focusOn(new Location(0,1));
+		main.focusOn(new Location(0,2));
+		main.focusOn(new Location(0,3));
+		main.focusOn(new Location(0,4));
+		main.focusOn(new Location(0,5));
+		main.focusOn(new Location(0,6));
+		main.focusOn(new Location(1,6));
+		main.focusOn(new Location(2,6));
+		main.focusOn(new Location(3,6));
+		main.focusOn(new Location(4,6));
+		main.focusOn(new Location(5,6));
+		main.focusOn(new Location(6,6));
+		main.focusOn(new Location(7,6));
+		main.focusOn(new Location(8,6));
+		main.focusOn(new Location(9,6));
+		main.focusOn(new Location(9,7));
+		main.focusOn(new Location(9,8));
+		main.focusOn(new Location(9,9));
+		main.focusOn(new Location(8,9));
+		main.focusOn(new Location(7,9));
+		main.focusOn(new Location(7,8));
+		main.focusOn(new Location(7,7));
+		main.focusOn(new Location(7,6));
+		main.focusOn(new Location(7,5));
+		main.focusOn(new Location(7,4));
+		main.focusOn(new Location(7,3));
+		main.focusOn(new Location(7,2));
+		main.focusOn(new Location(7,1));
 	}
-	*/
+	
 }
