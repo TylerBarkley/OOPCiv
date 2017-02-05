@@ -6,7 +6,9 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class UnitTableRenderer extends DefaultTableCellRenderer {
+
+public class StructureTableRenderer extends DefaultTableCellRenderer {
+
 	private int currentType = -1;
 	private int currentInstance = -1;
 	
@@ -25,7 +27,7 @@ public class UnitTableRenderer extends DefaultTableCellRenderer {
 			label.setBorder(BorderFactory.createEmptyBorder());
 		}
 		
-		if(value instanceof Unit  || value instanceof Army) {
+		if(value instanceof Structure ) {
 			label.setText("");
 			label.setBackground(Color.GREEN);
 		}
@@ -34,7 +36,7 @@ public class UnitTableRenderer extends DefaultTableCellRenderer {
 	}
 	
 	public void updateSelectedUnit(int currentMode, int currentType, int currentInstance) {
-		if(currentMode == GameInfo.ARMYMODE || currentMode == GameInfo.UNITMODE) {
+		if(currentMode == GameInfo.STRUCTUREMODE) {
 			this.currentType = currentType;
 			this.currentInstance = currentInstance;
 		}

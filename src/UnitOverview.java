@@ -18,7 +18,9 @@ public class UnitOverview extends Overview{
 	
 	public UnitOverview(Player player, int width, int height) {
 		super(player, width, height);
-		unitTable = new JTable(new UnitTableModel());
+		
+		model = new UnitTableModel();
+		unitTable = new JTable(model);
 		
 		unitTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		unitTable.setRowSelectionAllowed(true);
@@ -112,7 +114,7 @@ public class UnitOverview extends Overview{
 		this.add(currentType);
 		this.add(currentInstance);
 		this.add(currentInstruction);
-		
+		this.setBackground(Color.orange);
 	}
 	
 	public void updateMenu(){
