@@ -14,6 +14,7 @@ public abstract class Controllable {
         this.map = map;
         this.cid = cid;
 
+
         commandQueue = new CommandQueue();
     }
 

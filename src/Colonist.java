@@ -20,25 +20,12 @@ public class Colonist extends Unit {
     }
 
 
-    boolean buildBase(){
-        int personelID;
+    void buildBase(){
 
-        ArrayList<Structure> bases = getPlayer().getStructures().get(GameInfo.BASE);
+        Structure placedBase = StructureFactory.createStructure(GameInfo.BASE, this);
 
-        for (personelID = 0; personelID < GameInfo.MAX_PER_TYPE; personelID++){
-            if(bases.get(personelID) == null) break;
-        }
-
-        if(personelID == GameInfo.MAX_PER_TYPE){
-            return false;
-        }
-
-        //Base placedBase = (getPlayer(), getLoc(), getMap(), new CID(GameInfo.BASE, personelID), myStats, 1, 2);
-
-        //getMap().getTile(getLoc()).addStructure(placedBase);
+        getMap().getTile(getLoc()).addStructure(placedBase);
 
         this.killMe();
-
-        return true;
     }
 }

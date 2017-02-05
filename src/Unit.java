@@ -11,6 +11,10 @@
 
     public Unit(Player player, Location loc, Map map, CID cid, Stats myStats) {
         super(player, loc, map, cid, myStats);
+
+        //Code to put this Unit into the appropriate place in player's Unit Array
+        player.getUnits().get(cid.getTypeID()).add(cid.getPersonelID(), this);
+
         myArmy = null;
         state = 1.0;
         this.setFacingDirection(Map.MapDirection.NORTH);
