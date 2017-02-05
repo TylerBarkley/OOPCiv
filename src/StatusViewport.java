@@ -26,9 +26,13 @@ public class StatusViewport extends Viewport{
 		unitArea.setEditable(false);
 		
 		currentMode = new JLabel("CURRENT MODE= "); 
+		currentMode.setAlignmentX(Component.CENTER_ALIGNMENT);
 		currentInstance = new JLabel("CURRENT INSTANCE= "); 
+		currentInstance.setAlignmentX(Component.CENTER_ALIGNMENT);
 		currentType = new JLabel("CURRENT TYPE= ");
+		currentType.setAlignmentX(Component.CENTER_ALIGNMENT);
 		currentInstruction = new JLabel("CURRENT INSTRUCTION= ");
+		currentInstruction.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		displayView();
 	}
