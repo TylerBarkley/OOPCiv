@@ -7,7 +7,6 @@ public class ArmyMoveCommand implements Command {
 
     @Override
     public void execute() {
-
-        //targetArmy.move(md); official, need to use change cardinal direction to Map.MapDirection
+        //targetArmy.orderMove(md);
     }
 }

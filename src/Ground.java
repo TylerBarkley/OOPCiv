@@ -15,7 +15,7 @@ public class Ground extends Terrain {
 
     @Override
     void effect(Unit unit) {
-        unit.actionPoints -= movePenalty;
+        unit.setActionPoints(unit.getActionPoints() - movePenalty);
         tileAOE.doEffect(unit);
     }
 }

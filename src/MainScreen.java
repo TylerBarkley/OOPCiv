@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
@@ -6,10 +10,10 @@ public class MainScreen extends Overview{
 	private StatusViewport statusView;
 	private AreaViewport areaView;
 	
-	public MainScreen(Player player, Map map, int width, int height){
+	public MainScreen(Player player, Player opponent, Map map, int width, int height){
 		super(player, width, height);
 		statusView=new StatusViewport(player, width/3, height);
-		areaView=new AreaViewport(player, (2 * width)/3, height, map);
+		areaView=new AreaViewport(player, opponent, (2 * width)/3, height, map);
 		displayView();
 	}
 	
@@ -32,17 +36,23 @@ public class MainScreen extends Overview{
 		this.add(statusView);
 	}
 	
-	public void placeDecal(){
-		
+	public void placeDecal(Decal decal, int x, int y){
+		areaView.placeDecal(decal, x, y);
 	}
 	
-	public static void main(String args[]) { //for testing purposes only!
-		JFrame frame = new JFrame();
-		frame.setSize(1200, 800);
-		frame.add(new MainScreen(null,null,1200,800));
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+	public void updateMenu() {
 		
 	}
+	/*
+	public static void main(String args[]) throws IOException { //for testing purposes only!
+		MainScreen main=new MainScreen(null,null,new Map(7, 7, true),1200,800);
+		JFrame frame = new JFrame();
+		frame.setSize(1200, 800);
+		frame.add(main);
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		main.placeDecal(new Decal(ImageIO.read(new File("RedCross.jpg"))), 1, 2);
+		main.placeDecal(new Decal(ImageIO.read(new File("SkullCrossBones.jpg"))), 4, 4);
+	}
+	*/
 }

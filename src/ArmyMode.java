@@ -6,12 +6,23 @@ import java.util.ArrayList;
 public class ArmyMode extends Mode {
 
     ArrayList<Army> armies;
+    ArrayList<ArmyInstruction> armyInstructions;
 
     //Constructor
 
     ArmyMode(Player player){
         this.player = player;
         armies = player.getArmies();
+        armyInstructions = new ArrayList<ArmyInstruction>();
+        //this loop adds each possible army instruction to the list of instructions
+
+        for(int i = ArmyInstruction.A_ATTACK; i <= ArmyInstruction.A_CANCELQUEUE; i++){
+            armyInstructions.add(new ArmyInstruction(i));
+        }
+        //initialize the first instruction into currentInstruction
+        currentInstructionIndex = 0;
+        currentInstruction = armyInstructions.get(0);
+
     }
 
 
@@ -30,18 +41,34 @@ public class ArmyMode extends Mode {
         else currentType++;
         return currentType;
     }
-    int cycleInstanceL(){
+    Controllable cycleInstanceL(){
         int lastInstance = armies.size() -1;
-        if(currentInstance == 0)
-            currentInstance = lastInstance;
-        else currentInstance--;
-        return currentInstance;
+        if(currentInstanceIndex == 0)
+            currentInstanceIndex = lastInstance;
+        else currentInstanceIndex--;
+        return armies.get(currentInstanceIndex);
     }
-    int cycleInstanceR(){
+    Controllable cycleInstanceR(){
         int lastInstance = armies.size() - 1;
-        if(currentInstance == lastInstance)
-            currentInstance = 0;
-        else currentInstance++;
-        return currentInstance;
+        if(currentInstanceIndex == lastInstance)
+            currentInstanceIndex = 0;
+        else currentInstanceIndex++;
+        return armies.get(currentInstanceIndex);
+    }
+    Instruction cycleInstructionL(){
+        int lastInstruction = armyInstructions.size() - 1;
+        if(currentInstructionIndex == 0)
+            currentInstructionIndex = lastInstruction; //cycle back to last instruction
+        else currentInstructionIndex--;
+        currentInstruction = armyInstructions.get(currentInstructionIndex);
+        return currentInstruction;
+    }
+    Instruction cycleInstructionR(){
+        int lastInstruction = armyInstructions.size() - 1;
+        if(currentInstructionIndex == lastInstruction)
+            currentInstructionIndex = 0; //cycle back to last instruction
+        else currentInstructionIndex++;
+        currentInstruction = armyInstructions.get(currentInstructionIndex);
+        return currentInstruction;
     }
 }

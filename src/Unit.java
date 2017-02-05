@@ -2,15 +2,18 @@
  * Created by Trevor on 1/30/2017.
  */
 
-    public abstract class Unit extends Controllable {
+    public abstract class Unit extends Concrete {
 
     Army myArmy;
     double state;
-    String unitType;
-    Stats myStats;
-    
-    /*Player ownedByPlayer */
-    void Standby(){
+
+    public Unit(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap) {
+        super(player, loc, map, cid, myStats, actionPointCap);
+        myArmy = null;
+        state = 1.0;
+    }
+
+    void standby(){
         state=1;
     }
     void powerDown(){
@@ -22,27 +25,39 @@
 
     /*TODO: make a  Move Rally Point*/
 
+    public void doTurn(){
+
+        while(getActionPointCap() > 0 && !getCommandQueue().isEmpty()) {
+            getCommandQueue().carryOut();
+        }
+
+        if(getCommandQueue().isEmpty()){
+            setActionPoints(getActionPointCap());
+        }
+    }
+
     void endTurn(){
         //TODO Resource Consumption at end of turn
 
         //Reset the unit's action points
-        int possibleMovement = myArmy == null ? ((UnitStats) myStats).getMovement() : myArmy.getAvailableMovement();
-        if((actionPoints += possibleMovement) < possibleMovement){
-            actionPoints = possibleMovement;
+        int possibleMovement = myArmy == null ? this.getActionPointCap() : myArmy.getAvailableMovement();
+        setActionPoints(getActionPoints() + possibleMovement);
+        if(getActionPoints() > possibleMovement){
+            setActionPoints(possibleMovement);
         }
     }
 
     void clearCommands(){
         this.getCommandQueue().clear();
-        this.actionPoints = myArmy == null ? actionPointCap : myArmy.getAvailableMovement();
+        setActionPoints(myArmy == null ? getActionPointCap() : myArmy.getAvailableMovement());
     }
 
     void move(Map.MapDirection md){
-        Location targetLoc = loc.getAdjacent(md);
-        Tile targetTile = map.getTile(targetLoc);
+        Location targetLoc = getLoc().getAdjacent(md);
+        Tile targetTile = getMap().getTile(targetLoc);
 
         if(targetTile.addUnit(this)){
-           map.getTile(this.getLoc()).removeUnit(this);
+           getMap().getTile(this.getLoc()).removeUnit(this);
            this.setLoc(targetLoc);
         }
         else{
@@ -51,22 +66,20 @@
     }
 
     void killMe(){
-        player.remove(this);
-        map.getTile(getLoc()).removeUnit(this);
-    }
-    
-    String getUnitType() {
-    	return unitType;
-    }
-    
-    Stats getUnitStats() {
-    	return myStats;
+        getPlayer().remove(this);
+        myArmy.remove(this);
+        getMap().getTile(getLoc()).removeUnit(this);
     }
 
-    Unit(String unitType, Map currentMap){
-        myStats = UnitStatsFactory.produceUnitStats(unitType);
-        map=currentMap;
-        actionPointCap = ((UnitStats) myStats).getMovement();
-        this.unitType = unitType;
+    Army makeArmy(){
+        return new Army(this, getPlayer());
     }
+
+    void joinArmy(Army army){
+        myArmy = army;
+        army.getEntireArmy().add(this);
+        army.getReinforcements().add(this);
+    }
+
+//TODO: get rid of empty constructor for units below (used for testing)
 }

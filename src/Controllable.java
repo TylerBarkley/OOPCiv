@@ -2,35 +2,21 @@
  * Created by hankerins on 1/31/17.
  */
 public abstract class Controllable {
-    Player player;
+    private Player player;
+    private Location loc;
+    private Map map;
+    private CommandQueue commandQueue;
     CID cid;
-    Location loc;
-    Map map;
-    CommandQueue commandQueue;
-    Stats myStats;
 
-    int currentHealth;
-    int actionPoints;
-    int actionPointCap;
+    public Controllable(Player player, Location loc, Map map, CID cid){
+        this.player = player;
+        this.loc = loc;
+        this.map = map;
+        this.cid = cid;
+        commandQueue = new CommandQueue();
+    }
 
     abstract void endTurn();
-
-    void healMe(int ammount){
-
-        if((this.currentHealth += ammount) > myStats.getHealth()) {
-            this.currentHealth = myStats.getHealth();
-        }
-    }
-
-    void damageMe(int ammount){
-        this.currentHealth -= ammount;
-
-        if(this.currentHealth <= 0){
-            this.killMe();
-        }
-    }
-
-    abstract void killMe();
 
     void giveCommand(Command incomingCommand){
         commandQueue.add(incomingCommand);
@@ -38,23 +24,10 @@ public abstract class Controllable {
 
     abstract void clearCommands();
 
-    public void doTurn(){
-
-        while(actionPoints > 0 && !commandQueue.isEmpty()) {
-            commandQueue.carryOut();
-        }
-
-        if(commandQueue.isEmpty()){
-            actionPoints = actionPointCap;
-        }
-    }
+    abstract void doTurn();
 
     public Player getPlayer() {
         return player;
-    }
-
-    public CID getCID() {
-        return cid;
     }
 
     public Location getLoc() {
@@ -71,5 +44,17 @@ public abstract class Controllable {
 
     public void setLoc(Location target) {
         this.loc = target;
+    }
+
+    public void setCommandQueue(CommandQueue commandQueue) {
+        this.commandQueue = commandQueue;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

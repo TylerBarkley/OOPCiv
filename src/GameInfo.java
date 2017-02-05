@@ -22,4 +22,8 @@ public class GameInfo {
     public final static int ARMYMODE       	= 1;
     public final static int UNITMODE       	= 2;
     public final static int STRUCTUREMODE   = 3;
+    
+    //Names of all units and Strucutres types to be displayed on the Structure and Unit viewports 
+    public final static String[] UNIT_TYPES_NAMES = {"EXPLORER","COLONIST","MELEE","RANGE","ARMY"};
+    public final static String[] STRUCTURE_TYPES_NAMES = {"BASE"}; 
 }

@@ -36,22 +36,24 @@ public class Map {
     Tile getTile(Location loc){
         return tileMatrix[loc.x][loc.y];
     }
-//TODO: Make a print function for map for debugging
-    /*void print(){
+
+    void print(){
         for(int i=0;i<mapXSize;i++){
             for(int j=0;j<mapYSize;j++){
-                System.out.print("  ");
-                //tileMatrix[i][j].print();
-                System.out.print("  ");
+
             }
             System.out.println();
         }
-    }*/
+    }
 
 public static void main(String argsp[]){
-    Map map=new Map(10,10,true);
-    Unit u=UnitFactory.createUnit("RangedFighter",map);
-    u.getUnitStats().print();
-    return;
+    //Map map=new Map(10,10,true);
+    //Unit u=new MeleeFighter("MeleeFighter",map.tileMatrix[0][1],map);
+    //u.move('W');
+    //u.printStats();
+    //map.print();
+    //u.move('S');
+    //map.print();
+    //return;
     }
 }
