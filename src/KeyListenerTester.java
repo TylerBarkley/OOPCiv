@@ -238,8 +238,22 @@ public class KeyListenerTester extends JFrame implements KeyListener {
     //makes a key listener and does the major navigation operations
     //prints results
     public static void main(String[] args) {
-        Player player1 = new Player();
-        for(int i = 0; i < GameInfo.UNIT_TYPES; i++){
+
+        Map map = new Map(10, 10, false); //builds T+T's map
+
+
+        Player player1 = new Player(map);
+
+        //this is actual stuff we have to start
+
+        Explorer explorer1 = new Explorer(player1, new Location(2, 3), map, CID.giveCID(player1,
+                GameInfo.EXPLORER), StatsFactory.createStats(GameInfo.EXPLORER));
+        Explorer explorer2 = new Explorer(player1, new Location(2, 5), map, CID.giveCID(player1,
+                GameInfo.EXPLORER), StatsFactory.createStats(GameInfo.EXPLORER));
+        Colonist colonist1 = new Colonist(player1, new Location(1, 4), map, CID.giveCID(player1,
+                GameInfo.COLONIST), StatsFactory.createStats(GameInfo.COLONIST));
+
+        /*for(int i = 0; i < GameInfo.UNIT_TYPES; i++){
             for(int j = 0; j < 4; j++){
                 player1.getUnits().get(i).add(new Unit_Test());
             }
@@ -254,7 +268,9 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         }
         for(int i = 0; i < 4; i++){
             player1.getRallyPoints().add(new RallyPoint());
-        }
+        }*/
+
+
         new KeyListenerTester("Key Listener Tester", player1);
     }
 
