@@ -39,16 +39,16 @@ public class StatusViewport extends Viewport{
 		
 		for(int i = 0; i < units.size();i++) {
 			for(int j = 0; j < units.get(i).size(); j++) {
-				String unitType = units.get(i).get(j).getUnitType();
-				Stats unitStats = units.get(i).get(j).getUnitStats();
+				String unitType = units.get(i).get(j).toString();
+				Stats unitStats = units.get(i).get(j).getMyStats();
 				unitArea.append(unitType +":" + "\n" + "Health: " + unitStats.getHealth() + unitStats.getUpKeep());
 			}
 		}
 		
 		for(int i = 0; i < strucs.size();i++) {
 			for(int j = 0; j < strucs.get(i).size(); j++) {
-				String structureType = strucs.get(i).get(j).getStructureType();
-				Stats structureStats = strucs.get(i).get(j).getStructureStats();
+				String structureType = strucs.get(i).get(j).toString();
+				Stats structureStats = strucs.get(i).get(j).getMyStats();
 				structureArea.append(structureType +":" + "\n" + "Health: " + structureStats.getHealth() +  structureStats.getUpKeep());
 			}
 		}
@@ -57,15 +57,15 @@ public class StatusViewport extends Viewport{
 	
 	private void displayUnitStatus(Unit unit){
 		//not safe, possibility of listing the same unit twice
-		String unitType = unit.getUnitType();
-		Stats unitStats = unit.getUnitStats();
+		String unitType = unit.toString();
+		Stats unitStats = unit.getMyStats();
 		unitArea.append(unitType +":" + "\n" + "Health: " + unitStats.getHealth() + unitStats.getUpKeep());
 	}
 	
 	private void displayStructureStatus(Structure structure){
 		//not safe, possibility of listing same structure twice
-		String structureType = structure.getStructureType();
-		Stats structureStats = structure.getStructureStats();
+		String structureType = structure.toString();
+		Stats structureStats = structure.getMyStats();
 		structureArea.append(structureType +":" + "\n" + "Health: " + structureStats.getHealth() + structureStats.getUpKeep());
 	
 	}

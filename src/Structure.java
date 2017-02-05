@@ -5,11 +5,9 @@ public class Structure extends Concrete {
 
     private double state;
     private String structureType;
-    private double ProductionRates;
 
-    public Structure(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap, int ProductionRates) {
-        super(player, loc, map, cid, myStats, actionPointCap);
-        this.ProductionRates = ProductionRates;
+    public Structure(Player player, Location loc, Map map, CID cid, Stats myStats) {
+        super(player, loc, map, cid, myStats);
     }
 
     void powerDown(){
@@ -20,18 +18,25 @@ public class Structure extends Concrete {
     }
 
     public void doTurn(){
-        //TODO
+
+        while(getActionPointCap() > 0 && !getCommandQueue().isEmpty()) {
+            getCommandQueue().carryOut();
+        }
+
     }
 
     void endTurn() {
-        //TODO Resource Consumption at end of turn
-        //TODO Unit Production at end of turn
+
+        setActionPoints(getActionPoints() + getActionPointCap());
+        if(getActionPoints() > getActionPointCap()){
+            setActionPoints(getActionPointCap());
+        }
+
     }
 
     void killMe(){
         getPlayer().remove(this);
-
-//      map.getTile(getLoc()).removeStructure();
+        getMap().getTile(getLoc()).removeStructure();
     }
 
     @Override
@@ -40,7 +45,7 @@ public class Structure extends Concrete {
         setActionPoints(getActionPointCap());
     }
     
-    String getStructureType() {
+    public String toString() {
     	return structureType;
     }
     

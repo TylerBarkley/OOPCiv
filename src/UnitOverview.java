@@ -6,18 +6,25 @@ import java.util.Iterator;
 import java.util.Queue;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
+
 
 public class UnitOverview extends Overview{
 
 	private JTable unitTable;
 	private JTextArea unitStatsArea;
 	private JLabel currentMode, currentInstance,currentType,currentInstruction;
-	
+	private UnitTableModel model;
+	private UnitTableRenderer renderer;
 	
 	public UnitOverview(Player player, int width, int height) {
 		super(player, width, height);
 		unitTable = new JTable(new UnitTableModel());
+		
+		unitTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		unitTable.setRowSelectionAllowed(true);
+		unitTable.setColumnSelectionAllowed(true);
+		unitTable.setEnabled(false);
+		
 		unitStatsArea = new JTextArea();
 		unitStatsArea.setEditable(false);
 		
@@ -30,6 +37,8 @@ public class UnitOverview extends Overview{
 		currentInstruction = new JLabel("CURRENT INSTRUCTION= ");
 		currentInstruction.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
+		renderer = new UnitTableRenderer();
+		setRenderer();
 		displayView();
 	}
 	
@@ -64,7 +73,7 @@ public class UnitOverview extends Overview{
 	private void displayCurrentUnitStatus(){
 		unitStatsArea.setText("");
 		
-		UnitStats status =  player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getUnitStats();
+		Stats status =  player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getMyStats();
 		unitStatsArea.setText(status.toString() + "\n");
 		CommandQueue unitCommandQueue = player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getCommandQueue();
 		
@@ -76,7 +85,14 @@ public class UnitOverview extends Overview{
 	}
 
 	public void updateView() {
-
+		updateMenuStateText();
+		renderer.updateSelectedUnit(this.ms.getCurrentMode(), this.ms.getCurrentType(), this.ms.getCurrentInstanceIndex());
+		model.updateData(this.player);
+		if(this.ms.getCurrentMode() == GameInfo.UNITMODE || this.ms.getCurrentMode() == GameInfo.ARMYMODE) {
+			displayCurrentUnitStatus();
+		}
+		
+		
 	}
 
 	public void displayView() {
@@ -85,6 +101,7 @@ public class UnitOverview extends Overview{
 		title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(title);
 	
+		
 		this.add(new FixedScrollPane(unitTable,width,height/3));
 		this.add(new FixedScrollPane(unitStatsArea,width,height/3));
 		
@@ -102,76 +119,17 @@ public class UnitOverview extends Overview{
 		
 	}
 	
-	void updateMenuStates() {
+	private void updateMenuStateText() {
 		currentMode.setText("CURRENT MODE= " + this.ms.getCurrentModeString());
 		currentInstance.setText("CURRENT INSTANCE= " + this.ms.getCurrentInstanceIndex());
 		currentType.setText("CURRENT TYPE= " + this.ms.getCurrentTypeString());
 		currentInstruction.setText("CURRENT INSTRUCTION= " + this.ms.getCurrentTypeString());
 	}
 	
-	public static void main(String[] args) { //For testing purposes only! 
-		JFrame frame = new JFrame();
-		frame.setSize(1200, 800);
-		frame.add(new UnitOverview(null,1200,800));
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-	}
-}
 
-class UnitTableModel extends AbstractTableModel {
-
-	private String[] columnNames;
-	private Object[][] data;
-	
-	public UnitTableModel() {
-		generateColumnNames();
-		generateData();
-	}
-	
-	private void generateColumnNames() {
-		columnNames = new String[GameInfo.MAX_PER_TYPE + 1];
-		columnNames[0] = "Unit Types";
-		
-		for(int i = 1; i < columnNames.length;i++) {
-			columnNames[i] = Integer.toString(i);
+	private void setRenderer() {
+		for(int i = 1; i < GameInfo.MAX_PER_TYPE + 1;i++) {
+			unitTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
 		}
 	}
-	
-	private void generateData() {
-		data = new Object[GameInfo.UNIT_TYPES_NAMES.length][GameInfo.MAX_PER_TYPE + 1];
-		
-		for(int j = 0; j <GameInfo.MAX_PER_TYPE + 1;j++ ) {
-			for(int i = 0; i <GameInfo.UNIT_TYPES_NAMES.length; i++) {
-				if(j == 0) {
-					data[i][j] = GameInfo.UNIT_TYPES_NAMES[i];
-				}
-				else {
-					//data[i][j] = new String("");
-				}
-			}
-		}
-	}
-	
-	@Override
-	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return data.length;
-	}
-
-	@Override
-	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return columnNames.length;
-	}
-
-	public String getColumnName(int col) {
-		return columnNames[col];
-	}
-	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-		return data[rowIndex][columnIndex];
-	}
-	
 }

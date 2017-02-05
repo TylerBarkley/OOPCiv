@@ -12,7 +12,7 @@ public class  Stats {
 
     private int UpKeep;
 
-    private int movement;
+    private int rate;
 
     void setOffensiveDamage(int offensiveDamage){this.offensiveDamage=offensiveDamage;}
 
@@ -21,8 +21,8 @@ public class  Stats {
     void setArmor(int armor){this.armor=armor;}
 
     void setHealth(int health){this.health=health;}
-    void setMovement(int movement){this.health=health;}
     void setUpKeep(int UpKeep){this.UpKeep=UpKeep;}
+    void setRate(int rate){this.rate = rate;};
 
     int getOffensiveDamage(){return offensiveDamage;}
 
@@ -34,7 +34,7 @@ public class  Stats {
 
     int getUpKeep(){return UpKeep;}
 
-    int getMovement(){return movement;}
+    int getRate(){return rate;}
 
     public String toString(){
         String s = "";

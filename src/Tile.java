@@ -1,3 +1,4 @@
+import java.sql.Struct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ public class Tile {
     Terrain terrainType;
 
     ArrayList<Unit> unitsOnTile;
+
+    Structure structOnTile;
 
     Tile(Location loc, char terrainType){
         this.loc = loc;
@@ -43,5 +46,13 @@ public class Tile {
         System.out.println("Removed Unit");
         unitsOnTile.remove(toBeDeletedUnit);
         System.out.println(unitsOnTile.size());
+    }
+
+    void removeStructure(){
+        structOnTile = null;
+    }
+
+    void addStructure(Structure struct){
+        structOnTile = struct;
     }
 }

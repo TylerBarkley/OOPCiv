@@ -3,8 +3,18 @@
  */
 public class RangedFighter extends Unit {
 
-    public RangedFighter(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap) {
-        super(player, loc, map, cid, myStats, actionPointCap);
+    RangedFighter(Player player, Location loc, Map map, CID cid, Stats myStats){
+        super(player, loc, map,cid, myStats);
+    };
+
+    RangedFighter(Base base){
+        super(base.getPlayer(), base.getLoc(), base.getMap(), CID.giveCID(base.getPlayer(), GameInfo.RANGEDUNIT),
+                StatsFactory.createStats(GameInfo.RANGEDUNIT));
+
+    }
+
+    public String toString(){
+        return "Ranged Fighter";
     }
 
 }

@@ -12,11 +12,17 @@ public class GameInfo {
     public final static int MELEEUNIT    	= 2;
     public final static int RANGEDUNIT    	= 3;
 
+    public final static int BASE            = 4;
+
+    public final static int ARMY            = 5;
+
+    public final static int RALLYPOINT      = 6;
+
     public final static int ENTIREARMY     	= 0;
     public final static int BATTLEGROUP    	= 1;
     public final static int REINFORCEMENTS 	= 2;
 
-    public final static int BASE            = 0;
+
 
     public final static int RALLYPOINTMODE  = 0;
     public final static int ARMYMODE       	= 1;
@@ -24,6 +30,6 @@ public class GameInfo {
     public final static int STRUCTUREMODE   = 3;
     
     //Names of all units and Strucutres types to be displayed on the Structure and Unit viewports 
-    public final static String[] UNIT_TYPES_NAMES = {"EXPLORER","COLONIST","MELEE","RANGE","ARMY"};
+    public final static String[] UNIT_TYPES_NAMES = {"EXPLORER","COLONIST","MELEE","RANGE","ARMY"}; //Always keep the "Army" as the very last position in array for Jtable
     public final static String[] STRUCTURE_TYPES_NAMES = {"BASE"}; 
 }

@@ -10,9 +10,12 @@ public class Player {
     ArrayList<Army> armies;
     ArrayList<RallyPoint>  rallyPoints;
 
-    MenuState menuState;
 
-    public Player(){
+    Location location; //this is the player's point of focus
+    MenuState menuState;
+    Map map; //made before player
+
+    public Player(Map map){
         armies = new ArrayList<Army>();
 
         rallyPoints = new ArrayList<RallyPoint>();
@@ -28,6 +31,9 @@ public class Player {
         for(int i = 0; i < GameInfo.STRUCTURE_TYPES; i++){
             structures.add(new ArrayList<Structure>());
         }
+
+        this.map = map;
+        this.location = new Location(0, 0);
 
         menuState = new MenuState(this);
     }
