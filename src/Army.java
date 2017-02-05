@@ -1,5 +1,3 @@
-import sun.plugin2.message.GetAppletMessage;
-
 import java.util.ArrayList;
 
 /**

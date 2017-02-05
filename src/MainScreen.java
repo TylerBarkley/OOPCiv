@@ -60,9 +60,9 @@ public class MainScreen extends Overview{
 		Map map=new Map(10, 10, false);
 		Player player=new Player(map);
 		Player opponent=new Player(map);
-		MainScreen main=new MainScreen(player,opponent,map,1275,850);
+		MainScreen main=new MainScreen(player,opponent,map,1200,800);
 		JFrame frame = new JFrame();
-		frame.setSize(1275, 850);
+		frame.setSize(1200, 800);
 		frame.add(main);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
