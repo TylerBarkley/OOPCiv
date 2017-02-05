@@ -33,7 +33,7 @@ public class GameWindow extends JFrame {
 		this.setTitle("Lost In the Sauce");
 		
 		this.tabbedPane=new JTabbedPane();
-		tabbedPane.setFocusable(false);
+		tabbedPane.addKeyListener(new KeyListenerHandler(player,this));
 		
 		this.mainScreen=new MainScreen(player,opponent,map,width,height);
 		this.unitOverview=new UnitOverview(player, width, height);
@@ -53,6 +53,7 @@ public class GameWindow extends JFrame {
 			e.printStackTrace();
 		}
 		
+		//this.addKeyListener(new KeyListenerHandler(player));
 		setUpTabbedPane();
 		addGameMenu();
 	}
@@ -134,9 +135,12 @@ public class GameWindow extends JFrame {
 		Player opponent=new Player(map);
 		GameWindow game = new GameWindow(player,opponent,map,1275,850);
 		game.openWindow();
+		
+		
 	}
 	
-	public void addGameMenu() {
+	private void addGameMenu() {
+		
 		
 		JMenu fileMenu = new JMenu("File");
 		
