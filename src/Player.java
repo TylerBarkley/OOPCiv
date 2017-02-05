@@ -38,6 +38,8 @@ public class Player {
         menuState = new MenuState(this);
     }
 
+
+
     ArrayList<ArrayList<Unit>> getUnits(){
         return units;
     }
@@ -60,7 +62,43 @@ public class Player {
     }
 
     public void remove(Structure target){
-
         structures.get(target.getCID().typeID).remove(target.getCID().personelID);
+    }
+
+    public boolean getIfAnyOrderableExistsForMode(int modeType){
+        if(modeType==GameInfo.UNITMODE) {
+            for (int i = 0; i < units.size(); i++) {
+                for (int j = 0; j < units.get(i).size(); j++) {
+                    if (units.get(i).get(j) != null){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        } else if(modeType==GameInfo.STRUCTUREMODE){
+            for (int i = 0; i < structures.size(); i++) {
+                for (int j = 0; j < structures.get(i).size(); j++) {
+                    if (structures.get(i).get(j) != null){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        } else if(modeType==GameInfo.RALLYPOINTMODE){
+            for (int i = 0; i < rallyPoints.size(); i++) {
+                if (rallyPoints.get(i) != null){
+                    return true;
+                }
+            }
+            return false;
+        } else if(modeType==GameInfo.ARMYMODE){
+            for (int i = 0; i < rallyPoints.size(); i++) {
+                if (armies.get(i) != null){
+                    return true;
+                }
+            }
+            return false;
+        }
+        return true;
     }
 }
