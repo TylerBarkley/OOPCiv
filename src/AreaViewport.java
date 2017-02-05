@@ -28,8 +28,12 @@ public class AreaViewport extends Viewport{
 
 		image=new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g2d=image.createGraphics();
-
-		displayView();
+		
+		if(map != null) displayView(); // if statement for testing purposes only 
+		else {
+			g2d.setColor(Color.green);   		//For testing only 
+			g2d.fillRect(0, 0, width, height);
+		}
 	}
 
 	public void displayView(){
