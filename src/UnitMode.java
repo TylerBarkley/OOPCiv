@@ -122,6 +122,15 @@ public class UnitMode extends Mode {
         if(currentInstructionIndex == 0)
             currentInstructionIndex = lastInstruction; //cycle back to last instruction
         else currentInstructionIndex--;
+        /*Code Changed*/
+        if(currentType!=GameInfo.EXPLORER){
+            if(currentInstructionIndex==UnitInstruction.U_BUILDBASE){
+                currentInstructionIndex--;
+            }
+        }
+        if((currentInstructionIndex==UnitInstruction.U_MAKEARMY || currentInstructionIndex==UnitInstruction.U_JOINARMY)&&(units.get(currentType).get(currentInstanceIndex).getArmy()!=null)){
+            currentInstructionIndex=lastInstruction;
+        }
         currentInstruction = unitInstructions.get(currentInstructionIndex);
         return currentInstruction;
     }
@@ -130,6 +139,12 @@ public class UnitMode extends Mode {
         if(currentInstructionIndex == lastInstruction)
             currentInstructionIndex = 0; //cycle back to last instruction
         else currentInstructionIndex++;
+        if((currentInstructionIndex==UnitInstruction.U_MAKEARMY || currentInstructionIndex==UnitInstruction.U_JOINARMY)&&(units.get(currentType).get(currentInstanceIndex).getArmy()!=null)){
+            currentInstructionIndex=U_BUILDBASE;
+        }
+        if(currentType!=GameInfo.EXPLORER&&currentInstructionIndex==UnitInstruction.U_BUILDBASE){
+            currentInstructionIndex=U_STANDBY;
+        }
         currentInstruction = unitInstructions.get(currentInstructionIndex);
         return currentInstruction;
     }
