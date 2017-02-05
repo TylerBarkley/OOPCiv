@@ -20,18 +20,25 @@ public class Structure extends Concrete {
     }
 
     public void doTurn(){
-        //TODO
+
+        while(getActionPointCap() > 0 && !getCommandQueue().isEmpty()) {
+            getCommandQueue().carryOut();
+        }
+
     }
 
     void endTurn() {
-        //TODO Resource Consumption at end of turn
-        //TODO Unit Production at end of turn
+
+        setActionPoints(getActionPoints() + getActionPointCap());
+        if(getActionPoints() > getActionPointCap()){
+            setActionPoints(getActionPointCap());
+        }
+
     }
 
     void killMe(){
         getPlayer().remove(this);
-
-//      map.getTile(getLoc()).removeStructure();
+        getMap().getTile(getLoc()).removeStructure();
     }
 
     @Override
