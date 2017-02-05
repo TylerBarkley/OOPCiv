@@ -16,9 +16,25 @@ public class StatsFactory {
             concreteTypeStats.setHealth(0);
             concreteTypeStats.setUpKeep(0);
             concreteTypeStats.setMovement(0);
-
-            //BASE(DUMMY STUFF)
-        }else if(concreteType== GameInfo.BASE){
+        } else if(concreteType==GameInfo.RANGEDUNIT) {
+            concreteTypeStats.setDefensiveDamage(0);
+            concreteTypeStats.setOffensiveDamage(0);
+            concreteTypeStats.setHealth(0);
+            concreteTypeStats.setUpKeep(0);
+            concreteTypeStats.setMovement(0);
+        }  else  if(concreteType==GameInfo.COLONIST) {
+            concreteTypeStats.setDefensiveDamage(0);
+            concreteTypeStats.setOffensiveDamage(0);
+            concreteTypeStats.setHealth(0);
+            concreteTypeStats.setUpKeep(0);
+            concreteTypeStats.setMovement(0);
+        } else if(concreteType==GameInfo.EXPLORER) {
+            concreteTypeStats.setDefensiveDamage(0);
+            concreteTypeStats.setOffensiveDamage(0);
+            concreteTypeStats.setHealth(0);
+            concreteTypeStats.setUpKeep(0);
+            concreteTypeStats.setMovement(0);
+        } else if(concreteType== GameInfo.BASE){
             concreteTypeStats.setDefensiveDamage(0);
             concreteTypeStats.setOffensiveDamage(0);
             concreteTypeStats.setHealth(0);

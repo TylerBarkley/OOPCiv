@@ -7,6 +7,15 @@ public class UnitFactory {
         if(orderableToBeCreated==GameInfo.MELEEUNIT) {
             unitToBeCreated=new MeleeFighter(player, loc, map,CID.giveCID(player,orderableToBeCreated), StatsFactory.createStats(orderableToBeCreated),2);
             return unitToBeCreated;
+        } else if(orderableToBeCreated==GameInfo.RANGEDUNIT) {
+            unitToBeCreated = new MeleeFighter(player, loc, map, CID.giveCID(player, orderableToBeCreated), StatsFactory.createStats(orderableToBeCreated), 2);
+            return unitToBeCreated;
+        }else if(orderableToBeCreated==GameInfo.COLONIST) {
+            unitToBeCreated=new MeleeFighter(player, loc, map,CID.giveCID(player,orderableToBeCreated), StatsFactory.createStats(orderableToBeCreated),2);
+            return unitToBeCreated;
+        } else if(orderableToBeCreated==GameInfo.EXPLORER) {
+            unitToBeCreated=new MeleeFighter(player, loc, map,CID.giveCID(player,orderableToBeCreated), StatsFactory.createStats(orderableToBeCreated),2);
+            return unitToBeCreated;
         }
         //TODO: NEED TO IMPLEMENT THESE CONSTRUCTION
         /*RangedFighter UnitStats Construction*/
