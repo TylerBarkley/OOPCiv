@@ -137,6 +137,10 @@ public class Army extends Concrete {
     public RallyPoint getRallyPoint() {
         return rallyPoint;
     }
+
+    public void disband() {
+        //TODO IMPLEMENT REMOVING UNITS AND THEN REMOVE THE ARMY/RALLYPT FROM PLAYER
+    }
     //Make an army, also creates its rally point
    /*
     Army(Player player){

@@ -31,7 +31,6 @@
     }
 
     /*TODO: make a  Move Rally Point*/
-
     public void doTurn(){
 
         while(getActionPointCap() > 0 && !getCommandQueue().isEmpty()) {

@@ -1,6 +1,4 @@
-import java.sql.Struct;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Trevor on 1/30/2017.
@@ -11,13 +9,13 @@ public class Tile {
 
     Terrain terrainType;
 
-    ArrayList<Unit> unitsOnTile;
+    private ArrayList<Unit> unitsOnTile;
 
     Structure structOnTile;
 
     Tile(Location loc, char terrainType){
         this.loc = loc;
-        unitsOnTile=new ArrayList<Unit>(GameInfo.MAX_UNITS);
+        setUnitsOnTile(new ArrayList<Unit>(GameInfo.MAX_UNITS));
         if(terrainType=='W') {
             this.terrainType = new Water(new AOENothing());
         }
@@ -35,7 +33,7 @@ public class Tile {
             return false;
         }
 
-        for(Unit unit : unitsOnTile){
+        for(Unit unit : getUnitsOnTile()){
             if(unit.getPlayer() != player){
                 return false;
             }
@@ -55,15 +53,15 @@ public class Tile {
     boolean addUnit(Unit toBeAddedUnit){
         System.out.println("Added Unit");
         if(!isTraversable(toBeAddedUnit)){ return false; }
-        unitsOnTile.add(toBeAddedUnit);
+        getUnitsOnTile().add(toBeAddedUnit);
         terrainType.effect(toBeAddedUnit);
         return true;
     }
 
     void removeUnit(Unit toBeDeletedUnit){
         System.out.println("Removed Unit");
-        unitsOnTile.remove(toBeDeletedUnit);
-        System.out.println(unitsOnTile.size());
+        getUnitsOnTile().remove(toBeDeletedUnit);
+        System.out.println(getUnitsOnTile().size());
     }
 
     void removeStructure(){
@@ -72,5 +70,13 @@ public class Tile {
 
     void addStructure(Structure struct){
         structOnTile = struct;
+    }
+
+    public ArrayList<Unit> getUnitsOnTile() {
+        return unitsOnTile;
+    }
+
+    public void setUnitsOnTile(ArrayList<Unit> unitsOnTile) {
+        this.unitsOnTile = unitsOnTile;
     }
 }

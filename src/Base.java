@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 /**
  * Created by zrgam_000 on 1/31/2017.
  */
@@ -22,5 +20,13 @@ public class Base extends Structure {
         Unit placedUnit = UnitFactory.createUnit(this, unitType);
 
         getMap().getTile(getLoc()).addUnit(placedUnit);
+    }
+
+    public void healDirection(Map.MapDirection md) {
+        Tile targetTile = this.getMap().getTile(getLoc());
+
+        for(Unit luckyGuys : targetTile.getUnitsOnTile()){
+            luckyGuys.healMe(5);
+        }
     }
 }
