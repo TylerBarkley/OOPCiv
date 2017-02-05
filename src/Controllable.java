@@ -13,6 +13,7 @@ public abstract class Controllable {
         this.loc = loc;
         this.map = map;
         this.cid = cid;
+
         commandQueue = new CommandQueue();
     }
 
