@@ -24,7 +24,7 @@ public class ArmyInstruction extends Instruction {
         else if(inst_num == A_DEFEND)	    	inst = "Defend";
         else if(inst_num == A_WAIT)	    	    inst = "Wait";
         else if(inst_num == A_DISBAND)		    inst = "Disband";
-        else if(inst_num == A_DECOMMISSION)		inst = "Decommission";
+        else if(inst_num == A_DECOMMISSION)		inst = "DecommissionCommand";
         else if(inst_num == A_POWERDOWN)        inst = "PowerDown";
         else if(inst_num == A_POWERUP)		    inst = "PowerUp";
         else if(inst_num == A_CANCELQUEUE)      inst = "CancelQueue";
