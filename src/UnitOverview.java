@@ -64,7 +64,7 @@ public class UnitOverview extends Overview{
 	private void displayCurrentUnitStatus(){
 		unitStatsArea.setText("");
 		
-		UnitStats status =  player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getUnitStats();
+		Stats status =  player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getMyStats();
 		unitStatsArea.setText(status.toString() + "\n");
 		CommandQueue unitCommandQueue = player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getCommandQueue();
 		

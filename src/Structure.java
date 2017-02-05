@@ -40,7 +40,7 @@ public class Structure extends Concrete {
         setActionPoints(getActionPointCap());
     }
     
-    String getStructureType() {
+    public String toString() {
     	return structureType;
     }
     
