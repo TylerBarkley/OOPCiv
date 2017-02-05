@@ -22,7 +22,7 @@ public class GameInfo {
     public final static int BATTLEGROUP    	= 1;
     public final static int REINFORCEMENTS 	= 2;
 
-
+    public final static int MAP_SIZE        = 10;
 
     public final static int RALLYPOINTMODE  = 0;
     public final static int ARMYMODE       	= 1;

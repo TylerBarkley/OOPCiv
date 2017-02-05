@@ -93,14 +93,12 @@ public class Army extends Concrete {
     }
 
     public void Reinforce(Unit arrived){
-        if(arrived.getActionPointCap() < getAvailableMovement()){
-            setAvailableMovement(arrived.getActionPointCap());
-        }
+
     }
 
     @Override
     void endTurn() {
-        //TODO SPAGHETTI
+        //TODO SPAGHETTI OUT OF MY POCKET
     }
 
     @Override
