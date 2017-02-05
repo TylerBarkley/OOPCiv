@@ -4,7 +4,6 @@ import javax.swing.table.AbstractTableModel;
 
 public class UnitTableModel extends AbstractTableModel {
 
-	private static final long serialVersionUID = 1L;
 	private String[] columnNames;
 	private Object[][] data;
 	
@@ -88,7 +87,7 @@ public class UnitTableModel extends AbstractTableModel {
 			data[GameInfo.UNIT_TYPES][j] = new String("");
 			}
 		
-		
+		this.fireTableDataChanged();
 	}
 	
 	public void updateCell(int row, int column) {

@@ -7,8 +7,6 @@ import java.util.Queue;
 
 import javax.swing.*;
 
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
 
 public class UnitOverview extends Overview{
 
@@ -87,7 +85,13 @@ public class UnitOverview extends Overview{
 	}
 
 	public void updateView() {
+		updateMenuStateText();
+		renderer.updateSelectedUnit(this.ms.getCurrentMode(), this.ms.getCurrentType(), this.ms.getCurrentInstanceIndex());
 		model.updateData(this.player);
+		if(this.ms.getCurrentMode() == GameInfo.UNITMODE || this.ms.getCurrentMode() == GameInfo.ARMYMODE) {
+			displayCurrentUnitStatus();
+		}
+		
 		
 	}
 
@@ -112,12 +116,7 @@ public class UnitOverview extends Overview{
 	}
 	
 	public void updateMenu(){
-		updateMenuStateText();
-		renderer.updateSelectedUnit(this.ms.getCurrentMode(), this.ms.getCurrentType(), this.ms.getCurrentInstanceIndex());
-		if(this.ms.getCurrentMode() == GameInfo.UNITMODE || this.ms.getCurrentMode() == GameInfo.ARMYMODE) {
-			displayCurrentUnitStatus();
-			model.updateCell(this.ms.getCurrentType(), this.ms.getCurrentInstanceIndex() + 1);
-		}
+		
 	}
 	
 	private void updateMenuStateText() {
@@ -127,16 +126,7 @@ public class UnitOverview extends Overview{
 		currentInstruction.setText("CURRENT INSTRUCTION= " + this.ms.getCurrentTypeString());
 	}
 	
-	public static void main(String[] args) { //For testing purposes only! 
-		JFrame frame = new JFrame();
-		
-		frame.setSize(1200, 800);
-		frame.add(new UnitOverview(null,1200,800));
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-	}
-	
+
 	private void setRenderer() {
 		for(int i = 1; i < GameInfo.MAX_PER_TYPE + 1;i++) {
 			unitTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
