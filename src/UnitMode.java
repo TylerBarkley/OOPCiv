@@ -36,6 +36,7 @@ public class UnitMode extends Mode {
             for (int i = 0; currentType < player.getUnits().size() && i < player.getUnits().get(currentType).size(); i++) {
                 if (player.getUnits().get(currentType).get(i) != null) {
                     foundUnit=true;
+                    currentInstanceIndex=i;
                     break;
                 }
             }
@@ -63,7 +64,8 @@ public class UnitMode extends Mode {
             for (int i = 0; currentType < player.getUnits().size() && i < player.getUnits().get(currentType).size(); i++) {
                 if (player.getUnits().get(currentType).get(i) != null) {
                    foundUnit=true;
-                    break;
+                   currentInstanceIndex=i;
+                   break;
                 }
             }
             if(!foundUnit) {
@@ -75,23 +77,42 @@ public class UnitMode extends Mode {
         }
 
 
-        currentInstanceIndex = 0;
         currentInstance = units.get(currentType).get(currentInstanceIndex);
         return currentType;
     }
     Controllable cycleInstanceL(){
-        int lastInstance = units.get(currentType).size() -1;
+        int lastInstance = player.getUnits().get(currentType).size() -1;
+        int startIndex=currentInstanceIndex;
         if(currentInstanceIndex == 0)
             currentInstanceIndex = lastInstance;
         else currentInstanceIndex--;
+       while(currentInstanceIndex!=startIndex){
+           if(player.getUnits().get(currentType).get(currentInstanceIndex)!=null){
+                break;
+           }
+           currentInstanceIndex--;
+           if(currentInstanceIndex<0){
+               currentInstanceIndex=lastInstance;
+           }
+       }
         currentInstance = units.get(currentType).get(currentInstanceIndex);
         return currentInstance;
     }
     Controllable cycleInstanceR(){
-        int lastInstance = units.size() - 1;
+        int lastInstance = player.getUnits().get(currentType).size() -1;
+        int startIndex=currentInstanceIndex;
         if(currentInstanceIndex == lastInstance)
             currentInstanceIndex = 0;
         else currentInstanceIndex++;
+        while(currentInstanceIndex!=startIndex){
+            if(player.getUnits().get(currentType).get(currentInstanceIndex)!=null){
+                break;
+            }
+            currentInstanceIndex++;
+            if(currentInstanceIndex>lastInstance){
+                currentInstanceIndex=lastInstance;
+            }
+        }
         currentInstance = units.get(currentType).get(currentInstanceIndex);
         return currentInstance;
     }
