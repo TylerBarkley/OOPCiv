@@ -8,6 +8,7 @@ public abstract class Concrete extends Controllable{
     private int currentHealth;
     private int actionPoints;
     private int actionPointCap;
+    Map.MapDirection facingDirection;
 
     public Concrete(Player player, Location loc, Map map, CID cid, Stats myStats, int actionPointCap) {
         super(player, loc, map, cid);
@@ -31,6 +32,10 @@ public abstract class Concrete extends Controllable{
         if(this.currentHealth <= 0){
             this.killMe();
         }
+    }
+
+    public void setFacingDirection(Map.MapDirection facingDirection) {
+        this.facingDirection = facingDirection;
     }
 
     abstract void killMe();

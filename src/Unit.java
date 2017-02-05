@@ -11,6 +11,7 @@
         super(player, loc, map, cid, myStats, actionPointCap);
         myArmy = null;
         state = 1.0;
+        this.setFacingDirection(Map.MapDirection.NORTH);
     }
 
     void standby(){
@@ -56,6 +57,7 @@
         if(targetTile.addUnit(this)){
            getMap().getTile(this.getLoc()).removeUnit(this);
            this.setLoc(targetLoc);
+           this.setFacingDirection(md);
         }
         else{
             this.clearCommands();

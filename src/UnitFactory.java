@@ -14,7 +14,7 @@ public class UnitFactory {
             unitToBeCreated=new MeleeFighter(player, loc, map,CID.giveCID(player,orderableToBeCreated), StatsFactory.createStats(orderableToBeCreated),2);
             return unitToBeCreated;
         } else if(orderableToBeCreated==GameInfo.EXPLORER) {
-            unitToBeCreated=new MeleeFighter(player, loc, map,CID.giveCID(player,orderableToBeCreated), StatsFactory.createStats(orderableToBeCreated),2);
+            unitToBeCreated=new MeleeFighter(player, loc, map,CID.giveCID(player,orderableToBeCreated), StatsFactory.createStats(orderableToBeCreated),3);
             return unitToBeCreated;
         }
         //TODO: NEED TO IMPLEMENT THESE CONSTRUCTION

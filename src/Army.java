@@ -38,6 +38,10 @@ public class Army extends Concrete {
         }
     }
 
+    public void addToReinforcements(Unit target){
+        reinforcements.add(target);
+    }
+
     public void orderMove(Map.MapDirection md){
         for(Unit target : battleGroup){
             //target.getCommandQueue().add(target.commandFactory.create(Move Instruction, target));
@@ -116,29 +120,16 @@ public class Army extends Concrete {
     //Make an army with a unit, also creates its rally point
     Army(Unit unit, Player player){
 
-        super(player, unit.getLoc(), unit.getMap(),null, null, unit.getActionPointCap());
-
-
-        int personelID;
-
-        ArrayList<Army> armies = getPlayer().getArmies();
-
-        for (personelID = 0; personelID < GameInfo.MAX_PER_TYPE; personelID++){
-            if(armies.get(personelID) == null) break;
-        }
-
-        if(personelID == GameInfo.MAX_PER_TYPE){
-            return;
-        }
+        super(player, unit.getLoc(), unit.getMap(),CID.giveCID(player, GameInfo.ARMY), StatsFactory.createStats(GameInfo.ARMY), unit.getActionPointCap());
 
         commandFactory = new CommandFactory();
 
         entireArmy.add(unit);
         battleGroup.add(unit);
-        player.getArmies().add(personelID, this);
+        player.getArmies().add(getCID().personelID, this);
         RallyPoint rallyPoint = new RallyPoint(this);
         this.rallyPoint = rallyPoint;
-        player.getRallyPoints().add(personelID, rallyPoint);
+        player.getRallyPoints().add(getCID().personelID, rallyPoint);
     }
     //Make an army, also creates its rally point
    /*

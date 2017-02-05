@@ -41,6 +41,13 @@ public class StatsFactory {
             concreteTypeStats.setUpKeep(0);
             concreteTypeStats.setMovement(0);
         }
+        else if(concreteType== GameInfo.ARMY){
+            concreteTypeStats.setDefensiveDamage(0);
+            concreteTypeStats.setOffensiveDamage(0);
+            concreteTypeStats.setHealth(0);
+            concreteTypeStats.setUpKeep(0);
+            concreteTypeStats.setMovement(0);
+        }
         return concreteTypeStats;
 
     }
