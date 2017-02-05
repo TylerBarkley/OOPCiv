@@ -255,7 +255,7 @@ public class KeyListenerTester extends JFrame implements KeyListener {
 
         /*for(int i = 0; i < GameInfo.UNIT_TYPES; i++){
             for(int j = 0; j < 4; j++){
-                player1.getUnits().get(i).add(new Unit_Test());
+                player1.getUnits().get(i).add(new Explorer());
             }
         }
         for(int i = 0; i < GameInfo.STRUCTURE_TYPES; i++){
