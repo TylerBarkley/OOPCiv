@@ -6,7 +6,6 @@ public class RallyPoint extends Controllable {
 
     Army army;
 
-
     @Override
     void endTurn() {
 
@@ -27,11 +26,9 @@ public class RallyPoint extends Controllable {
 
     }
 
-    //TODO: delete or fix this default constructor
-    RallyPoint(){
 
-    }
     RallyPoint(Army army){
+        super(army.getPlayer(), army.getLoc(), army.getMap(), CID.giveCID(army.getPlayer(), GameInfo.RALLYPOINT));
         this.army = army;
     }
 }

@@ -132,10 +132,10 @@ public class Army extends Concrete {
 
         this.addToBattleGroup(unit);
 
-        player.getArmies().add(getCID().personelID, this);
+        player.getArmies().add(getCID().getPersonelID(), this);
         RallyPoint rallyPoint = new RallyPoint(this);
         this.rallyPoint = rallyPoint;
-        player.getRallyPoints().add(getCID().personelID, rallyPoint);
+        player.getRallyPoints().add(getCID().getPersonelID(), rallyPoint);
     }
     //Make an army, also creates its rally point
    /*
