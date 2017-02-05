@@ -1,7 +1,7 @@
 /**
  * Created by zrgam_000 on 2/1/2017.
  */
-public class MoveCommand extends UnitCommand {
+public class MoveCommand implements Command {
     Unit target;
     Map.MapDirection direction;
 
