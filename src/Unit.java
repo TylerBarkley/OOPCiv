@@ -31,9 +31,6 @@
             getCommandQueue().carryOut();
         }
 
-        if(getCommandQueue().isEmpty()){
-            setActionPoints(getActionPointCap());
-        }
     }
 
     void endTurn(){
