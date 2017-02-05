@@ -30,20 +30,12 @@ public class AreaViewport extends Viewport{
 		g2d=image.createGraphics();
 		focus=new Location(width/(2*GameInfo.TILE_SIZE), height/(2*GameInfo.TILE_SIZE));
 		
-		if(map != null) displayView(); // if statement for testing purposes only 
-		else {
-			g2d.setColor(Color.green);   		//For testing only 
-			g2d.fillRect(0, 0, width, height);
-		}
+		displayView();
 	}
 
 	public void displayView(){
-		this.setBackground(Color.blue);
+		this.setBackground(Color.BLACK);
 		updateView();
-		//g2d.setColor(Color.green);   		//For testing only 
-		//g2d.fillRect(0, 0, width, height);
-		//this.add(new JScrollPane (new JLabel( new ImageIcon (image))));
-		//this.validate();
 	}
 
 	public void updateView(){
@@ -118,7 +110,7 @@ public class AreaViewport extends Viewport{
 		int x=unit.getLoc().x;
 		int y=unit.getLoc().y;
 		
-		g2d.drawImage(view.getImage(), (int)((x+0.5)*GameInfo.TILE_SIZE), (int)((y+0.5)*GameInfo.TILE_SIZE), null);
+		g2d.drawImage(view.getImage(unit.facingDirection), (int)((x+0.5)*GameInfo.TILE_SIZE), (int)((y+0.5)*GameInfo.TILE_SIZE), null);
 	}
 
 	private void displayStructures(){

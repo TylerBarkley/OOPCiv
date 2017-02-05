@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,7 +11,7 @@ import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-public class GameWindow extends JFrame{
+public class GameWindow extends JFrame {
 	private Player player;
 	private Player opponent;
 	private Map map;
@@ -32,7 +33,7 @@ public class GameWindow extends JFrame{
 		this.setTitle("Lost In the Sauce");
 		
 		this.tabbedPane=new JTabbedPane();
-		tabbedPane.setFocusable(false);
+		tabbedPane.addKeyListener(new KeyListenerHandler(player,this));
 		
 		this.mainScreen=new MainScreen(player,opponent,map,width,height);
 		this.unitOverview=new UnitOverview(player, width, height);
@@ -52,6 +53,7 @@ public class GameWindow extends JFrame{
 			e.printStackTrace();
 		}
 		
+		//this.addKeyListener(new KeyListenerHandler(player));
 		setUpTabbedPane();
 		addGameMenu();
 	}
@@ -133,9 +135,12 @@ public class GameWindow extends JFrame{
 		Player opponent=new Player(map);
 		GameWindow game = new GameWindow(player,opponent,map,1275,850);
 		game.openWindow();
+		
+		
 	}
 	
-	public void addGameMenu() {
+	private void addGameMenu() {
+		
 		
 		JMenu fileMenu = new JMenu("File");
 		
@@ -153,4 +158,6 @@ public class GameWindow extends JFrame{
 		this.setJMenuBar(menuBar);
 		
 	}
+
+
 }

@@ -4,25 +4,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class KeyListenerTester extends JFrame implements KeyListener {
+public class KeyListenerHandler implements KeyListener {
 
-    JLabel label;
+    
     boolean ctrl;
     Player player;
     MenuState ms;
+    GameWindow window;
+    public KeyListenerHandler( Player player, GameWindow window) {
+        
+    	this.player = player;
+        ms = player.getMenuState();
+        this.window = window;
 
-    public KeyListenerTester(String s, Player player) {
-        super(s);
-        JPanel p = new JPanel();
-        label = new JLabel("Key Listener!");
-        p.add(label);
-        add(p);
-        addKeyListener(this);
-        setSize(200, 100);
-        setVisible(true);
+    }
+
+    void setPlayer(Player player){
         this.player = player;
         ms = player.getMenuState();
-
     }
 
     @Override
@@ -77,7 +76,7 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
             System.out.println(" ");
         }
-
+        window.updateView();
     }
 
     @Override
@@ -215,6 +214,7 @@ public class KeyListenerTester extends JFrame implements KeyListener {
             System.out.println("10");
             shortcutInstance(10);
         }
+        window.updateMenu();
         System.out.println("Current Mode: " + ms.getCurrentModeString() + "\n");
         System.out.println("Current Type: " + ms.getCurrentTypeString() + "\n");
         System.out.println("Current Instance: " + ms.currentInstanceIndex + "\n");
@@ -232,8 +232,10 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_CONTROL){
             ctrl = false;
         }
+        window.updateView();
     }
 
+    /*
     //test program, makes a player with 4 of each controllable
     //makes a key listener and does the major navigation operations
     //prints results
@@ -268,11 +270,12 @@ public class KeyListenerTester extends JFrame implements KeyListener {
         }
         for(int i = 0; i < 4; i++){
             player1.getRallyPoints().add(new RallyPoint());
-        }*/
+        }
 
 
-        new KeyListenerTester("Key Listener Tester", player1);
+        new KeyListenerHandler("Key Listener Tester", player1);
     }
+		*/
 
     public void shortcutInstance(int input){
         int currentIndex = ms.getCurrentInstanceIndex();

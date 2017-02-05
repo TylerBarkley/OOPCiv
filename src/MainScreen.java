@@ -56,13 +56,13 @@ public class MainScreen extends Overview{
 		
 	}
 	
-	public static void main(String args[]) throws IOException { //for testing purposes only!
+	/*public static void main(String args[]) throws IOException { //for testing purposes only!
 		Map map=new Map(10, 10, false);
 		Player player=new Player(map);
 		Player opponent=new Player(map);
-		MainScreen main=new MainScreen(player,opponent,map,1275,850);
+		MainScreen main=new MainScreen(player,opponent,map,1200,800);
 		JFrame frame = new JFrame();
-		frame.setSize(1275, 850);
+		frame.setSize(1200, 800);
 		frame.add(main);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,29 +75,7 @@ public class MainScreen extends Overview{
 		main.focusOn(new Location(0,3));
 		main.focusOn(new Location(0,4));
 		main.focusOn(new Location(0,5));
-		main.focusOn(new Location(0,6));
-		main.focusOn(new Location(1,6));
-		main.focusOn(new Location(2,6));
-		main.focusOn(new Location(3,6));
-		main.focusOn(new Location(4,6));
-		main.focusOn(new Location(5,6));
-		main.focusOn(new Location(6,6));
-		main.focusOn(new Location(7,6));
-		main.focusOn(new Location(8,6));
-		main.focusOn(new Location(9,6));
-		main.focusOn(new Location(9,7));
-		main.focusOn(new Location(9,8));
-		main.focusOn(new Location(9,9));
-		main.focusOn(new Location(8,9));
-		main.focusOn(new Location(7,9));
-		main.focusOn(new Location(7,8));
-		main.focusOn(new Location(7,7));
-		main.focusOn(new Location(7,6));
-		main.focusOn(new Location(7,5));
-		main.focusOn(new Location(7,4));
-		main.focusOn(new Location(7,3));
-		main.focusOn(new Location(7,2));
-		main.focusOn(new Location(7,1));
-	}
+
+	}*/
 	
 }
