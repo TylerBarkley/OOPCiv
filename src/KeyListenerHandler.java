@@ -19,6 +19,11 @@ public class KeyListenerHandler implements KeyListener {
 
     }
 
+    void setPlayer(Player player){
+        this.player = player;
+        ms = player.getMenuState();
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
