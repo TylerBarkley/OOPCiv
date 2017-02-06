@@ -41,6 +41,14 @@ public class Army extends Concrete {
         }
     }
 
+    public void attack(Map.MapDirection md){
+        Tile targetTile = this.getMap().getTile(this.getLoc().getAdjacent(md));
+
+        for(Unit unit : targetTile.getUnitsOnTile()){
+            unit.damageMe(this.getMyStats().getOffensiveDamage());
+        }
+    }
+
     public void addToReinforcements(Unit target){
         reinforcements.add(target);
         rallyPoint.givePathCommands(target);
@@ -96,16 +104,16 @@ public class Army extends Concrete {
         this.availableMovement = availableMovement;
     }
 
-    public void Reinforce(Unit arrived){
-
+    public void reinforce(Unit arrived){
+        this.addToBattleGroup(arrived);
+        this.reinforcements.remove(arrived);
     }
 
     @Override
     void endTurn() {
         for(Unit unit : reinforcements){
             if(unit.getLoc().equals(rallyPoint.getLoc()) && unit.getLoc().equals(this.getLoc())){
-                this.addToBattleGroup(unit);
-                this.reinforcements.remove(unit);
+                this.reinforce(unit);
             }
         }
     }
@@ -134,6 +142,10 @@ public class Army extends Concrete {
         entireArmy.remove(target);
         battleGroup.remove(target);
         reinforcements.remove(target);
+
+        if(entireArmy.isEmpty()){
+            this.killMe();
+        }
     }
 
     public int getTypeID(){

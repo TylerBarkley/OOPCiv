@@ -14,7 +14,6 @@
 
         this.getCID().modeID = GameInfo.UNITMODE;
         //Code to put this Unit into the appropriate place in player's Unit Array
-        player.getUnits().get(cid.getTypeID()).add(cid.getPersonelID(), this);
 
         myArmy = null;
         state = 1.0;
@@ -34,7 +33,7 @@
         //TODO Resource Consumption at end of turn
 
         //Reset the unit's action points
-        int possibleMovement = myArmy == null ? this.getActionPointCap() : myArmy.getAvailableMovement();
+        int possibleMovement = battleGroup ? this.getActionPointCap() : myArmy.getAvailableMovement();
         setActionPoints(getActionPoints() + possibleMovement);
         if(getActionPoints() > possibleMovement){
             setActionPoints(possibleMovement);
@@ -43,7 +42,7 @@
 
     void clearCommands(){
         this.getCommandQueue().clear();
-        setActionPoints(myArmy == null ? getActionPointCap() : myArmy.getAvailableMovement());
+        setActionPoints(battleGroup ? getActionPointCap() : myArmy.getAvailableMovement());
     }
 
     void move(Map.MapDirection md){

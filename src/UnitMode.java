@@ -58,6 +58,7 @@ public class UnitMode extends Mode {
         else currentType++;
         boolean foundUnit=false;
         while(startCurrentType != currentType && !foundUnit) {
+   
             for (int i = 0; i < 10; i++) {
                 if (player.getUnits().get(currentType).get(i) != null) {
                    foundUnit=true;
@@ -71,7 +72,7 @@ public class UnitMode extends Mode {
                 else currentType++;
             }
         }
-
+       
         return currentType;
     }
     Controllable cycleInstanceL(){

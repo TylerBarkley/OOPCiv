@@ -41,10 +41,6 @@ public class GameWindow extends JFrame {
 		this.unitOverview=new UnitOverview(player, width, height);
 		this.structureOverview=new StructureOverview(player, width, height);
 		
-		//for testing only
-		mainScreen.placeDecal(new RedCross(), 1, 2);
-		mainScreen.placeDecal(new SkullCrossBones(), 4, 4);
-
 		
 		setUpTabbedPane();
 		addGameMenu();
@@ -164,5 +160,7 @@ public class GameWindow extends JFrame {
 
 	}
 
-
+	public void placeDecal(Decal decal, int x, int y) {
+		mainScreen.placeDecal(decal, x, y);
+	}
 }
