@@ -226,5 +226,9 @@ public class MenuState {
         return ModeList;
     }
 
+    public void refresh(){
+        ModeList.get(currentMode).refresh();
+    }
+
 
 }

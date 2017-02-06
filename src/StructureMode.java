@@ -81,4 +81,7 @@ public class StructureMode extends Mode {
         currentInstruction = structureInstructions.get(currentInstructionIndex);
         return currentInstruction;
     }
+    public void refresh(){
+        currentInstance = structures.get(currentType).get(currentInstanceIndex);
+    }
 }

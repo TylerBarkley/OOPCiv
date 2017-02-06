@@ -80,4 +80,7 @@ public class RallyPointMode extends Mode {
         currentInstruction = rallyPointInstructions.get(currentInstructionIndex);
         return currentInstruction;
     }
+    public void refresh(){
+        currentInstance = rallyPoints.get(currentInstanceIndex);
+    }
 }

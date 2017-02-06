@@ -163,4 +163,8 @@ public class UnitMode extends Mode {
         return currentInstruction;
     }
 
+    public void refresh(){
+        currentInstance = units.get(currentType).get(currentInstanceIndex);
+    }
+
 }

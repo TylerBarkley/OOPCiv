@@ -97,4 +97,8 @@ public class ArmyMode extends Mode {
         currentInstruction = armyInstructions.get(currentInstructionIndex);
         return currentInstruction;
     }
+
+    public void refresh(){
+        currentInstance = armies.get(currentInstanceIndex);
+    }
 }
