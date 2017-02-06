@@ -96,6 +96,7 @@ public class AreaViewport extends Viewport{
 		}
 
 		if(player.location != null){
+			ensureLocationOnMap();
 			Stroke s=g2d.getStroke();
 			Color c=g2d.getColor();
 			g2d.setStroke(new BasicStroke(5));
@@ -191,7 +192,7 @@ public class AreaViewport extends Viewport{
 		int x=rally.getLoc().x;
 		int y=rally.getLoc().y;
 		if(x > minX && x < maxX && y > minY && y < maxY){
-			g2d.drawImage(view.getImage(), (int)((x-minX)*GameInfo.TILE_SIZE-GameInfo.RALLYPOINT_SIZE), 
+			g2d.drawImage(view.getImage(), (int)((x-minX+1)*GameInfo.TILE_SIZE-GameInfo.RALLYPOINT_SIZE), 
 					(int)((y-minY)*GameInfo.TILE_SIZE), null);
 		}
 	}
@@ -202,18 +203,8 @@ public class AreaViewport extends Viewport{
 	}
 
 	public void focusOn(Location loc){
-		int x=loc.x % map.mapXSize;
-		int y=loc.y % map.mapYSize;
-
-		while(x<0){
-			x+=map.mapXSize;
-		}
-
-		while(y<0){
-			y+=map.mapYSize;
-		}
-
-		player.location = new Location(x, y);
+		player.location = loc;
+		ensureLocationOnMap();
 		updateView();
 	}
 
@@ -226,5 +217,20 @@ public class AreaViewport extends Viewport{
 		Player p=player;
 		player=opponentPlayer;
 		opponentPlayer=p;
+	}
+	
+	private void ensureLocationOnMap(){
+		int x=player.location.x % map.mapXSize;
+		int y=player.location.y % map.mapYSize;
+
+		while(x<0){
+			x+=map.mapXSize;
+		}
+
+		while(y<0){
+			y+=map.mapYSize;
+		}
+
+		player.location = new Location(x, y);
 	}
 }

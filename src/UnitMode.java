@@ -124,7 +124,7 @@ public class UnitMode extends Mode {
             }
         }
         if((currentInstructionIndex == 1) &&
-                (units.get(currentType).get(currentInstanceIndex).getMyArmy()!=null)){ //if unit is already in an army, cycle to last instruction
+                (units.get(currentType).get(currentInstanceIndex) != null && units.get(currentType).get(currentInstanceIndex).getMyArmy()!=null)){ //if unit is already in an army, cycle to last instruction
             currentInstructionIndex = lastInstruction;
         }
         currentInstruction = unitInstructions.get(currentInstructionIndex);
