@@ -58,7 +58,7 @@ public class StructureOverview extends Overview{
 		currentMode.setText("CURRENT MODE= " + this.ms.getCurrentModeString());
 		currentInstance.setText("CURRENT INSTANCE= " + this.ms.getCurrentInstanceIndex());
 		currentType.setText("CURRENT TYPE= " + this.ms.getCurrentTypeString());
-		currentInstruction.setText("CURRENT INSTRUCTION= " + this.ms.getCurrentTypeString());
+		currentInstruction.setText("CURRENT INSTRUCTION= " + this.ms.getCurrentInstruction().toString());
 	}
 	
 	private void displayCurrentStructureStatus(){
