@@ -17,7 +17,7 @@ public class RallyPoint extends Controllable {
         Queue<Location> bfsQueue = new LinkedList<Location>();
         bfsQueue.add(this.getLoc());
 
-        paths[this.getLoc().x][this.getLoc().y] = null;
+        paths[this.getLoc().y][this.getLoc().x] = null;
 
         while(!bfsQueue.isEmpty()){
 
@@ -27,8 +27,8 @@ public class RallyPoint extends Controllable {
 
             for(Location loc : adjacency.keySet()){
 
-                if(loc.x>=0 && loc.y >=0 && loc.x < this.getMap().mapXSize && loc.y < this.getMap().mapYSize && paths[loc.x][loc.y] == null && !this.getLoc().equals(loc) && getMap().getTile(loc).isTraversable(null) && getMap().getTile(loc).openTile(getPlayer())){
-                    paths[loc.x][loc.y] = adjacency.get(loc);
+                if(loc.x>=0 && loc.y >=0 && loc.x < GameInfo.MAP_SIZE && loc.y < GameInfo.MAP_SIZE && paths[loc.y][loc.x] == null && !this.getLoc().equals(loc) && getMap().getTile(loc).isTraversable(null) && getMap().getTile(loc).openTile(getPlayer())){
+                    paths[loc.y][loc.x] = adjacency.get(loc);
                     bfsQueue.add(loc);
                 }
 
@@ -62,7 +62,7 @@ public class RallyPoint extends Controllable {
         if(!army.getBattleGroup().isEmpty()){
 
             for(Unit target : army.getBattleGroup()) {
-                if (path != null) {
+                if (path == null && target.getLoc().isValid()) {
                     path = givePath(target.getLoc());
                 }
                 for(Map.MapDirection md : path){
@@ -81,7 +81,7 @@ public class RallyPoint extends Controllable {
 
         Map.MapDirection nextMove;
 
-        while(loc != null){
+        while(loc != null && loc.isValid()){
             nextMove = getPath(loc);
             path.add(nextMove);
             loc = loc.getAdjacent(nextMove);
@@ -91,7 +91,7 @@ public class RallyPoint extends Controllable {
     }
 
     Map.MapDirection getPath(Location loc){
-        return paths[loc.x][loc.y];
+        return paths[loc.y][loc.x];
     }
 
     RallyPoint(Army army){

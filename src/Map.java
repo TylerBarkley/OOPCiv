@@ -139,7 +139,7 @@ public class Map {
     }
 
     Tile getTile(Location loc){
-        return tileMatrix[loc.x][loc.y];
+        return tileMatrix[loc.y][loc.x];
     }
 
     void print(){
