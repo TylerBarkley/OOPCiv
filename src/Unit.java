@@ -84,7 +84,7 @@
 
     void killMe(){
         getPlayer().remove(this);
-        myArmy.remove(this);
+        if (myArmy != null) { myArmy.remove(this); }
         getMap().getTile(getLoc()).removeUnit(this);
     }
 

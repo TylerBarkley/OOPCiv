@@ -203,6 +203,10 @@ public class KeyListenerHandler implements KeyListener {
             System.out.println("Enter");
             Command co = CommandFactory.create(ms.getCurrentInstruction(), ms.getCurrentInstance());
             ms.getCurrentInstance().giveCommand(co);
+            if(ms.getCurrentInstance() instanceof RallyPoint){
+                ms.getCurrentInstance().getCommandQueue().carryOut();
+            }
+
         }
         if(e.getKeyCode() == KeyEvent.VK_1){
             System.out.println("01");

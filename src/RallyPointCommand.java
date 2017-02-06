@@ -14,7 +14,7 @@ public class RallyPointCommand implements Command {
     public void execute() {
         switch (rp_inst.toInt()){
             case RallyPointInstruction.RP_MOVEENTER:
-
+                target.moveRallyPoint(target.getPlayer().location);
                 break;
             case RallyPointInstruction.RP_DELETE:
 
