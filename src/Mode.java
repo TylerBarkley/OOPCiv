@@ -32,4 +32,5 @@ public abstract class Mode {
 
     Controllable getCurrentInstance(){ return currentInstance; }
 
+    public void refresh(){}
 }

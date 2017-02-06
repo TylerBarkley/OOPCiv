@@ -14,6 +14,8 @@ public class RunGame {
         p1.register(explorer1);
         p1.register(explorer2);
         p1.register(colonist1);
+
+        p1.getMenuState().refresh();
         
         explorer1 = new Explorer(p2, new Location(7, 3), map, StatsFactory.createStats(GameInfo.EXPLORER));
         explorer2 = new Explorer(p2, new Location(7, 5), map, StatsFactory.createStats(GameInfo.EXPLORER));
@@ -23,6 +25,8 @@ public class RunGame {
         p2.register(explorer1);
         p2.register(explorer2);
         p2.register(colonist1);
+
+        p2.getMenuState().refresh();
 
         //SCREENS
         int width=1200, height=800;
