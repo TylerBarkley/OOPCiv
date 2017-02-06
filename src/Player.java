@@ -183,7 +183,7 @@ public class Player {
                 }
             }
         }
-        System.out.println(modeType);
+        //System.out.println(modeType);
         return false;
     }
 }

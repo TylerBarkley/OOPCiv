@@ -138,7 +138,7 @@ public class MenuState {
         currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
         return currentMode;
     }
-    int cycleModeR(){
+    /*int cycleModeR(){
         int startedMode=currentMode;
         do{
             currentMode++;
@@ -148,6 +148,19 @@ public class MenuState {
         }while(!player.orderableExists(currentMode) && currentMode != startedMode);
         currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
         return currentMode;
+    }*/
+    int cycleModeR(){
+        int startedMode = currentMode;
+        while(currentMode != startedMode){
+            if(currentMode == GameInfo.STRUCTUREMODE)
+                currentMode = GameInfo.RALLYPOINTMODE;
+            else  currentMode++;
+            if(player.orderableExists(currentMode))
+                break;
+        }
+        currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
+        return currentMode;
+
     }
 
     /*int cycleModeL(){
