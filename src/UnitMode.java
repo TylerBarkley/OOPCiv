@@ -59,8 +59,8 @@ public class UnitMode extends Mode {
             currentType = GameInfo.EXPLORER;
         else currentType++;
         boolean foundUnit=false;
-        while(startCurrentType!=currentType&&!foundUnit) {
-            for (int i = 0; currentType < player.getUnits().size() && i < player.getUnits().get(currentType).size(); i++) {
+        while(startCurrentType != currentType && !foundUnit) {
+            for (int i = 0; i < 10; i++) {
                 if (player.getUnits().get(currentType).get(i) != null) {
                    foundUnit=true;
                    currentInstanceIndex=i;
@@ -68,10 +68,9 @@ public class UnitMode extends Mode {
                 }
             }
             if(!foundUnit) {
-                currentType++;
-                if (currentType == GameInfo.RANGEDUNIT) {
+                if(currentType == GameInfo.RANGEDUNIT)
                     currentType = GameInfo.EXPLORER;
-                }
+                else currentType++;
             }
         }
 
