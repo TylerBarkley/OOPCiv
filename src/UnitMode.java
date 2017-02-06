@@ -47,8 +47,6 @@ public class UnitMode extends Mode {
             }
         }
 
-
-        currentInstanceIndex = 0;
         currentInstance = units.get(currentType).get(currentInstanceIndex);
         return currentType;
     }
@@ -74,8 +72,6 @@ public class UnitMode extends Mode {
             }
         }
 
-
-        currentInstance = units.get(currentType).get(currentInstanceIndex);
         return currentType;
     }
     Controllable cycleInstanceL(){
