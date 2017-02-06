@@ -45,6 +45,13 @@
         setActionPoints(battleGroup ? getActionPointCap() : myArmy.getAvailableMovement());
     }
 
+    void powerUp(){
+        this.setActionPoints(this.getActionPoints()-(2*getActionPointCap()));
+    }
+    void standby() { state=.75; }
+    void wait4me() { state=1; }
+    void powerDown()  { state=.25; }
+
     void move(Map.MapDirection md){
 
         Location targetLoc = getLoc().getAdjacent(md);
@@ -82,8 +89,7 @@
 
     void joinArmy(Army army){
         myArmy = army;
-        army.getEntireArmy().add(this);
-        army.getReinforcements().add(this);
+        army.addToReinforcements(this);
     }
 
     public void setBattleGroup(boolean battleGroup) {

@@ -13,15 +13,19 @@ public abstract class Structure extends Concrete {
     }
 
     void powerDown(){
-        state=.75;
+        state=.25;
     }
     void powerUp(){
-        state=1.25;
+        state=1;
+        this.setActionPoints(this.getActionPoints()-(2*getActionPointCap()));
     }
+
+    void wait4me(){ state = 1.5; }
+    void standby() { state = 1; }
 
     public void doTurn(){
 
-        while(getActionPointCap() > 0 && !getCommandQueue().isEmpty()) {
+        while(getActionPointCap() >= 0 && !getCommandQueue().isEmpty()) {
             getCommandQueue().carryOut();
         }
 
@@ -60,11 +64,4 @@ public abstract class Structure extends Concrete {
         this.structureType = structureType;
     }
 
-    public double getState() {
-        return state;
-    }
-
-    public void setState(double state) {
-        this.state = state;
-    }
 }
