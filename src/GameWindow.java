@@ -140,6 +140,9 @@ public class GameWindow extends JFrame {
 		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("DOWN"),"doNothing");
 		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("LEFT"),"doNothing");
 		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("ENTER"),"doNothing");
+		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("control DOWN"),"doNothing");
+		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("control UP"),"doNothing");
+		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("control"),"doNothing");
 		tabbedPane.getActionMap().put("doNothing",doNothing);
 		
 	}
