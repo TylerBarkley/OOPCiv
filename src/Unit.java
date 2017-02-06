@@ -89,8 +89,7 @@
 
     void joinArmy(Army army){
         myArmy = army;
-        army.getEntireArmy().add(this);
-        army.getReinforcements().add(this);
+        army.
     }
 
     public void setBattleGroup(boolean battleGroup) {

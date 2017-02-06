@@ -21,6 +21,7 @@ public abstract class Structure extends Concrete {
     }
 
     void wait4me(){ state = 1.5; }
+    void standby() { state = 1; }
 
     public void doTurn(){
 
