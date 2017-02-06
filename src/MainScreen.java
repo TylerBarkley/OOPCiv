@@ -54,8 +54,8 @@ public class MainScreen extends Overview{
 		
 	}
 
-	public void swapTurn() {
-		statusView.swapTurn(opponent);
+	public void swapTurn(Player player) {
+		statusView.swapTurn(player);
 		areaView.swapTurn();
 	}
 }

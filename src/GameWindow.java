@@ -183,7 +183,7 @@ public class GameWindow extends JFrame {
 		this.listener.ms=player.menuState;
 		this.listener.ms.refresh();
 		
-		mainScreen.swapTurn();
+		mainScreen.swapTurn(player);
 		unitOverview.swapTurn(player);
 		structureOverview.swapTurn(player);
 		updateView();
