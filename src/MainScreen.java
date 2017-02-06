@@ -44,12 +44,8 @@ public class MainScreen extends Overview{
 		areaView.focusOn(loc);
 	}
 	
-	public void focusOn(Unit unit){
-		areaView.focusOn(unit);
-	}
-	
-	public void focusOn(Structure structure){
-		areaView.focusOn(structure);
+	public void focusOn(Controllable c){
+		areaView.focusOn(c);
 	}
 	
 	public void updateMenu() {

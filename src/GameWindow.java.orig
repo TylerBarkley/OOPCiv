@@ -43,7 +43,9 @@ public class GameWindow extends JFrame {
 		this.unitOverview=new UnitOverview(player, width, height);
 		this.structureOverview=new StructureOverview(player, width, height);
 		
+<<<<<<< HEAD
 		tabbedPane.setFocusable(true);
+=======
 		addComponentListener(new ComponentListener() {
 		    public void componentResized(ComponentEvent e) { updateView();}
 
@@ -53,6 +55,7 @@ public class GameWindow extends JFrame {
 
 			public void componentHidden(ComponentEvent e) {updateView();}
 		});
+>>>>>>> master
 		
 		setUpTabbedPane();
 		addGameMenu();
@@ -122,8 +125,12 @@ public class GameWindow extends JFrame {
 		mainScreen.focusOn(loc);
 	}
 
-	public void focusOn(Controllable c){
-		mainScreen.focusOn(c);
+	public void focusOn(Unit unit){
+		mainScreen.focusOn(unit);
+	}
+
+	public void focusOn(Structure structure){
+		mainScreen.focusOn(structure);
 	}
 
 	private void removeDefaultKeyListeners() {
@@ -136,10 +143,6 @@ public class GameWindow extends JFrame {
 		
 		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("LEFT"),"doNothing");
 		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"),"doNothing");
-		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("UP"),"doNothing");
-		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("DOWN"),"doNothing");
-		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("LEFT"),"doNothing");
-		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("ENTER"),"doNothing");
 		tabbedPane.getActionMap().put("doNothing",doNothing);
 		
 	}

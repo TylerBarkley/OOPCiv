@@ -43,35 +43,49 @@ public class KeyListenerHandler implements KeyListener {
             System.out.println("Starting control");
             ctrl = false;
         }
+        
+        Location loc=player.location;
+        int x=loc.x;
+        int y=loc.y;
+        
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD0){
-            System.out.println(" ");
+            System.out.println("0 pressed (Does nothing)");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD1){
-            System.out.println(" ");
+        	window.focusOn(new Location(x-1,y+1));
+            System.out.println("1 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD2){
-            System.out.println(" ");
+        	window.focusOn(new Location(x,y+1));
+            System.out.println("2 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD3){
-            System.out.println(" ");
+        	window.focusOn(new Location(x+1,y+1));
+            System.out.println("3 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD4){
-            System.out.println(" ");
+        	window.focusOn(new Location(x-1,y));
+            System.out.println("4 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD5){
-            System.out.println(" ");
+        	window.focusOn(ms.currentInstance);
+            System.out.println("5 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD6){
-            System.out.println(" ");
+        	window.focusOn(new Location(x+1,y));
+            System.out.println("6 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD7){
-            System.out.println(" ");
+        	window.focusOn(new Location(x-1,y-1));
+            System.out.println("7 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD8){
-            System.out.println(" ");
+        	window.focusOn(new Location(x,y-1));
+            System.out.println("8 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD9){
-            System.out.println(" ");
+        	window.focusOn(new Location(x+1,y-1));
+            System.out.println("9 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_ENTER){
             System.out.println(" ");
@@ -127,35 +141,49 @@ public class KeyListenerHandler implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_CONTROL){
             ctrl = true;
         }
+        
+        Location loc=player.location;
+        int x=loc.x;
+        int y=loc.y;
+        
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD0){
-            System.out.println("N10");
+            System.out.println("0 pressed (Does nothing)");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD1){
-            System.out.println("N01");
+        	window.focusOn(new Location(x-1,y+1));
+            System.out.println("1 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD2){
-            System.out.println("N02");
+        	window.focusOn(new Location(x,y+1));
+            System.out.println("2 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD3){
-            System.out.println("N03");
+        	window.focusOn(new Location(x+1,y+1));
+            System.out.println("3 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD4){
-            System.out.println("N04");
+        	window.focusOn(new Location(x-1,y));
+            System.out.println("4 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD5){
-            System.out.println("N05");
+        	window.focusOn(ms.currentInstance);
+            System.out.println("5 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD6){
-            System.out.println("N06");
+        	window.focusOn(new Location(x+1,y));
+            System.out.println("6 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD7){
-            System.out.println("N07");
+        	window.focusOn(new Location(x-1,y-1));
+            System.out.println("7 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD8){
-            System.out.println("N08");
+        	window.focusOn(new Location(x,y-1));
+            System.out.println("8 pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD9){
-            System.out.println("N09");
+        	window.focusOn(new Location(x+1,y-1));
+            System.out.println("9 pressed");
         }
         //
         //

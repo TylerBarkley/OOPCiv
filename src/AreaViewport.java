@@ -16,7 +16,6 @@ public class AreaViewport extends Viewport{
 	private ArrayList<int[]> decalLocations;
 	private BufferedImage image;
 	private Graphics2D g2d;
-	private Location focus;
 	private ViewFactory viewFactory;
 
 	public AreaViewport(Player player, Player opponent, int width, int height, Map map){
@@ -63,9 +62,9 @@ public class AreaViewport extends Viewport{
 		int mapDisplayWidth=width/GameInfo.TILE_SIZE;
 		int mapDisplayHeight=height/GameInfo.TILE_SIZE;
 
-		if(focus != null){
-			minX=Math.max(0, focus.x-mapDisplayWidth/2);
-			minY=Math.max(0, focus.y-mapDisplayHeight/2);
+		if(player.location != null){
+			minX=Math.max(0, player.location.x-mapDisplayWidth/2);
+			minY=Math.max(0, player.location.y-mapDisplayHeight/2);
 		} else{
 			minX=0;
 			minY=0;
@@ -96,12 +95,12 @@ public class AreaViewport extends Viewport{
 			}
 		}
 
-		if(focus != null){
+		if(player.location != null){
 			Stroke s=g2d.getStroke();
 			Color c=g2d.getColor();
 			g2d.setStroke(new BasicStroke(5));
 			g2d.setColor(Color.RED);
-			g2d.drawRect((focus.x-minX)*GameInfo.TILE_SIZE, (focus.y-minY)*GameInfo.TILE_SIZE, 
+			g2d.drawRect((player.location.x-minX)*GameInfo.TILE_SIZE, (player.location.y-minY)*GameInfo.TILE_SIZE, 
 					GameInfo.TILE_SIZE, GameInfo.TILE_SIZE);
 			g2d.setStroke(s);
 			g2d.setColor(c);
@@ -112,26 +111,14 @@ public class AreaViewport extends Viewport{
 		for(ArrayList<Unit> units: player.getUnits()){
 			for(Unit unit: units){
 
-				if(unit != null) { displayUnit(unit, false); }
+				if(unit != null) { display(unit, false); }
 			}
 		}
 
 		for(ArrayList<Unit> units: opponentPlayer.getUnits()){
 			for(Unit unit: units){
-				if(unit != null) { displayUnit(unit, true); }
+				if(unit != null) { display(unit, true); }
 			}
-		}
-	}
-
-	private void displayUnit(Unit unit, boolean opponent) {
-		View view = viewFactory.getView(unit, opponent);
-
-		int x=unit.getLoc().x;
-		int y=unit.getLoc().y;
-
-		if(x >= minX && x < maxX && y >= minY && y < maxY){
-			g2d.drawImage(view.getImage(unit.facingDirection), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), 
-					(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), null);
 		}
 	}
 
@@ -139,7 +126,7 @@ public class AreaViewport extends Viewport{
 		for(ArrayList<Structure> structures: player.getStructures()){
 			for(Structure structure: structures){
 				if(structure != null) {
-					displayStructure(structure, false);
+					display(structure, false);
 				}
 			}
 		}
@@ -147,17 +134,17 @@ public class AreaViewport extends Viewport{
 		for(ArrayList<Structure> structures: opponentPlayer.getStructures()){
 			for(Structure structure: structures){
 				if(structure != null) {
-					displayStructure(structure, true);
+					display(structure, true);
 				}
 			}
 		}
 	}
 
-	private void displayStructure(Structure structure, boolean opponent) {
-		View view = viewFactory.getView(structure, opponent);
+	private void display(Controllable con, boolean opponent) {
+		View view = viewFactory.getView(con, opponent);
 
-		int x=structure.getLoc().x;
-		int y=structure.getLoc().y;
+		int x=con.getLoc().x;
+		int y=con.getLoc().y;
 		if(x > minX && x < maxX && y > minY && y < maxY){
 			g2d.drawImage(view.getImage(), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), 
 					(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), null);
@@ -206,19 +193,23 @@ public class AreaViewport extends Viewport{
 	}
 
 	public void focusOn(Location loc){
-		focus = loc;
+		int x=loc.x % map.mapXSize;
+		int y=loc.y % map.mapYSize;
+		
+		while(x<0){
+			x+=map.mapXSize;
+		}
+		
+		while(y<0){
+			y+=map.mapYSize;
+		}
+		
+		player.location = new Location(x, y);
 		updateView();
 	}
 
-	public void focusOn(Unit unit){
-		focus=unit.getLoc();
-		updateView();
-		displayUnit(unit, false);
-	}
-
-	public void focusOn(Structure structure){
-		focus=structure.getLoc();
-		updateView();
-		displayStructure(structure, false);
+	public void focusOn(Controllable controllable){
+		focusOn(controllable.getLoc());
+		display(controllable, false);
 	}
 }
