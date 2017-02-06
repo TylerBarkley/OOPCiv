@@ -28,7 +28,7 @@ public abstract class Concrete extends Controllable{
     }
 
     void damageMe(int ammount){
-        this.currentHealth -= ammount;
+        this.currentHealth -= ammount-this.getMyStats().getArmor();
 
         if(this.currentHealth <= 0){
             this.killMe();
