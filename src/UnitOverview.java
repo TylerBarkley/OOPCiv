@@ -43,6 +43,7 @@ public class UnitOverview extends Overview{
 		renderer = new UnitTableRenderer();
 		setRenderer();
 		updateMenuStateText();
+		model.updateData(this.player);
 		displayView();
 	}
 	

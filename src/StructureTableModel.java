@@ -44,16 +44,17 @@ public class StructureTableModel extends AbstractTableModel {
 		
 		for(int j = 1; j <GameInfo.MAX_PER_TYPE + 1;j++ ) {
 			for(int i = 0; i <GameInfo.STRUCTURE_TYPES; i++) {
-				if(structures.get(i).size() >= j) {
+				if(structures.get(i).get(j-1) != null) {
 					data[i][j] = structures.get(i).get(j-1);
 				} 
 				else {
 					data[i][j] = new String("");
 				}
+				updateCell(i,j);
 			}
 		}
 		
-		this.fireTableDataChanged();
+		
 	}
 	
 	public void updateCell(int row, int column) {

@@ -76,18 +76,14 @@ public class UnitTableModel extends AbstractTableModel {
 			}
 		}
 		
-		/*
+		
 		ArrayList<Army> armies = player.getArmies();
-		int j = 1;
-		for(j = 1; j <= armies.size();j++) {
-			data[GameInfo.UNIT_TYPES][j] = player.getArmies().get(j-1);
-		}
 		
-		
-		for(; j < GameInfo.MAX_PER_TYPE + 1;j++) {
-			data[GameInfo.UNIT_TYPES][j] = new String("");
+		for(int j = 1; j < GameInfo.MAX_PER_TYPE + 1;j++) {
+			if(armies.get(j-1) != null) data[GameInfo.UNIT_TYPES][j] = armies.get(j-1);
+			else data[GameInfo.UNIT_TYPES][j] = new String("");
 			}
-			*/
+			
 		
 		
 	}
