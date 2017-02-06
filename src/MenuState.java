@@ -142,10 +142,10 @@ public class MenuState {
         int startedMode=currentMode;
         do{
             currentMode++;
-            if(currentMode>GameInfo.STRUCTUREMODE) {
+            if(currentMode > GameInfo.STRUCTUREMODE) {
                 currentMode = GameInfo.RALLYPOINTMODE;
             }
-        }while(!player.orderableExists(currentMode)&&currentMode!=startedMode);
+        }while(!player.orderableExists(currentMode) && currentMode != startedMode);
         currentInstruction = ModeList.get(currentMode).getCurrentInstruction();
         return currentMode;
     }
