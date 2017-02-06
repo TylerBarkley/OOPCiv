@@ -19,4 +19,7 @@ public class RangedFighter extends Unit {
         return "Ranged Fighter";
     }
 
+    public int getTypeID(){
+    	return GameInfo.RANGEDUNIT;
+    }
 }

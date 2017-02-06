@@ -23,6 +23,10 @@ public class Base extends Structure {
             getMap().getTile(getLoc()).addUnit(placedUnit);
         }
     }
+    
+    public int getTypeID(){
+    	return GameInfo.BASE;
+    }
 
     public void healDirection(Map.MapDirection md) {
         Tile targetTile = this.getMap().getTile(getLoc());

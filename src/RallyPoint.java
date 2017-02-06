@@ -115,4 +115,8 @@ public class RallyPoint extends Controllable {
     void doTurn() {
 
     }
+    
+    public int getTypeID(){
+    	return GameInfo.RALLYPOINT;
+    }
 }

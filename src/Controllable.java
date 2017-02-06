@@ -1,7 +1,7 @@
 /**
  * Created by hankerins on 1/31/17.
  */
-public abstract class Controllable {
+public abstract class Controllable implements Viewable{
     private Player player;
     private Location loc;
     private Map map;

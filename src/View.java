@@ -1,16 +1,19 @@
-import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
-public class UnitView {
+public class View {
 	private BufferedImage image;
 	
-	public UnitView(BufferedImage image){
+	public View(BufferedImage image){
 		this.image=image;
 	}
 	
-	public Image getImage(Map.MapDirection direction){
+	public BufferedImage getImage(){
+		return image;
+	}
+	
+	public BufferedImage getImage(Map.MapDirection direction){
 		AffineTransform tx = new AffineTransform();
 
 		tx.translate(image.getHeight() / 2,image.getWidth() / 2);

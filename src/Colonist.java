@@ -32,4 +32,8 @@ public class Colonist extends Unit {
             this.killMe();
         }
     }
+    
+    public int getTypeID(){
+    	return GameInfo.COLONIST;
+    }
 }

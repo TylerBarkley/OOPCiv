@@ -17,4 +17,8 @@ public class MeleeFighter extends Unit {
     public String toString(){
         return "Melee Fighter";
     }
+    
+    public int getTypeID(){
+    	return GameInfo.MELEEUNIT;
+    }
 }

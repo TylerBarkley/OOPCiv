@@ -28,8 +28,8 @@ public class RunGame {
         frame.add(main);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        main.placeDecal(new Decal(ImageIO.read(new File("RedCross.jpg"))), 1, 2);
-        main.placeDecal(new Decal(ImageIO.read(new File("SkullCrossBones.jpg"))), 4, 4);
+        main.placeDecal(new RedCross(), 1, 2);
+        main.placeDecal(new SkullCrossBones(), 4, 4);
 
         main.focusOn(new Location(0, 0));
 

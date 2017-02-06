@@ -1,7 +1,7 @@
 /**
  * Created by Trevor on 1/31/2017.
  */
-public abstract class Terrain {
+public abstract class Terrain implements Viewable{
     char tileCharacter;
     boolean isTraversable;
     int movePenalty;

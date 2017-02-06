@@ -5,7 +5,7 @@ public class GameInfo {
     public static final int MAX_UNITS = 25, MAX_PER_TYPE = 10, MAX_ARMIES = 10;
 
     //Number of Types of different Units and Structures
-    public static final int UNIT_TYPES = 4, STRUCTURE_TYPES = 1;
+    public static final int UNIT_TYPES = 4, STRUCTURE_TYPES = 1, TERRAIN_TYPES = 3;
 
     public final static int EXPLORER     	= 0;
     public final static int COLONIST    	= 1;
@@ -18,6 +18,13 @@ public class GameInfo {
 
     public final static int RALLYPOINT      = 6;
 
+    public final static int WATER			=101;
+    public final static int GROUND			=102;
+    public final static int MOUNTAIN		=103;
+    
+    public final static int SKULLCROSSBONES	=201;
+    public final static int REDCROSS		=202;
+    
     public final static int ENTIREARMY     	= 0;
     public final static int BATTLEGROUP    	= 1;
     public final static int REINFORCEMENTS 	= 2;
@@ -25,9 +32,11 @@ public class GameInfo {
     public final static int MAP_SIZE        = 10;
 
     public final static int TILE_SIZE		=100;
-    public final static int DECAL_SIZE		=10;
+    public final static int DECAL_SIZE		=20;
     public final static int UNIT_SIZE		=40;
+    public final static int ARMY_SIZE		=40;
     public final static int STRUCTURE_SIZE	=80;
+    public final static int RALLYPOINT_SIZE =20;
 
     public final static int RALLYPOINTMODE  = 0;
     public final static int ARMYMODE       	= 1;

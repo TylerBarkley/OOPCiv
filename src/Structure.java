@@ -1,7 +1,7 @@
 /**
  * Created by hankerins on 1/31/17.
  */
-public class Structure extends Concrete {
+public abstract class Structure extends Concrete {
 
     private double state;
     private String structureType;

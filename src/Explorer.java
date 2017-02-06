@@ -17,4 +17,8 @@ public class Explorer extends Unit  {
     public String toString(){
         return "Explorer";
     }
+    
+    public int getTypeID(){
+    	return GameInfo.EXPLORER;
+    }
 }

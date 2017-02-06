@@ -56,18 +56,19 @@ public class MainScreen extends Overview{
 		
 	}
 	
-	/*public static void main(String args[]) throws IOException { //for testing purposes only!
+	public static void main(String args[]) throws IOException { //for testing purposes only!
 		Map map=new Map(10, 10, false);
 		Player player=new Player(map);
 		Player opponent=new Player(map);
 		MainScreen main=new MainScreen(player,opponent,map,1200,800);
+		ViewFactory factory=ViewFactory.getFactory();
 		JFrame frame = new JFrame();
 		frame.setSize(1200, 800);
 		frame.add(main);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		main.placeDecal(new Decal(ImageIO.read(new File("RedCross.jpg"))), 1, 2);
-		main.placeDecal(new Decal(ImageIO.read(new File("SkullCrossBones.jpg"))), 4, 4);
+		main.placeDecal(new RedCross(), 1, 2);
+		main.placeDecal(new SkullCrossBones(), 4, 4);
 		
 		main.focusOn(new Location(0,0));
 		main.focusOn(new Location(0,1));
@@ -76,6 +77,6 @@ public class MainScreen extends Overview{
 		main.focusOn(new Location(0,4));
 		main.focusOn(new Location(0,5));
 
-	}*/
+	}
 	
 }

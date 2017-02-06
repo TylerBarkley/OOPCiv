@@ -16,6 +16,7 @@ public class AreaViewport extends Viewport{
 	private BufferedImage image;
 	private Graphics2D g2d;
 	private Location focus;
+	private ViewFactory viewFactory;
 
 	public AreaViewport(Player player, Player opponent, int width, int height, Map map){
 		super(player, width, height);
@@ -26,6 +27,8 @@ public class AreaViewport extends Viewport{
 		this.decals=new ArrayList<Decal>();
 		this.decalLocations= new ArrayList<int[]>();
 
+		this.viewFactory=ViewFactory.getFactory();
+		
 		image=new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g2d=image.createGraphics();
 		focus=new Location(width/(2*GameInfo.TILE_SIZE), height/(2*GameInfo.TILE_SIZE));
@@ -44,12 +47,11 @@ public class AreaViewport extends Viewport{
 		displayUnits();
 		displayStructures();
 		displayDecals();
+		displayRallyPoints();
 		repaint();
 	}
 
 	private void displayMap(){
-		TileViewFactory tileViewFactory=new TileViewFactory();
-		
 		int mapWidth=map.tileMatrix.length;
 		int mapHeight=map.tileMatrix[0].length;
 		
@@ -75,7 +77,7 @@ public class AreaViewport extends Viewport{
 			for(int j=minY; j<maxY; j++){
 				Tile tile=row[j];
 				Terrain terrain=tile.terrainType;
-				TileView view=tileViewFactory.getTileView(terrain);
+				View view=viewFactory.getView(terrain);
 
 				g2d.drawImage(view.getImage(), (i-minX)*GameInfo.TILE_SIZE, (j-minY)*GameInfo.TILE_SIZE, null);
 			}
@@ -105,37 +107,39 @@ public class AreaViewport extends Viewport{
 	}
 	
 	private void displayUnit(Unit unit, boolean opponent) {
-		UnitViewFactory unitViewFactory=new UnitViewFactory();
-		UnitView view = unitViewFactory.getUnitView(unit, opponent);
+		View view = viewFactory.getView(unit, opponent);
 		
 		int x=unit.getLoc().x;
 		int y=unit.getLoc().y;
 		
-		g2d.drawImage(view.getImage(unit.facingDirection), (int)((x+0.5)*GameInfo.TILE_SIZE), (int)((y+0.5)*GameInfo.TILE_SIZE), null);
+		g2d.drawImage(view.getImage(unit.facingDirection), (int)((x+0.5)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), (int)((y+0.5)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), null);
 	}
 
 	private void displayStructures(){
 		for(ArrayList<Structure> structures: player.getStructures()){
 			for(Structure structure: structures){
-				if(structure != null) { displayStructure(structure, false); }
+				if(structure != null) {
+					displayStructure(structure, false);
+				}
 			}
 		}
 		
 		for(ArrayList<Structure> structures: opponentPlayer.getStructures()){
 			for(Structure structure: structures){
-				if(structure != null) { displayStructure(structure, true); }
+				if(structure != null) {
+					displayStructure(structure, true);
+				}
 			}
 		}
 	}
 	
 	private void displayStructure(Structure structure, boolean opponent) {
-		StructureViewFactory unitViewFactory=new StructureViewFactory();
-		StructureView view = unitViewFactory.getStructureView(structure, opponent);
+		View view = viewFactory.getView(structure, opponent);
 		
 		int x=structure.getLoc().x;
 		int y=structure.getLoc().y;
 		
-		g2d.drawImage(view.getImage(), (int)((x+0.5)*GameInfo.TILE_SIZE), (int)((y+0.5)*GameInfo.TILE_SIZE), null);
+		g2d.drawImage(view.getImage(), (int)((x+0.5)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), (int)((y+0.5)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), null);
 	}
 
 	private void displayDecals(){
@@ -143,9 +147,9 @@ public class AreaViewport extends Viewport{
 			int x=decalLocations.get(i)[0];
 			int y=decalLocations.get(i)[1];
 
-			Decal decal=decals.get(i);
+			View view=viewFactory.getView(decals.get(i));
 
-			g2d.drawImage(decal.getImage(), x*GameInfo.TILE_SIZE+10, y*GameInfo.TILE_SIZE+10, null);
+			g2d.drawImage(view.getImage(), x*GameInfo.TILE_SIZE, y*GameInfo.TILE_SIZE, null);
 		}
 	}
 
@@ -155,6 +159,22 @@ public class AreaViewport extends Viewport{
 		updateView();
 	}
 
+	private void displayRallyPoints(){
+		for(RallyPoint rally: player.getRallyPoints()){
+			if(rally != null){
+				displayRallyPoint(rally);
+			}
+		}
+	}
+	
+	private void displayRallyPoint(RallyPoint rally) {
+		View view = viewFactory.getView(rally);
+		
+		int x=rally.getLoc().x;
+		int y=rally.getLoc().y;
+		
+		g2d.drawImage(view.getImage(), (int)(x*GameInfo.TILE_SIZE-GameInfo.RALLYPOINT_SIZE), (int)(y*GameInfo.TILE_SIZE), null);
+	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

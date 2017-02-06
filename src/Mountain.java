@@ -18,4 +18,9 @@ public class Mountain extends Terrain {
         unit.setActionPoints(unit.getActionPoints() - movePenalty);
         tileAOE.doEffect(unit);
     }
+    
+    @Override
+	public int getTypeID() {
+		return GameInfo.MOUNTAIN;
+	}
 }

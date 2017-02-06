@@ -136,6 +136,10 @@ public class Army extends Concrete {
         reinforcements.remove(target);
     }
 
+    public int getTypeID(){
+    	return GameInfo.ARMY;
+    }
+    
     //Make an army with a unit, also creates its rally point
     Army(Unit unit, Player player){
 
