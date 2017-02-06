@@ -74,17 +74,19 @@ public class UnitOverview extends Overview{
 	}
 	
 	private void displayCurrentUnitStatus(){
-		unitStatsArea.setText("");
-		
-		Stats status =  player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getMyStats();
-		unitStatsArea.setText(status.toString() + "\n");
-		CommandQueue unitCommandQueue = player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getCommandQueue();
-		
-		Queue<Command> unitQueue = unitCommandQueue.getCommandQueue();
-		Iterator<Command> iterator = unitQueue.iterator();
-		while(iterator.hasNext()) {
-			unitStatsArea.append(iterator.next().toString() + " ");
+		if(player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()) != null) {
+			unitStatsArea.setText("");
+			Stats status =  player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getMyStats();
+			unitStatsArea.setText(status.toString() + "\n");
+			CommandQueue unitCommandQueue = player.getUnits().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getCommandQueue();
+			
+			Queue<Command> unitQueue = unitCommandQueue.getCommandQueue();
+			Iterator<Command> iterator = unitQueue.iterator();
+			while(iterator.hasNext()) {
+				unitStatsArea.append(iterator.next().toString() + " ");
+			}
 		}
+		
 	}
 
 	public void updateView() {
