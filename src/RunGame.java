@@ -43,7 +43,6 @@ public class RunGame {
 
         while(currentPlayer.isAlive()){
 
-            System.out.println("WE'RE IN");
 
             while(true){
 
@@ -53,8 +52,6 @@ public class RunGame {
                 }
 
             }
-
-            System.out.println("WE SWAPPED");
 
             currentPlayer.endTurn();
 
