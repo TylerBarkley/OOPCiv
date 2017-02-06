@@ -33,6 +33,7 @@ public class RunGame {
         window.openWindow();
         window.placeDecal(new RedCross(), 1, 2);
         window.placeDecal(new SkullCrossBones(), 4, 4);
+        
     }
 
 }

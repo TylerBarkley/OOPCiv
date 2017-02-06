@@ -23,8 +23,9 @@ public class UnitOverview extends Overview{
 		unitTable = new JTable(model);
 		
 		unitTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		unitTable.setRowSelectionAllowed(true);
-		unitTable.setColumnSelectionAllowed(true);
+		unitTable.setRowSelectionAllowed(false);
+		unitTable.setColumnSelectionAllowed(false);
+		unitTable.setColumnSelectionAllowed(false);
 		unitTable.setEnabled(false);
 		
 		unitStatsArea = new JTextArea();
@@ -133,8 +134,9 @@ public class UnitOverview extends Overview{
 	
 
 	private void setRenderer() {
-		for(int i = 1; i < GameInfo.MAX_PER_TYPE + 1;i++) {
-			unitTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
-		}
+	
+		unitTable.setDefaultRenderer(Unit.class, renderer);
+		unitTable.setDefaultRenderer(Army.class, renderer);
+		
 	}
 }
