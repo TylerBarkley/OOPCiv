@@ -13,4 +13,8 @@ public class PowerUpCommand implements Command {
     public void execute() {
         target.powerUp();
     }
+
+    public String toString(){
+        return "PowerUp";
+    }
 }

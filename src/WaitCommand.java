@@ -14,4 +14,8 @@ public class WaitCommand implements Command {
     public void execute() {
        target.wait4me();
     }
+
+    public String toString(){
+        return "Wait";
+    }
 }

@@ -13,4 +13,8 @@ public class PowerDownCommand implements Command {
     public void execute() {
         target.powerDown();
     }
+
+    public String toString(){
+        return "PowerDown";
+    }
 }

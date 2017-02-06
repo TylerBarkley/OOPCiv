@@ -15,4 +15,8 @@ public class AttackCommand implements Command {
     public void execute() {
         target.attack(md);
     }
+
+    public String toString(){
+        return "Attack " + md.toString();
+    }
 }
