@@ -94,9 +94,10 @@ public class Player {
         ArrayList<Controllable> targetArray = (ArrayList<Controllable>) getTypeArray(newControllable.getCID());
 
         for (int i = 0; i < GameInfo.MAX_PER_TYPE; i++){
-            if(targetArray.get(i) == null){
+            if(targetArray.get(i) == null && numUnits < 25){
                 newControllable.getCID().personelID = i;
                 targetArray.set(i, newControllable);
+                numUnits++;
                 return true;
             }
         }
@@ -106,8 +107,47 @@ public class Player {
 
     public void remove(Controllable controllableToBeRemoved){
         ArrayList<Controllable> targetArray = (ArrayList<Controllable>) getTypeArray(controllableToBeRemoved.getCID());
+
+        if(controllableToBeRemoved.getCID().modeID == GameInfo.UNITMODE) { numUnits--; }
+
         targetArray.set(controllableToBeRemoved.getCID().getPersonelID(), null);
     }
+
+
+    public void endTurn(){
+        for(Army army : this.getArmies()){
+            army.doTurn();
+        }
+
+        for(ArrayList<Unit> units : this.getUnits()){
+            for(Unit unit : units){
+                unit.doTurn();
+            }
+        }
+
+        for(ArrayList<Structure> structures : this.getStructures()){
+            for(Structure struct : structures){
+                struct.doTurn();
+            }
+        }
+
+        for(Army army : this.getArmies()){
+            army.endTurn();
+        }
+
+        for(ArrayList<Unit> units : this.getUnits()){
+            for(Unit unit : units){
+                unit.endTurn();
+            }
+        }
+
+        for(ArrayList<Structure> structures : this.getStructures()){
+            for(Structure struct : structures){
+                struct.endTurn();
+            }
+        }
+    }
+
 
     public boolean orderableExists(int modeType){
         if(modeType == GameInfo.UNITMODE) {
