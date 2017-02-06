@@ -39,10 +39,6 @@ public class GameWindow extends JFrame {
 		this.unitOverview=new UnitOverview(player, width, height);
 		this.structureOverview=new StructureOverview(player, width, height);
 
-		//for testing only
-		mainScreen.placeDecal(new RedCross(), 1, 2);
-		mainScreen.placeDecal(new SkullCrossBones(), 4, 4);
-
 		this.addKeyListener(new KeyListenerHandler(player, this));
 		setUpTabbedPane();
 		addGameMenu();
@@ -119,16 +115,6 @@ public class GameWindow extends JFrame {
 		mainScreen.focusOn(structure);
 	}
 
-	public static void main(String[] args) {
-		Map map=new Map(10, 10, false);
-		Player player=new Player(map);
-		Player opponent=new Player(map);
-		GameWindow game = new GameWindow(player,opponent,map,1275,850);
-		game.openWindow();
-
-
-	}
-
 	private void addGameMenu() {
 
 
@@ -149,5 +135,7 @@ public class GameWindow extends JFrame {
 
 	}
 
-
+	public void placeDecal(Decal decal, int x, int y) {
+		mainScreen.placeDecal(decal, x, y);
+	}
 }

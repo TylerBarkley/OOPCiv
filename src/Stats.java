@@ -38,11 +38,11 @@ public class  Stats {
 
     public String toString(){
         String s = "";
-        s += ("Health: "+getHealth());
-        s += (" Offensive Damage: "+getOffensiveDamage());
-        s += (" Defensive Damage: "+getDefensiveDamage());
-        s += (" Armor: "+getArmor());
-        s += (" UpKeep: "+getUpKeep());
+        s += ("\nHealth: "+getHealth());
+        s += (" \nOffensive Damage: "+getOffensiveDamage());
+        s += (" \nDefensive Damage: "+getDefensiveDamage());
+        s += (" \nArmor: "+getArmor());
+        s += ("\nUpKeep: "+getUpKeep());
 
         return s;
     }
