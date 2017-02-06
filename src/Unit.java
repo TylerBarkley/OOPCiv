@@ -89,7 +89,7 @@
 
     void joinArmy(Army army){
         myArmy = army;
-        army.
+        army.addToReinforcements(this);
     }
 
     public void setBattleGroup(boolean battleGroup) {
