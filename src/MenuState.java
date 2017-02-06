@@ -227,7 +227,8 @@ public class MenuState {
     }
 
     public void refresh(){
-        ModeList.get(currentMode).refresh();
+        cycleInstanceL();
+        cycleInstanceR();
     }
 
 
