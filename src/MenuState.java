@@ -169,6 +169,7 @@ public class MenuState {
         currentType = ModeList.get(currentMode).cycleTypeL();
         currentInstanceIndex = ModeList.get(currentMode).getCurrentInstanceIndex(); //needed because this method may change currentInstanceIndex in UnitMode
         currentInstance = ModeList.get(currentMode).getCurrentInstance();
+        updateInstruction();
         return currentType;
     }
 
@@ -176,6 +177,7 @@ public class MenuState {
         currentType = ModeList.get(currentMode).cycleTypeR();
         currentInstanceIndex = ModeList.get(currentMode).getCurrentInstanceIndex(); //needed because this method may change currentInstanceIndex in UnitMode
         currentInstance = ModeList.get(currentMode).getCurrentInstance();
+        updateInstruction();
         return currentType;
     }
 
@@ -198,6 +200,12 @@ public class MenuState {
 
     Instruction cycleInstructionR(){
         currentInstruction = ModeList.get(currentMode).cycleInstructionR();
+        return currentInstruction;
+    }
+
+    Instruction updateInstruction(){
+        UnitMode um = (UnitMode)ModeList.get(GameInfo.UNITMODE);
+        currentInstruction = um.updateInstruction();
         return currentInstruction;
     }
 

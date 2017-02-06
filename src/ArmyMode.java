@@ -43,18 +43,42 @@ public class ArmyMode extends Mode {
     }
     Controllable cycleInstanceL(){
         int lastInstance = armies.size() -1;
+        int startIndex=currentInstanceIndex;
         if(currentInstanceIndex == 0)
             currentInstanceIndex = lastInstance;
         else currentInstanceIndex--;
-        return armies.get(currentInstanceIndex);
+        while(currentInstanceIndex!=startIndex){
+            if(player.getArmies().get(currentInstanceIndex)!=null){
+                break;
+            }
+            currentInstanceIndex--;
+            if(currentInstanceIndex<0){
+                currentInstanceIndex=lastInstance;
+            }
+        }
+        currentInstance = armies.get(currentInstanceIndex);
+        return currentInstance;
     }
+
     Controllable cycleInstanceR(){
         int lastInstance = armies.size() - 1;
+        int startIndex=currentInstanceIndex;
         if(currentInstanceIndex == lastInstance)
             currentInstanceIndex = 0;
         else currentInstanceIndex++;
-        return armies.get(currentInstanceIndex);
+        while(currentInstanceIndex!=startIndex){
+            if(player.getArmies().get(currentInstanceIndex)!=null){
+                break;
+            }
+            currentInstanceIndex++;
+            if(currentInstanceIndex>lastInstance){
+                currentInstanceIndex=0;
+            }
+        }
+        currentInstance = armies.get(currentInstanceIndex);
+        return currentInstance;
     }
+
     Instruction cycleInstructionL(){
         int lastInstruction = armyInstructions.size() - 1;
         if(currentInstructionIndex == 0)
@@ -63,6 +87,8 @@ public class ArmyMode extends Mode {
         currentInstruction = armyInstructions.get(currentInstructionIndex);
         return currentInstruction;
     }
+
+
     Instruction cycleInstructionR(){
         int lastInstruction = armyInstructions.size() - 1;
         if(currentInstructionIndex == lastInstruction)
