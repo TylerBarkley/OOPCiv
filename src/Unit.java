@@ -14,7 +14,6 @@
 
         this.getCID().modeID = GameInfo.UNITMODE;
         //Code to put this Unit into the appropriate place in player's Unit Array
-        player.getUnits().get(cid.getTypeID()).add(cid.getPersonelID(), this);
 
         myArmy = null;
         state = 1.0;

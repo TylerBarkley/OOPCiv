@@ -14,11 +14,17 @@ public class RunGame {
         Explorer explorer2 = new Explorer(p1, new Location(2, 5), map, StatsFactory.createStats(GameInfo.EXPLORER));
         Colonist colonist1 = new Colonist(p1, new Location(1, 4), map, CID.giveCID(p1,
                 GameInfo.COLONIST), StatsFactory.createStats(GameInfo.COLONIST));
+        p1.register(explorer1);
+        p1.register(explorer2);
+        p1.register(colonist1);
         Player p2=new Player(map);
         explorer1 = new Explorer(p2, new Location(8, 3), map, StatsFactory.createStats(GameInfo.EXPLORER));
         explorer2 = new Explorer(p2, new Location(8, 5), map, StatsFactory.createStats(GameInfo.EXPLORER));
         colonist1 = new Colonist(p2, new Location(7, 4), map, CID.giveCID(p2,
                 GameInfo.COLONIST), StatsFactory.createStats(GameInfo.COLONIST));
+        p2.register(explorer1);
+        p2.register(explorer2);
+        p2.register(colonist1);
 
         //SCREENS
         int width=1200, height=800;
