@@ -165,7 +165,8 @@ public class UnitMode extends Mode {
     }
 
     public void refresh(){
-        currentInstance = units.get(currentType).get(currentInstanceIndex);
+        cycleInstanceL();
+        cycleInstanceR();
     }
 
 }
