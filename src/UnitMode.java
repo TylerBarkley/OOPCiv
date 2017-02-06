@@ -110,7 +110,7 @@ public class UnitMode extends Mode {
             }
             currentInstanceIndex++;
             if(currentInstanceIndex>lastInstance){
-                currentInstanceIndex=lastInstance;
+                currentInstanceIndex=0;
             }
         }
         currentInstance = units.get(currentType).get(currentInstanceIndex);
