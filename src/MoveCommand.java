@@ -11,6 +11,14 @@ public class MoveCommand implements Command {
     }
 
     @Override
+    public String toString(){
+        String s = "Move ";
+        String d = direction.toString();
+        return s + d;
+    }
+
+
+    @Override
     public void execute() {
         target.move(direction);
     }

@@ -3,10 +3,10 @@
  */
 public class AttackCommand implements Command {
 
-    Army target;
+    Concrete target;
     Map.MapDirection md;
 
-    AttackCommand(Army target, Map.MapDirection md){
+    AttackCommand(Concrete target, Map.MapDirection md){
         this.target = target;
         this.md = md;
     }
@@ -14,5 +14,9 @@ public class AttackCommand implements Command {
     @Override
     public void execute() {
         target.attack(md);
+    }
+
+    public String toString(){
+        return "Attack " + md.toString();
     }
 }

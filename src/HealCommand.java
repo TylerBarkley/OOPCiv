@@ -15,4 +15,8 @@ public class HealCommand implements Command{
     public void execute() {
         target.healDirection(md);
     }
+
+    public String toString(){
+        return "Heal " + md.toString();
+    }
 }

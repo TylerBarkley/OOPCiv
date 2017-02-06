@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
@@ -42,6 +44,15 @@ public class GameWindow extends JFrame {
 		this.structureOverview=new StructureOverview(player, width, height);
 		
 		tabbedPane.setFocusable(true);
+		addComponentListener(new ComponentListener() {
+		    public void componentResized(ComponentEvent e) { updateView();}
+
+			public void componentMoved(ComponentEvent e) {updateView();}
+
+			public void componentShown(ComponentEvent e) {updateView();}
+
+			public void componentHidden(ComponentEvent e) {updateView();}
+		});
 		
 		setUpTabbedPane();
 		addGameMenu();
@@ -95,6 +106,7 @@ public class GameWindow extends JFrame {
 	}
 
 	public void updateView(){
+		mainScreen.updateAreaView();
 		mainScreen.updateSatusView();
 		unitOverview.updateView();
 		structureOverview.updateView();
@@ -116,16 +128,6 @@ public class GameWindow extends JFrame {
 
 	public void focusOn(Structure structure){
 		mainScreen.focusOn(structure);
-	}
-
-	public static void main(String[] args) {
-		Map map=new Map(10, 10, false);
-		Player player=new Player(map);
-		Player opponent=new Player(map);
-		GameWindow game = new GameWindow(player,opponent,map,1275,850);
-		game.openWindow();
-		
-
 	}
 
 	private void removeDefaultKeyListeners() {

@@ -13,4 +13,8 @@ public class StandbyCommand implements Command {
     public void execute() {
         target.standby();
     }
+
+    public String toString(){
+        return "Standby";
+    }
 }

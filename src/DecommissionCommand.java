@@ -10,6 +10,11 @@ public class DecommissionCommand implements Command {
     }
 
     @Override
+    public String toString(){
+        return "Decommission";
+    }
+
+    @Override
     public void execute() {
         target.killMe();
     }

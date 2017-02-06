@@ -35,18 +35,11 @@ public abstract class Concrete extends Controllable{
         }
     }
 
-    void standby(){
-        state=.75;
-    }
-    void wait4me(){
-        state=1;
-    }
-    void powerDown(){
-        state=.25;
-    }
-    void powerUp(){
-        state=1.25;
-    }
+    abstract void standby(); //{ state=.75; }
+    abstract void wait4me(); //{ state=1; }
+    abstract void powerDown(); //{state=.25;}
+    abstract void powerUp();
+    abstract void attack(Map.MapDirection md);
 
 
     public void setFacingDirection(Map.MapDirection facingDirection) {
@@ -57,6 +50,14 @@ public abstract class Concrete extends Controllable{
 
     public void setMyStats(Stats myStats) {
         this.myStats = myStats;
+    }
+
+    public double getState() {
+        return state;
+    }
+
+    public void setState(double state) {
+        this.state = state;
     }
 
     public Stats getMyStats() {

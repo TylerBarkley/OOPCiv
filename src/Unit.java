@@ -33,7 +33,7 @@
         //TODO Resource Consumption at end of turn
 
         //Reset the unit's action points
-        int possibleMovement = battleGroup ? this.getActionPointCap() : myArmy.getAvailableMovement();
+        int possibleMovement = !battleGroup ? this.getActionPointCap() : myArmy.getAvailableMovement();
         setActionPoints(getActionPoints() + possibleMovement);
         if(getActionPoints() > possibleMovement){
             setActionPoints(possibleMovement);
@@ -42,7 +42,24 @@
 
     void clearCommands(){
         this.getCommandQueue().clear();
-        setActionPoints(battleGroup ? getActionPointCap() : myArmy.getAvailableMovement());
+        setActionPoints(!battleGroup ? getActionPointCap() : myArmy.getAvailableMovement());
+    }
+
+    void powerUp(){
+        this.setActionPoints(this.getActionPoints()-(2*getActionPointCap()));
+    }
+    void standby() { state=.75; }
+    void wait4me() { state=1; }
+    void powerDown()  { state=.25; }
+
+    void attack(Map.MapDirection md){
+        Tile targetTile = this.getMap().getTile(this.getLoc().getAdjacent(md));
+
+        setActionPoints(getActionPointCap() - (!battleGroup ? getActionPointCap() : myArmy.getAvailableMovement()));
+
+        for(Unit unit : targetTile.getUnitsOnTile()){
+            unit.damageMe(this.getMyStats().getOffensiveDamage());
+        }
     }
 
     void move(Map.MapDirection md){
@@ -82,8 +99,7 @@
 
     void joinArmy(Army army){
         myArmy = army;
-        army.getEntireArmy().add(this);
-        army.getReinforcements().add(this);
+        army.addToReinforcements(this);
     }
 
     public void setBattleGroup(boolean battleGroup) {

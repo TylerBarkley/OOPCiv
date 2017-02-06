@@ -18,7 +18,7 @@ public class Army extends Concrete {
 
     public void doTurn(){
         while(!getCommandQueue().isEmpty()){
-            getCommandQueue().carryOut();
+           getCommandQueue().carryOut();
         }
     }
 
@@ -42,10 +42,8 @@ public class Army extends Concrete {
     }
 
     public void attack(Map.MapDirection md){
-        Tile targetTile = this.getMap().getTile(this.getLoc().getAdjacent(md));
-
-        for(Unit unit : targetTile.getUnitsOnTile()){
-            unit.damageMe(this.getMyStats().getOffensiveDamage());
+        for(Unit units : this.battleGroup){
+            units.giveCommand(new AttackCommand(units, md));
         }
     }
 
@@ -64,10 +62,32 @@ public class Army extends Concrete {
         }
     }
 
+    public void powerUp(){
+        for(Unit target : battleGroup){
+            target.giveCommand(new PowerUpCommand(target));
+        }
+    }
+
     public void powerDown(){
         for(Unit target : battleGroup){
             target.giveCommand(new PowerDownCommand(target));
         }
+    }
+
+    void standby(){
+        for(Unit target : battleGroup){
+            target.giveCommand(new StandbyCommand(target));
+        }
+    }
+
+    void wait4me(){
+        for(Unit target : battleGroup){
+            target.giveCommand(new WaitCommand(target));
+        }
+    }
+
+    public double getState() {
+        return state;
     }
 
     public ArrayList<Unit> getBattleGroup() {

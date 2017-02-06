@@ -29,18 +29,42 @@ public class StructureMode extends Mode {
 
     Controllable cycleInstanceL(){
         int lastInstance = structures.get(currentType).size() -1;
+        int startIndex=currentInstanceIndex;
         if(currentInstanceIndex == 0)
             currentInstanceIndex = lastInstance;
         else currentInstanceIndex--;
-        return structures.get(currentType).get(currentInstanceIndex);
+        while(currentInstanceIndex!=startIndex){
+            if(player.getStructures().get(currentType).get(currentInstanceIndex)!=null){
+                break;
+            }
+            currentInstanceIndex--;
+            if(currentInstanceIndex<0){
+                currentInstanceIndex=lastInstance;
+            }
+        }
+        currentInstance = structures.get(currentType).get(currentInstanceIndex);
+        return currentInstance;
     }
+
     Controllable cycleInstanceR(){
         int lastInstance = structures.size() - 1;
+        int startIndex=currentInstanceIndex;
         if(currentInstanceIndex == lastInstance)
             currentInstanceIndex = 0;
         else currentInstanceIndex++;
-        return structures.get(currentType).get(currentInstanceIndex);
+        while(currentInstanceIndex!=startIndex){
+            if(player.getStructures().get(currentType).get(currentInstanceIndex)!=null){
+                break;
+            }
+            currentInstanceIndex++;
+            if(currentInstanceIndex>lastInstance){
+                currentInstanceIndex=0;
+            }
+        }
+        currentInstance = structures.get(currentType).get(currentInstanceIndex);
+        return currentInstance;
     }
+
     Instruction cycleInstructionL(){
         int lastInstruction = structureInstructions.size() - 1;
         if(currentInstructionIndex == 0)
