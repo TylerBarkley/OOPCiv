@@ -43,6 +43,7 @@ public class GameWindow extends JFrame {
 		this.unitOverview=new UnitOverview(player, width, height);
 		this.structureOverview=new StructureOverview(player, width, height);
 		
+		tabbedPane.setFocusable(true);
 		addComponentListener(new ComponentListener() {
 		    public void componentResized(ComponentEvent e) { updateView();}
 

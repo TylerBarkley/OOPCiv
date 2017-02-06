@@ -67,15 +67,16 @@ public class UnitTableModel extends AbstractTableModel {
 		
 		for(int j = 1; j <GameInfo.MAX_PER_TYPE + 1;j++ ) {
 			for(int i = 0; i <GameInfo.UNIT_TYPES; i++) {
-				if(units.get(i).size() >= j) {
+				
+				if(units.get(i).get(j-1) != null) {
 					data[i][j] = units.get(i).get(j-1);
-				} 
-				else {
-					data[i][j] = new String("");
-				}
+				} else data[i][j] = new String("");
+					 
+				updateCell(i,j);
 			}
 		}
 		
+		/*
 		ArrayList<Army> armies = player.getArmies();
 		int j = 1;
 		for(j = 1; j <= armies.size();j++) {
@@ -86,8 +87,9 @@ public class UnitTableModel extends AbstractTableModel {
 		for(; j < GameInfo.MAX_PER_TYPE + 1;j++) {
 			data[GameInfo.UNIT_TYPES][j] = new String("");
 			}
+			*/
 		
-		this.fireTableDataChanged();
+		
 	}
 	
 	public void updateCell(int row, int column) {

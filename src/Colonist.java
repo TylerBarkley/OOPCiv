@@ -18,7 +18,7 @@ public class Colonist extends Unit {
     }
 
     public String toString(){
-        return "Explorer";
+        return "Colonist";
     }
 
 

@@ -25,10 +25,10 @@ public class UnitTableRenderer extends DefaultTableCellRenderer {
 			label.setBorder(BorderFactory.createEmptyBorder());
 		}
 		
-		if(value instanceof Unit  || value instanceof Army) {
+		if(value != null && value instanceof Unit) {
 			label.setText("");
 			label.setBackground(Color.GREEN);
-		}
+		} else label.setBackground(Color.white);
 		
 		return label;
 	}
