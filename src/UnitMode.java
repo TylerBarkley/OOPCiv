@@ -46,7 +46,6 @@ public class UnitMode extends Mode {
                 else currentType--;
             }
         }
-
         currentInstance = units.get(currentType).get(currentInstanceIndex);
         return currentType;
     }
@@ -72,7 +71,6 @@ public class UnitMode extends Mode {
                 else currentType++;
             }
         }
-       
         return currentType;
     }
     Controllable cycleInstanceL(){
@@ -93,6 +91,7 @@ public class UnitMode extends Mode {
         currentInstance = units.get(currentType).get(currentInstanceIndex);
         return currentInstance;
     }
+
     Controllable cycleInstanceR(){
         int lastInstance = player.getUnits().get(currentType).size() -1;
         int startIndex=currentInstanceIndex;
@@ -117,28 +116,48 @@ public class UnitMode extends Mode {
         if(currentInstructionIndex == 0)
             currentInstructionIndex = lastInstruction; //cycle back to last instruction
         else currentInstructionIndex--;
-        /*Code Changed*/
-        if(currentType!=GameInfo.EXPLORER){
+
+        if(currentType!=GameInfo.COLONIST){ //only colonist can build base
             if(currentInstructionIndex==UnitInstruction.U_BUILDBASE){
                 currentInstructionIndex--;
             }
         }
-        if((currentInstructionIndex==UnitInstruction.U_MAKEARMY || currentInstructionIndex==UnitInstruction.U_JOINARMY)&&(units.get(currentType).get(currentInstanceIndex).getMyArmy()!=null)){
-            currentInstructionIndex=lastInstruction;
+        if((currentInstructionIndex == 1) &&
+                (units.get(currentType).get(currentInstanceIndex).getMyArmy()!=null)){ //if unit is already in an army, cycle to last instruction
+            currentInstructionIndex = lastInstruction;
         }
         currentInstruction = unitInstructions.get(currentInstructionIndex);
         return currentInstruction;
     }
+
     Instruction cycleInstructionR(){
         int lastInstruction = unitInstructions.size() - 1;
         if(currentInstructionIndex == lastInstruction)
             currentInstructionIndex = 0; //cycle back to last instruction
         else currentInstructionIndex++;
-        if((currentInstructionIndex==UnitInstruction.U_MAKEARMY || currentInstructionIndex==UnitInstruction.U_JOINARMY)&&(units.get(currentType).get(currentInstanceIndex).getMyArmy()!=null)){
-            currentInstructionIndex=UnitInstruction.U_BUILDBASE;
+
+        if((currentInstructionIndex == 0) &&
+                (units.get(currentType).get(currentInstanceIndex).getMyArmy()!=null)){ //if unit is already in an army, cycle to next relevant instruction
+            currentInstructionIndex = 2; //build base
         }
-        if(currentType!=GameInfo.EXPLORER&&currentInstructionIndex==UnitInstruction.U_BUILDBASE){
-            currentInstructionIndex=UnitInstruction.U_STANDBY;
+        if(currentType != GameInfo.COLONIST){ //only colonist can build base
+            if(currentInstructionIndex == UnitInstruction.U_BUILDBASE){
+                currentInstructionIndex++;
+            }
+        }
+        currentInstruction = unitInstructions.get(currentInstructionIndex);
+        return currentInstruction;
+    }
+
+    Instruction updateInstruction(){
+        if((currentInstructionIndex == 0 || currentInstructionIndex == 1) &&
+                (units.get(currentType).get(currentInstanceIndex).getMyArmy()!=null)){ //if unit is already in an army, cycle to next relevant instruction
+            currentInstructionIndex = 2; //build base
+        }
+        if(currentType != GameInfo.COLONIST){ //only colonist can build base
+            if(currentInstructionIndex == UnitInstruction.U_BUILDBASE){
+                currentInstructionIndex++;
+            }
         }
         currentInstruction = unitInstructions.get(currentInstructionIndex);
         return currentInstruction;
