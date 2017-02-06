@@ -11,11 +11,6 @@ public class RallyPointCommand implements Command {
     }
 
     @Override
-    public String toString(){
-        return "Rally Point Move";
-    }
-
-    @Override
     public void execute() {
         switch (rp_inst.toInt()){
             case RallyPointInstruction.RP_MOVEENTER:
@@ -25,5 +20,9 @@ public class RallyPointCommand implements Command {
 
                 break;
         }
+    }
+
+    public String toString(){
+        return rp_inst.toString();
     }
 }

@@ -41,4 +41,7 @@ public class ArmyCommand implements Command {
 
         }
     }
+    public String toString(){
+        return a_inst.toString();
+    }
 }
