@@ -9,11 +9,13 @@ public class MainScreen extends Overview{
 
 	private StatusViewport statusView;
 	private AreaViewport areaView;
+	private Player opponent;
 	
 	public MainScreen(Player player, Player opponent, Map map, int width, int height){
 		super(player, width, height);
 		statusView=new StatusViewport(player, width/3, height);
 		areaView=new AreaViewport(player, opponent, (2 * width)/3, height, map);
+		this.opponent=opponent;
 		displayView();
 	}
 	
@@ -53,7 +55,7 @@ public class MainScreen extends Overview{
 	}
 
 	public void swapTurn() {
-		statusView.swapTurn(player);
+		statusView.swapTurn(opponent);
 		areaView.swapTurn();
 	}
 }
