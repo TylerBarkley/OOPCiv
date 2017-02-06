@@ -41,6 +41,8 @@ public class StructureOverview extends Overview{
 		currentInstruction.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
 		renderer = new StructureTableRenderer();
+		
+		updateMenuStateText();
 		setRenderer();
 		displayView();
 		
