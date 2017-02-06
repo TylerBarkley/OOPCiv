@@ -29,6 +29,9 @@ public class Tile {
     }
 
     boolean openTile(Player player){
+    	if(structOnTile==null){
+    		return true;
+    	}
         if(structOnTile.getPlayer() != player){
             return false;
         }

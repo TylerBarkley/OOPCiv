@@ -45,6 +45,7 @@ public class CommandFactory {
             rp = (RallyPoint)target;
             rpi = (RallyPointInstruction)inst;
             RallyPointCommand rpc = new RallyPointCommand(rp, rpi);
+            return rpc;
             //return RallyPointCommandFactory.create(inst, rp);
         }
 

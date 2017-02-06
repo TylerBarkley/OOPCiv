@@ -27,7 +27,7 @@ public class RallyPoint extends Controllable {
 
             for(Location loc : adjacency.keySet()){
 
-                if(paths[loc.x][loc.y] == null && !this.getLoc().equals(loc) && getMap().getTile(loc).isTraversable(null) && getMap().getTile(loc).openTile(getPlayer())){
+                if(loc.x>=0 && loc.y >=0 && loc.x < this.getMap().mapXSize && loc.y < this.getMap().mapYSize && paths[loc.x][loc.y] == null && !this.getLoc().equals(loc) && getMap().getTile(loc).isTraversable(null) && getMap().getTile(loc).openTile(getPlayer())){
                     paths[loc.x][loc.y] = adjacency.get(loc);
                     bfsQueue.add(loc);
                 }
