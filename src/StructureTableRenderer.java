@@ -30,7 +30,7 @@ public class StructureTableRenderer extends DefaultTableCellRenderer {
 		if(value instanceof Structure ) {
 			label.setText("");
 			label.setBackground(Color.GREEN);
-		}
+		} else label.setBackground(Color.white);
 		
 		return label;
 	}

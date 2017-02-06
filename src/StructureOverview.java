@@ -44,6 +44,7 @@ public class StructureOverview extends Overview{
 		
 		updateMenuStateText();
 		setRenderer();
+		model.updateData(this.player);
 		displayView();
 		
 	}
@@ -111,9 +112,8 @@ public class StructureOverview extends Overview{
 	}
 	
 	public void setRenderer() {
-		for(int i = 1; i < GameInfo.MAX_PER_TYPE + 1;i++) {
-			structureTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
-		}
+		structureTable.setDefaultRenderer(Unit.class, renderer);
+		structureTable.setDefaultRenderer(Army.class, renderer);
 	}
 	
 	public void updateMenu(){

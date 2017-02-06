@@ -28,4 +28,9 @@ public class UnitInstruction extends Instruction {
         else if(inst_num == U_CANCELQUEUE)  inst = "CancelQueue";
         else if(inst_num == U_MOVEENTER)    inst = "MoveEnter";
     }
+    
+    public String toString(){
+    	return inst;
+    	
+    }
 }
