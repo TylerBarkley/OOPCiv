@@ -9,6 +9,12 @@ public class DisbandCommand implements Command{
     }
 
     @Override
+    public String toString(){
+        return "Disband";
+    }
+
+
+    @Override
     public void execute() {
         this.target.disband();
     }
