@@ -6,13 +6,15 @@ import java.util.ArrayList;
 public class Colonist extends Unit {
 
     Colonist(Player player, Location loc, Map map, CID cid, Stats myStats){
-        super(player, loc, map,cid, myStats);
-    };
+        super(player, loc, map, myStats);
+
+        this.getCID().typeID = GameInfo.COLONIST;
+    }
 
     Colonist(Base base){
-        super(base.getPlayer(), base.getLoc(), base.getMap(), CID.giveCID(base.getPlayer(), GameInfo.COLONIST),
-                StatsFactory.createStats(GameInfo.COLONIST));
+        super(base.getPlayer(), base.getLoc(), base.getMap(), StatsFactory.createStats(GameInfo.COLONIST));
 
+        this.getCID().typeID = GameInfo.COLONIST;
     }
 
     public String toString(){
@@ -24,8 +26,10 @@ public class Colonist extends Unit {
 
         Structure placedBase = StructureFactory.createStructure(GameInfo.BASE, this);
 
-        getMap().getTile(getLoc()).addStructure(placedBase);
+        if(placedBase != null) {
+            getMap().getTile(getLoc()).addStructure(placedBase);
 
-        this.killMe();
+            this.killMe();
+        }
     }
 }

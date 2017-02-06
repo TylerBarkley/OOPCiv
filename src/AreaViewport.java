@@ -92,13 +92,14 @@ public class AreaViewport extends Viewport{
 	private void displayUnits(){
 		for(ArrayList<Unit> units: player.getUnits()){
 			for(Unit unit: units){
-				displayUnit(unit, false);
+
+				if(unit != null) { displayUnit(unit, false); }
 			}
 		}
 		
 		for(ArrayList<Unit> units: opponentPlayer.getUnits()){
 			for(Unit unit: units){
-				displayUnit(unit, true);
+				if(unit != null) { displayUnit(unit, true); }
 			}
 		}
 	}
@@ -116,13 +117,13 @@ public class AreaViewport extends Viewport{
 	private void displayStructures(){
 		for(ArrayList<Structure> structures: player.getStructures()){
 			for(Structure structure: structures){
-				displayStructure(structure, false);
+				if(structure != null) { displayStructure(structure, false); }
 			}
 		}
 		
 		for(ArrayList<Structure> structures: opponentPlayer.getStructures()){
 			for(Structure structure: structures){
-				displayStructure(structure, true);
+				if(structure != null) { displayStructure(structure, true); }
 			}
 		}
 	}

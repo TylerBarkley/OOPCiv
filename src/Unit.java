@@ -3,14 +3,16 @@
  */
 
     public abstract class Unit extends Concrete {
-    Army myArmy;
+    private Army myArmy;
+    private boolean battleGroup;
 
 
     //CONSTRUCTOR
 
-    public Unit(Player player, Location loc, Map map, CID cid, Stats myStats) {
-        super(player, loc, map, cid, myStats);
+    public Unit(Player player, Location loc, Map map, Stats myStats) {
+        super(player, loc, map, myStats);
 
+        this.getCID().modeID = GameInfo.UNITMODE;
         //Code to put this Unit into the appropriate place in player's Unit Array
         player.getUnits().get(cid.getTypeID()).add(cid.getPersonelID(), this);
 
@@ -51,6 +53,7 @@
 
         if(!targetTile.openTile(this.getPlayer())){
             this.myArmy.getRallyPoint().redoPaths();
+            return;
         }
 
         targetTile.addUnit(this);
@@ -58,6 +61,9 @@
         this.setLoc(targetLoc);
         this.setFacingDirection(md);
 
+        if(battleGroup){
+            this.myArmy.setLoc(this.getLoc());
+        }
     }
 
     void killMe(){
@@ -66,7 +72,12 @@
         getMap().getTile(getLoc()).removeUnit(this);
     }
 
+    public boolean isBattleGroup(){
+        return battleGroup;
+    }
+
     Army makeArmy(){
+        this.battleGroup = true;
         return new Army(this, getPlayer());
     }
 
@@ -75,6 +86,16 @@
         army.getEntireArmy().add(this);
         army.getReinforcements().add(this);
     }
+
+    public void setBattleGroup(boolean battleGroup) {
+        this.battleGroup = battleGroup;
+    }
+
+    public void setMyArmy(Army myArmy) {
+        this.myArmy = myArmy;
+    }
+
+    public Army getMyArmy(){return myArmy;}
 
 //TODO: get rid of empty constructor for units below (used for testing)
 }

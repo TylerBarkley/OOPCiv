@@ -12,7 +12,7 @@ public class GameInfo {
     public final static int MELEEUNIT    	= 2;
     public final static int RANGEDUNIT    	= 3;
 
-    public final static int BASE            = 4;
+    public final static int BASE            = 0;
 
     public final static int ARMY            = 5;
 

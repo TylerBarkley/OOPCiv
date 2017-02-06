@@ -6,8 +6,11 @@ import java.util.ArrayList;
 public class Player {
     int numUnits = 0;
     ArrayList<ArrayList<Unit>> units;
+
     ArrayList<ArrayList<Structure>>  structures;
+
     ArrayList<Army> armies;
+
     ArrayList<RallyPoint>  rallyPoints;
 
 
@@ -16,20 +19,32 @@ public class Player {
     Map map; //made before player
 
     public Player(Map map){
-        armies = new ArrayList<Army>();
+        armies = new ArrayList<Army>(GameInfo.MAX_PER_TYPE);
 
-        rallyPoints = new ArrayList<RallyPoint>();
+        rallyPoints = new ArrayList<RallyPoint>(GameInfo.MAX_PER_TYPE);
 
-        units = new ArrayList<ArrayList<Unit>>();
-
-        for(int i = 0; i < GameInfo.UNIT_TYPES; i++){
-            units.add(new ArrayList<Unit>());
+        for(int i = 0; i < GameInfo.MAX_PER_TYPE; i++){
+            armies.add(null);
+            rallyPoints.add(null);
         }
 
-        structures = new ArrayList<ArrayList<Structure>>();
+        units = new ArrayList<ArrayList<Unit>>(GameInfo.UNIT_TYPES);
+
+        for(int i = 0; i < GameInfo.UNIT_TYPES; i++){
+            units.add(new ArrayList<Unit>(GameInfo.MAX_PER_TYPE));
+            for(int j = 0; j < GameInfo.MAX_PER_TYPE; j++){
+                units.get(i).add(null);
+            }
+        }
+
+        structures = new ArrayList<ArrayList<Structure>>(GameInfo.STRUCTURE_TYPES);
 
         for(int i = 0; i < GameInfo.STRUCTURE_TYPES; i++){
-            structures.add(new ArrayList<Structure>());
+            structures.add(new ArrayList<Structure>(GameInfo.MAX_PER_TYPE));
+
+            for(int j = 0; j < GameInfo.MAX_PER_TYPE; j++){
+                structures.get(i).add(null);
+            }
         }
 
         this.map = map;
@@ -56,13 +71,42 @@ public class Player {
         return menuState;
     }
 
-    public void remove(Unit target){
+    private ArrayList<? extends Controllable> getTypeArray(CID targetCID){
+        switch(targetCID.modeID){
+            case GameInfo.UNITMODE:
+                return units.get(targetCID.typeID);
 
-        units.get(target.getCID().typeID).remove(target.getCID().personelID);
+            case GameInfo.ARMYMODE:
+                return armies;
+
+            case GameInfo.RALLYPOINTMODE:
+                return rallyPoints;
+
+            case GameInfo.STRUCTUREMODE:
+                return structures.get(targetCID.typeID);
+
+        }
+
+        return null;
     }
 
-    public void remove(Structure target){
-        structures.get(target.getCID().typeID).remove(target.getCID().personelID);
+    public boolean register(Controllable newControllable){
+        ArrayList<Controllable> targetArray = (ArrayList<Controllable>) getTypeArray(newControllable.getCID());
+
+        for (int i = 0; i < GameInfo.MAX_PER_TYPE; i++){
+            if(targetArray.get(i) == null){
+                newControllable.getCID().personelID = i;
+                targetArray.set(i, newControllable);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void remove(Controllable controllableToBeRemoved){
+        ArrayList<Controllable> targetArray = (ArrayList<Controllable>) getTypeArray(controllableToBeRemoved.getCID());
+        targetArray.set(controllableToBeRemoved.getCID().getPersonelID(), null);
     }
 
     public boolean orderableExists(int modeType){

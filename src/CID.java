@@ -2,11 +2,18 @@
  * Created by zrgam_000 on 1/31/2017.
  */
 public class CID {
+    int modeID;  //Whether the Controllable is Unit, Structure, or Army/RallyPoint
     int typeID;  //Type, as defined by GameInfo constants
     int personelID;  //index in the relevant array where this object will be stored
 
     //CID is combination of type (GameInfo.EXPLORER, for example) and
     // personelID == the place in the Type array where this controllable is going to go
+
+    public CID(){
+        modeID = 0;
+        typeID = 0;
+        personelID = 0;
+    }
 
     public static CID giveCID(Player player,int controllableTypeID){
         int typeId=controllableTypeID;
@@ -43,6 +50,7 @@ public class CID {
 
         return new CID(typeId,personelID);
     }
+
     public CID(int TID, int PID){
         typeID = TID;
         personelID = PID;

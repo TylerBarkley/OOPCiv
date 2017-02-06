@@ -6,8 +6,10 @@ public class Structure extends Concrete {
     private double state;
     private String structureType;
 
-    public Structure(Player player, Location loc, Map map, CID cid, Stats myStats) {
-        super(player, loc, map, cid, myStats);
+    public Structure(Player player, Location loc, Map map, Stats myStats) {
+        super(player, loc, map, myStats);
+
+        this.getCID().modeID = GameInfo.STRUCTUREMODE;
     }
 
     void powerDown(){

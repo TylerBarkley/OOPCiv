@@ -3,13 +3,15 @@
  */
 public class MeleeFighter extends Unit {
     MeleeFighter(Player player, Location loc, Map map, CID cid, Stats myStats){
-        super(player, loc, map,cid, myStats);
-    };
+        super(player, loc, map, myStats);
+
+        this.getCID().typeID = GameInfo.MELEEUNIT;
+    }
 
     MeleeFighter(Base base){
-        super(base.getPlayer(), base.getLoc(), base.getMap(), CID.giveCID(base.getPlayer(), GameInfo.MELEEUNIT),
-                StatsFactory.createStats(GameInfo.MELEEUNIT));
+        super(base.getPlayer(), base.getLoc(), base.getMap(), StatsFactory.createStats(GameInfo.MELEEUNIT));
 
+        this.getCID().typeID = GameInfo.MELEEUNIT;
     }
 
     public String toString(){

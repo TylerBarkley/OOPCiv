@@ -11,17 +11,13 @@ public class RunGame {
         //MAP, PLAYERS, INITIAL UNITS
         Map map=new Map(10, 10, false);
         Player p1=new Player(map);
-        Explorer explorer1 = new Explorer(p1, new Location(2, 3), map, CID.giveCID(p1,
-                GameInfo.EXPLORER), StatsFactory.createStats(GameInfo.EXPLORER));
-        Explorer explorer2 = new Explorer(p1, new Location(2, 5), map, CID.giveCID(p1,
-                GameInfo.EXPLORER), StatsFactory.createStats(GameInfo.EXPLORER));
+        Explorer explorer1 = new Explorer(p1, new Location(2, 3), map, StatsFactory.createStats(GameInfo.EXPLORER));
+        Explorer explorer2 = new Explorer(p1, new Location(2, 5), map, StatsFactory.createStats(GameInfo.EXPLORER));
         Colonist colonist1 = new Colonist(p1, new Location(1, 4), map, CID.giveCID(p1,
                 GameInfo.COLONIST), StatsFactory.createStats(GameInfo.COLONIST));
         Player p2=new Player(map);
-        explorer1 = new Explorer(p2, new Location(8, 3), map, CID.giveCID(p2,
-                GameInfo.EXPLORER), StatsFactory.createStats(GameInfo.EXPLORER));
-        explorer2 = new Explorer(p2, new Location(8, 5), map, CID.giveCID(p2,
-                GameInfo.EXPLORER), StatsFactory.createStats(GameInfo.EXPLORER));
+        explorer1 = new Explorer(p2, new Location(8, 3), map, StatsFactory.createStats(GameInfo.EXPLORER));
+        explorer2 = new Explorer(p2, new Location(8, 5), map, StatsFactory.createStats(GameInfo.EXPLORER));
         colonist1 = new Colonist(p2, new Location(7, 4), map, CID.giveCID(p2,
                 GameInfo.COLONIST), StatsFactory.createStats(GameInfo.COLONIST));
 
@@ -38,7 +34,7 @@ public class RunGame {
         main.focusOn(new Location(0, 0));
 
         //KEYLISTENER -> switch this between players when turn ends
-        new KeyListenerTester("Sauce-age Party", p1);
+       // new KeyListenerTester(p1);
 
     }
 

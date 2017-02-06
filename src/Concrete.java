@@ -11,8 +11,8 @@ public abstract class Concrete extends Controllable{
     Map.MapDirection facingDirection;
     double state;
 
-    public Concrete(Player player, Location loc, Map map, CID cid, Stats myStats) {
-        super(player, loc, map, cid);
+    public Concrete(Player player, Location loc, Map map, Stats myStats) {
+        super(player, loc, map);
         this.myStats = myStats;
         this.currentHealth = myStats.getHealth();
         this.actionPointCap = myStats.getRate();
@@ -54,10 +54,6 @@ public abstract class Concrete extends Controllable{
     }
 
     abstract void killMe();
-
-    public CID getCID() {
-        return cid;
-    }
 
     public void setMyStats(Stats myStats) {
         this.myStats = myStats;

@@ -36,6 +36,16 @@ public class RallyPoint extends Controllable {
         }
     }
 
+    public void givePathCommands(Unit target){
+        ArrayList<Map.MapDirection> path;
+
+        path = givePath(target.getLoc());
+
+        for(Map.MapDirection md : path){
+            target.giveCommand(new MoveCommand(target, md));
+        }
+    }
+
     public void redoPaths(){
         for(Unit target : this.army.getEntireArmy()){
             target.clearCommands();
@@ -61,11 +71,7 @@ public class RallyPoint extends Controllable {
             }
 
             for(Unit target : army.getReinforcements()) {
-                path = givePath(target.getLoc());
-
-                for(Map.MapDirection md : path){
-                    target.giveCommand(new MoveCommand(target, md));
-                }
+                this.givePathCommands(target);
             }
         }
     }
@@ -89,7 +95,8 @@ public class RallyPoint extends Controllable {
     }
 
     RallyPoint(Army army){
-        super(army.getPlayer(), army.getLoc(), army.getMap(), CID.giveCID(army.getPlayer(), GameInfo.RALLYPOINT));
+        super(army.getPlayer(), army.getLoc(), army.getMap());
+        this.getCID().modeID = GameInfo.RALLYPOINTMODE;
         this.army = army;
         paths = new Map.MapDirection[GameInfo.MAP_SIZE][GameInfo.MAP_SIZE];
         }
