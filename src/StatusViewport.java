@@ -34,6 +34,7 @@ public class StatusViewport extends Viewport{
 		currentInstruction = new JLabel("CURRENT INSTRUCTION= ");
 		currentInstruction.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
+		updateMenuStates();
 		displayView();
 	}
 
@@ -131,7 +132,7 @@ public class StatusViewport extends Viewport{
 		currentMode.setText("CURRENT MODE= " + player.getMenuState().getCurrentModeString());
 		currentInstance.setText("CURRENT INSTANCE= " + player.getMenuState().getCurrentInstanceIndex());
 		currentType.setText("CURRENT TYPE= " + player.getMenuState().getCurrentTypeString());
-		currentInstruction.setText("CURRENT INSTRUCTION= " + player.getMenuState().getCurrentTypeString());
+		currentInstruction.setText("CURRENT INSTRUCTION= " + player.getMenuState().getCurrentInstruction().toString());
 	}
 	
 }
