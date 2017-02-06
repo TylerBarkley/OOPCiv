@@ -113,8 +113,8 @@ public class Map {
             tileMatrix[8][2] = new Tile (new Location(8,2), 'G');
             tileMatrix[8][3] = new Tile (new Location(8,3), 'G');
             tileMatrix[8][4] = new Tile (new Location(8,4), 'G');
-            tileMatrix[8][5] = new Tile (new Location(8,5), 'M');
-            tileMatrix[8][6] = new Tile (new Location(8,6), 'G');
+            tileMatrix[8][5] = new Tile (new Location(8,5), 'G');
+            tileMatrix[8][6] = new Tile (new Location(8,6), 'M');
             tileMatrix[8][7] = new Tile (new Location(8,7), 'G');
             tileMatrix[8][8] = new Tile (new Location(8,8), 'G');
             tileMatrix[8][9] = new Tile (new Location(8,9), 'G');

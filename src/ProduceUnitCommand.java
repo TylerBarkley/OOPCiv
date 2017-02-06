@@ -12,6 +12,11 @@ public class ProduceUnitCommand implements Command {
     }
 
     @Override
+    public String toString(){
+        return "Produce Unit";
+    }
+
+    @Override
     public void execute() {
         target.ProduceUnit(unitCode);
     }
