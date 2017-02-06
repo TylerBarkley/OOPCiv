@@ -5,6 +5,8 @@ import java.util.ArrayList;
  */
 public class Player {
     int numUnits = 0;
+
+    private boolean myTurn;
     ArrayList<ArrayList<Unit>> units;
 
     ArrayList<ArrayList<Structure>>  structures;
@@ -185,5 +187,30 @@ public class Player {
         }
         //System.out.println(modeType);
         return false;
+    }
+
+    public boolean isAlive() {
+
+        for(ArrayList<Unit> units : this.getUnits()){
+            for(Unit unit : units){
+                if(unit != null){ return true; }
+            }
+        }
+
+        for(ArrayList<Structure> structures : this.getStructures()){
+            for(Structure struct : structures){
+                if(struct != null){ return true; }
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isMyTurn() {
+        return myTurn;
+    }
+
+    public void setMyTurn(boolean myTurn) {
+        this.myTurn = myTurn;
     }
 }

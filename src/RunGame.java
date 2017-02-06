@@ -36,23 +36,31 @@ public class RunGame {
         window.openWindow();
         window.placeDecal(new RedCross(), 1, 2);
         window.placeDecal(new SkullCrossBones(), 4, 4);
-        
-        //window.focusOn(new Location(5, 5));
-        //window.focusOn(new Location(5, 6));
-        //window.focusOn(new Location(5, 7));
-        //window.focusOn(new Location(6, 7));
-        //window.focusOn(new Location(7, 7));
-        //window.focusOn(new Location(8, 8));
-        //window.focusOn(new Location(9, 9));
-        //window.focusOn(new Location(2, 2));
-        //window.focusOn(new Location(2, 3));
-        //window.focusOn(new Location(2, 4));
-        //window.focusOn(new Location(2, 5));
-        //window.focusOn(new Location(3, 5));
-        //window.focusOn(new Location(4, 5));
-        //window.focusOn(new Location(5, 5));
-        //window.focusOn(new Location(0, 9));
-        //window.focusOn(new Location(9, 0));
+
+        Player currentPlayer = p1;
+        p1.setMyTurn(true);
+
+
+        while(currentPlayer.isAlive()){
+
+            while(currentPlayer.isMyTurn()){}
+
+            currentPlayer.endTurn();
+
+            if(currentPlayer != p1){
+                currentPlayer = p1;
+                p1.setMyTurn(true);
+
+                window.swapTurn();
+            }
+
+            else{
+                currentPlayer = p2;
+                p2.setMyTurn(true);
+
+                window.swapTurn();
+            }
+        }
     }
 
 }
