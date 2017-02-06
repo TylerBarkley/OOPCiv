@@ -28,7 +28,7 @@ public class UnitCommand implements Command{
                 target.standby();
                 break;
             case UnitInstruction.U_POWERDOWN:
-                target.powerDown(); //this doesn't work because controllable doesn't have this function
+                target.powerDown();
                 break;
             case UnitInstruction.U_POWERUP:
                 target.powerUp();
