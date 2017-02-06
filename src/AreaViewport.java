@@ -212,4 +212,10 @@ public class AreaViewport extends Viewport{
 		focusOn(controllable.getLoc());
 		display(controllable, false);
 	}
+
+	public void swapTurn() {
+		Player p=player;
+		player=opponentPlayer;
+		opponentPlayer=p;
+	}
 }

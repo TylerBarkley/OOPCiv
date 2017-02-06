@@ -26,6 +26,7 @@ public class GameWindow extends JFrame {
 	private MainScreen mainScreen;
 	private UnitOverview unitOverview;
 	private StructureOverview structureOverview;
+	private KeyListenerHandler listener;
 
 	public GameWindow(Player player, Player opponent, Map map, int width, int height) {
 		this.player = player;
@@ -34,10 +35,11 @@ public class GameWindow extends JFrame {
 		this.width = width;
 		this.height = height;
 		this.setTitle("Lost In the Sauce");
-
+		this.listener=new KeyListenerHandler(player,this);
+		
 		this.tabbedPane=new JTabbedPane();
 		removeDefaultKeyListeners();
-		tabbedPane.addKeyListener(new KeyListenerHandler(player,this));
+		tabbedPane.addKeyListener(listener);
 		
 		this.mainScreen=new MainScreen(player,opponent,map,width,height);
 		this.unitOverview=new UnitOverview(player, width, height);
@@ -168,5 +170,18 @@ public class GameWindow extends JFrame {
 
 	public void placeDecal(Decal decal, int x, int y) {
 		mainScreen.placeDecal(decal, x, y);
+	}
+	
+	public void swapTurn(){
+		Player p=player;
+		player=opponent;
+		opponent=p;
+		
+		this.listener.player=player;
+		this.listener.ms=player.menuState;
+		
+		mainScreen.swapTurn();
+		unitOverview.swapTurn(player);
+		structureOverview.swapTurn(player);
 	}
 }

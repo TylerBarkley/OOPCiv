@@ -140,4 +140,8 @@ public class UnitOverview extends Overview{
 		unitTable.setDefaultRenderer(Army.class, renderer);
 		
 	}
+
+	public void swapTurn(Player player) {
+		this.player=player;
+	}
 }

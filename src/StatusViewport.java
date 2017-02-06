@@ -141,5 +141,9 @@ public class StatusViewport extends Viewport{
 		currentInstruction.setText("CURRENT INSTRUCTION= " + player.getMenuState().getCurrentInstruction().toString());
 	}
 
+	public void swapTurn(Player player) {
+		this.player=player;
+	}
+
 }
 

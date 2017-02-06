@@ -119,5 +119,9 @@ public class StructureOverview extends Overview{
 	public void updateMenu(){
 		
 	}
+
+	public void swapTurn(Player player) {
+		this.player=player;
+	}
 	
 }

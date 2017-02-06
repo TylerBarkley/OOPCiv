@@ -51,4 +51,9 @@ public class MainScreen extends Overview{
 	public void updateMenu() {
 		
 	}
+
+	public void swapTurn() {
+		statusView.swapTurn(player);
+		areaView.swapTurn();
+	}
 }
