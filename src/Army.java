@@ -42,10 +42,8 @@ public class Army extends Concrete {
     }
 
     public void attack(Map.MapDirection md){
-        Tile targetTile = this.getMap().getTile(this.getLoc().getAdjacent(md));
-
-        for(Unit unit : targetTile.getUnitsOnTile()){
-            unit.damageMe(this.getMyStats().getOffensiveDamage());
+        for(Unit units : this.battleGroup){
+            units.giveCommand(new AttackCommand(units, md));
         }
     }
 

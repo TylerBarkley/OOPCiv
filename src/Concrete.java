@@ -39,6 +39,7 @@ public abstract class Concrete extends Controllable{
     abstract void wait4me(); //{ state=1; }
     abstract void powerDown(); //{state=.25;}
     abstract void powerUp();
+    abstract void attack(Map.MapDirection md);
 
 
     public void setFacingDirection(Map.MapDirection facingDirection) {

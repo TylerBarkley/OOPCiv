@@ -40,6 +40,14 @@ public abstract class Structure extends Concrete {
 
     }
 
+    void attack(Map.MapDirection md){
+        Tile targetTile = this.getMap().getTile(this.getLoc().getAdjacent(md));
+
+        for(Unit unit : targetTile.getUnitsOnTile()){
+            unit.damageMe(this.getMyStats().getOffensiveDamage());
+        }
+    }
+
     void killMe(){
         getPlayer().remove(this);
         getMap().getTile(getLoc()).removeStructure();
