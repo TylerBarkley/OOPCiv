@@ -11,6 +11,7 @@ public class AreaViewport extends Viewport{
 	private Player opponentPlayer;
 	private Map map;
 	private int width, height;
+	private int minX, minY, maxX, maxY;
 	private ArrayList<Decal> decals;
 	private ArrayList<int[]> decalLocations;
 	private BufferedImage image;
@@ -36,12 +37,13 @@ public class AreaViewport extends Viewport{
 	}
 
 	public void displayView(){
-		this.setBackground(Color.BLACK);
+		this.setBackground(Color.BLUE);
 		updateView();
 	}
 
 	public void updateView(){
 		g2d.clearRect(0, 0, width, height);
+		centerMapDisplay();
 		displayMap();
 		displayUnits();
 		displayStructures();
@@ -50,25 +52,21 @@ public class AreaViewport extends Viewport{
 		repaint();
 	}
 
-	private void displayMap(){
-
-		boolean isFocused = (focus != null);
-
+	private void centerMapDisplay() {
 		int mapWidth=map.tileMatrix.length;
 		int mapHeight=map.tileMatrix[0].length;
 
 		int mapDisplayWidth=width/GameInfo.TILE_SIZE;
 		int mapDisplayHeight=height/GameInfo.TILE_SIZE;
 
-		int minX, minY, maxX, maxY;
-		if(isFocused){
-			minX=Math.max(0, focus.x-mapDisplayWidth/2);
-			minY=Math.max(0, focus.y-mapDisplayHeight/2);
+		if(focus != null){
+			minX=Math.max(0, focus.x-mapDisplayWidth/2  + 1);
+			minY=Math.max(0, focus.y-mapDisplayHeight/2 + 1);
 		} else{
 			minX=0;
 			minY=0;
 		}
-		
+
 		maxX=Math.min(minX+mapDisplayWidth, mapWidth);
 		maxY=Math.min(minY+mapDisplayWidth, mapHeight);
 
@@ -79,7 +77,9 @@ public class AreaViewport extends Viewport{
 		if(maxY==mapHeight){
 			minY=Math.max(0, maxY-mapDisplayHeight);
 		}
+	}
 
+	private void displayMap(){
 		for(int i=minX; i<maxX; i++){
 			Tile[] row=map.tileMatrix[i];
 			for(int j=minY; j<maxY; j++){
@@ -90,6 +90,7 @@ public class AreaViewport extends Viewport{
 				g2d.drawImage(view.getImage(), (i-minX)*GameInfo.TILE_SIZE, (j-minY)*GameInfo.TILE_SIZE, null);
 			}
 		}
+
 		if(focus != null){
 			Stroke s=g2d.getStroke();
 			Color c=g2d.getColor();
@@ -122,8 +123,10 @@ public class AreaViewport extends Viewport{
 		int x=unit.getLoc().x;
 		int y=unit.getLoc().y;
 
-		g2d.drawImage(view.getImage(unit.facingDirection), (int)((x+0.5)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), 
-				(int)((y+0.5)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), null);
+		if(x >= minX && x <= maxX && y >= minY && y <= maxY){
+			g2d.drawImage(view.getImage(unit.facingDirection), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), 
+					(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), null);
+		}
 	}
 
 	private void displayStructures(){
@@ -149,9 +152,10 @@ public class AreaViewport extends Viewport{
 
 		int x=structure.getLoc().x;
 		int y=structure.getLoc().y;
-
-		g2d.drawImage(view.getImage(), (int)((x+0.5)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), 
-				(int)((y+0.5)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), null);
+		if(x > minX && x < maxX && y > minY && y < maxY){
+			g2d.drawImage(view.getImage(), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), 
+					(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), null);
+		}
 	}
 
 	private void displayDecals(){
@@ -160,8 +164,9 @@ public class AreaViewport extends Viewport{
 			int y=decalLocations.get(i)[1];
 
 			View view=viewFactory.getView(decals.get(i));
-
-			g2d.drawImage(view.getImage(), x*GameInfo.TILE_SIZE, y*GameInfo.TILE_SIZE, null);
+			if(x > minX && x < maxX && y > minY && y < maxY){
+				g2d.drawImage(view.getImage(), (x-minX)*GameInfo.TILE_SIZE, (y-minY)*GameInfo.TILE_SIZE, null);
+			}
 		}
 	}
 
