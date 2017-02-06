@@ -183,5 +183,6 @@ public class GameWindow extends JFrame {
 		mainScreen.swapTurn();
 		unitOverview.swapTurn(player);
 		structureOverview.swapTurn(player);
+		updateView();
 	}
 }

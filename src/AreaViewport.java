@@ -145,9 +145,17 @@ public class AreaViewport extends Viewport{
 
 		int x=con.getLoc().x;
 		int y=con.getLoc().y;
+		if(con instanceof Structure){
 		if(x > minX && x < maxX && y > minY && y < maxY){
 			g2d.drawImage(view.getImage(), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), 
 					(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), null);
+		}
+		}
+		else{
+			if(x > minX && x < maxX && y > minY && y < maxY){
+				g2d.drawImage(view.getImage(), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), 
+						(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), null);
+			}
 		}
 	}
 
