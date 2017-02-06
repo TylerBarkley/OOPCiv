@@ -62,17 +62,20 @@ public class StructureOverview extends Overview{
 	}
 	
 	private void displayCurrentStructureStatus(){
-		structureStatsArea.setText("");
 		
-		Stats status =  player.getStructures().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getMyStats();
-		structureStatsArea.setText(status.toString() + "\n");
-		CommandQueue unitCommandQueue = player.getStructures().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getCommandQueue();
-		
-		Queue<Command> unitQueue = unitCommandQueue.getCommandQueue();
-		Iterator<Command> iterator = unitQueue.iterator();
-		while(iterator.hasNext()) {
-			structureStatsArea.append(iterator.next().toString() + " ");
+		if(player.getStructures().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()) != null) {
+			structureStatsArea.setText("");
+			Stats status =  player.getStructures().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getMyStats();
+			structureStatsArea.setText(status.toString() + "\n");
+			CommandQueue unitCommandQueue = player.getStructures().get(this.ms.getCurrentType()).get(this.ms.getCurrentInstanceIndex()).getCommandQueue();
+			
+			Queue<Command> unitQueue = unitCommandQueue.getCommandQueue();
+			Iterator<Command> iterator = unitQueue.iterator();
+			while(iterator.hasNext()) {
+				structureStatsArea.append(iterator.next().toString() + " ");
+			}
 		}
+		
 	}
 	
 	

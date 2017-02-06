@@ -44,17 +44,24 @@ public class StatusViewport extends Viewport{
 		
 		for(int i = 0; i < units.size();i++) {
 			for(int j = 0; j < units.get(i).size(); j++) {
-				String unitType = units.get(i).get(j).toString();
-				Stats unitStats = units.get(i).get(j).getMyStats();
-				unitArea.append(unitType +":" + "\n" + "Health: " + unitStats.getHealth() + unitStats.getUpKeep());
+				if(units.get(i).get(j) != null) {
+					String unitType = units.get(i).get(j).toString();
+					Stats unitStats = units.get(i).get(j).getMyStats();
+					unitArea.append(unitType +":" + "\n" + "Health: " + unitStats.getHealth() + unitStats.getUpKeep());
+				}
+				
 			}
 		}
 		
 		for(int i = 0; i < strucs.size();i++) {
 			for(int j = 0; j < strucs.get(i).size(); j++) {
-				String structureType = strucs.get(i).get(j).toString();
-				Stats structureStats = strucs.get(i).get(j).getMyStats();
-				structureArea.append(structureType +":" + "\n" + "Health: " + structureStats.getHealth() +  structureStats.getUpKeep());
+				if(strucs.get(i).get(j) != null) {
+					String structureType = strucs.get(i).get(j).toString();
+					Stats structureStats = strucs.get(i).get(j).getMyStats();
+					structureArea.append(structureType +":" + "\n" + "Health: " + structureStats.getHealth() +  structureStats.getUpKeep());
+				
+				}
+				
 			}
 		}
 		
