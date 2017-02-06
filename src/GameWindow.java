@@ -173,6 +173,8 @@ public class GameWindow extends JFrame {
 	}
 	
 	public void swapTurn(){
+
+		System.out.print("SWAPPING TURN");
 		Player p=player;
 		player=opponent;
 		opponent=p;

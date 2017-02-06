@@ -7,6 +7,7 @@ public class Player {
     int numUnits = 0;
 
     private boolean myTurn;
+
     ArrayList<ArrayList<Unit>> units;
 
     ArrayList<ArrayList<Structure>>  structures;
@@ -117,35 +118,38 @@ public class Player {
 
 
     public void endTurn(){
+
+        System.out.println("ENDING TURN");
+
         for(Army army : this.getArmies()){
-            army.doTurn();
+            if(army != null){ army.doTurn(); }
         }
 
         for(ArrayList<Unit> units : this.getUnits()){
             for(Unit unit : units){
-                unit.doTurn();
+                if(unit != null){ unit.doTurn(); }
             }
         }
 
         for(ArrayList<Structure> structures : this.getStructures()){
             for(Structure struct : structures){
-                struct.doTurn();
+                if(struct != null){ struct.doTurn(); }
             }
         }
 
         for(Army army : this.getArmies()){
-            army.endTurn();
+            if(army != null){ army.endTurn(); }
         }
 
         for(ArrayList<Unit> units : this.getUnits()){
             for(Unit unit : units){
-                unit.endTurn();
+                if(unit != null){ unit.endTurn(); }
             }
         }
 
         for(ArrayList<Structure> structures : this.getStructures()){
             for(Structure struct : structures){
-                struct.endTurn();
+                if(struct != null){ struct.endTurn(); }
             }
         }
     }

@@ -43,7 +43,18 @@ public class RunGame {
 
         while(currentPlayer.isAlive()){
 
-            while(currentPlayer.isMyTurn()){}
+            System.out.println("WE'RE IN");
+
+            while(true){
+
+                System.out.print("");
+                if(!currentPlayer.isMyTurn()){
+                    break;
+                }
+
+            }
+
+            System.out.println("WE SWAPPED");
 
             currentPlayer.endTurn();
 

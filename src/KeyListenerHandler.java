@@ -141,6 +141,10 @@ public class KeyListenerHandler implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_CONTROL){
             ctrl = true;
         }
+        if(e.getKeyCode() == KeyEvent.VK_L){
+            System.out.println("WE PRESSED L");
+            this.player.setMyTurn(false);
+        }
         
         Location loc=player.location;
         int x=loc.x;

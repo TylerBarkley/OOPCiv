@@ -94,7 +94,8 @@
 
     Army makeArmy(){
         this.battleGroup = true;
-        return new Army(this, getPlayer());
+        myArmy = new Army(this, getPlayer());
+        return myArmy;
     }
 
     void joinArmy(Army army){

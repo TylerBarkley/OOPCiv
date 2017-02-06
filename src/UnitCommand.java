@@ -22,7 +22,7 @@ public class UnitCommand implements Command{
                 target.joinArmy(army);
                 break;
             case UnitInstruction.U_BUILDBASE:
-                //TODO: write for colonist
+                ((Colonist) target).buildBase();
                 break;
             case UnitInstruction.U_STANDBY:
                 target.standby();

@@ -181,6 +181,10 @@ public class Army extends Concrete {
 
         this.getCID().modeID = GameInfo.ARMYMODE;
 
+        this.entireArmy = new ArrayList<Unit>();
+        this.battleGroup = new ArrayList<Unit>();
+        this.reinforcements = new ArrayList<Unit>();
+
         this.addToArmy(unit);
 
         this.addToBattleGroup(unit);
