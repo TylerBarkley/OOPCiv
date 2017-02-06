@@ -24,6 +24,8 @@ public class ViewFactory {
 	private BufferedImage redCross;
 
 	private BufferedImage skullCrossBones;
+
+	private BufferedImage rallyPoint;
 	
 	private ViewFactory(){
 		try {
@@ -42,6 +44,7 @@ public class ViewFactory {
 			baseEnemy=ImageIO.read(new File("EnemyBase.jpg"));
 			redCross=ImageIO.read(new File("RedCross.jpg"));
 			skullCrossBones=ImageIO.read(new File("SkullCrossBones.jpg"));
+			rallyPoint=ImageIO.read(new File("Rallypoint.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -84,7 +87,7 @@ public class ViewFactory {
 		if(viewable.getTypeID() == GameInfo.MELEEUNIT){
 			return new View(melee);
 		}
-		if(viewable.getTypeID() == GameInfo.BASE){
+		if(viewable.getTypeID() == GameInfo.BASE_VIEW_ID){
 			return new View(base);
 		}
 		if(viewable.getTypeID() == GameInfo.WATER){
@@ -102,7 +105,9 @@ public class ViewFactory {
 		if(viewable.getTypeID() == GameInfo.REDCROSS){
 			return new View(redCross);
 		}
-		
+		if(viewable.getTypeID() == GameInfo.RALLYPOINT){
+			return new View(rallyPoint);
+		}
 		return null;
 	}
 

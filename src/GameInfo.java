@@ -13,7 +13,8 @@ public class GameInfo {
     public final static int RANGEDUNIT    	= 3;
 
     public final static int BASE            = 0;
-
+    
+    public final static int BASE_VIEW_ID    = 4;
     public final static int ARMY            = 5;
 
     public final static int RALLYPOINT      = 6;

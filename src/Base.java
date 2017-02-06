@@ -12,6 +12,7 @@ public class Base extends Structure {
     public Base(Colonist colonist) {
         super(colonist.getPlayer(), colonist.getLoc(), colonist.getMap(), StatsFactory.createStats(GameInfo.BASE));
         this.getCID().typeID = GameInfo.BASE;
+        structureType="Base";
     }
 
 
@@ -25,7 +26,7 @@ public class Base extends Structure {
     }
     
     public int getTypeID(){
-    	return GameInfo.BASE;
+    	return GameInfo.BASE_VIEW_ID;
     }
 
     public void healDirection(Map.MapDirection md) {

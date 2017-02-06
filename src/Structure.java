@@ -4,7 +4,7 @@
 public abstract class Structure extends Concrete {
 
     private double state;
-    private String structureType;
+    protected String structureType;
 
     public Structure(Player player, Location loc, Map map, Stats myStats) {
         super(player, loc, map, myStats);
@@ -66,10 +66,5 @@ public abstract class Structure extends Concrete {
 //    public UnitStats getStats() {return StructureStats;    }
 
     //TODO BE FULLY IMPLEMENTED FOR STRUCTURES
-
-
-    public void setStructureType(String structureType) {
-        this.structureType = structureType;
-    }
 
 }
