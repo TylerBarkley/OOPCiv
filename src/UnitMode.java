@@ -112,11 +112,11 @@ public class UnitMode extends Mode {
     }
 
     Instruction cycleInstructionL(){
-        int lastInstruction = unitInstructions.size() - 1;
+        /*int lastInstruction = unitInstructions.size() - 1;
         if(currentInstructionIndex == 0)
             currentInstructionIndex = lastInstruction; //cycle back to last instruction
         else currentInstructionIndex--;
-        /*Code Changed*/
+
         if(currentType!=GameInfo.EXPLORER){
             if(currentInstructionIndex==UnitInstruction.U_BUILDBASE){
                 currentInstructionIndex--;
@@ -126,10 +126,11 @@ public class UnitMode extends Mode {
             currentInstructionIndex=lastInstruction;
         }
         currentInstruction = unitInstructions.get(currentInstructionIndex);
-        return currentInstruction;
+        return currentInstruction;*/
+        return null; //comment out later
     }
     Instruction cycleInstructionR(){
-        int lastInstruction = unitInstructions.size() - 1;
+        /*int lastInstruction = unitInstructions.size() - 1;
         if(currentInstructionIndex == lastInstruction)
             currentInstructionIndex = 0; //cycle back to last instruction
         else currentInstructionIndex++;
@@ -140,7 +141,8 @@ public class UnitMode extends Mode {
             currentInstructionIndex=UnitInstruction.U_STANDBY;
         }
         currentInstruction = unitInstructions.get(currentInstructionIndex);
-        return currentInstruction;
+        return currentInstruction;*/
+        return null; //comment out later
     }
 
 }
