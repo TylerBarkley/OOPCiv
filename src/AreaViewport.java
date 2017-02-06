@@ -146,10 +146,10 @@ public class AreaViewport extends Viewport{
 		int x=con.getLoc().x;
 		int y=con.getLoc().y;
 		if(con instanceof Structure){
-		if(x > minX && x < maxX && y > minY && y < maxY){
-			g2d.drawImage(view.getImage(), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), 
-					(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), null);
-		}
+			if(x > minX && x < maxX && y > minY && y < maxY){
+				g2d.drawImage(view.getImage(), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), 
+						(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), null);
+			}
 		}
 		else{
 			if(x > minX && x < maxX && y > minY && y < maxY){
@@ -190,9 +190,10 @@ public class AreaViewport extends Viewport{
 
 		int x=rally.getLoc().x;
 		int y=rally.getLoc().y;
-
-		g2d.drawImage(view.getImage(), (int)(x*GameInfo.TILE_SIZE-GameInfo.RALLYPOINT_SIZE), 
-				(int)(y*GameInfo.TILE_SIZE), null);
+		if(x > minX && x < maxX && y > minY && y < maxY){
+			g2d.drawImage(view.getImage(), (int)((x-minX)*GameInfo.TILE_SIZE-GameInfo.RALLYPOINT_SIZE), 
+					(int)((y-minY)*GameInfo.TILE_SIZE), null);
+		}
 	}
 
 	public void paintComponent(Graphics g) {
@@ -203,15 +204,15 @@ public class AreaViewport extends Viewport{
 	public void focusOn(Location loc){
 		int x=loc.x % map.mapXSize;
 		int y=loc.y % map.mapYSize;
-		
+
 		while(x<0){
 			x+=map.mapXSize;
 		}
-		
+
 		while(y<0){
 			y+=map.mapYSize;
 		}
-		
+
 		player.location = new Location(x, y);
 		updateView();
 	}

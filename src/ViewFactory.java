@@ -65,7 +65,7 @@ public class ViewFactory {
 			if(viewable.getTypeID() == GameInfo.MELEEUNIT){
 				return new View(meleeEnemy);
 			}
-			if(viewable.getTypeID() == GameInfo.BASE){
+			if(viewable.getTypeID() == GameInfo.BASE_VIEW_ID){
 				return new View(baseEnemy);
 			}
 		}
