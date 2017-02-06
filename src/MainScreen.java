@@ -55,28 +55,4 @@ public class MainScreen extends Overview{
 	public void updateMenu() {
 		
 	}
-	
-	public static void main(String args[]) throws IOException { //for testing purposes only!
-		Map map=new Map(10, 10, false);
-		Player player=new Player(map);
-		Player opponent=new Player(map);
-		MainScreen main=new MainScreen(player,opponent,map,1200,800);
-		ViewFactory factory=ViewFactory.getFactory();
-		JFrame frame = new JFrame();
-		frame.setSize(1200, 800);
-		frame.add(main);
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		main.placeDecal(new RedCross(), 1, 2);
-		main.placeDecal(new SkullCrossBones(), 4, 4);
-		
-		main.focusOn(new Location(0,0));
-		main.focusOn(new Location(0,1));
-		main.focusOn(new Location(0,2));
-		main.focusOn(new Location(0,3));
-		main.focusOn(new Location(0,4));
-		main.focusOn(new Location(0,5));
-
-	}
-	
 }

@@ -32,16 +32,20 @@ public class AreaViewport extends Viewport{
 
 		image=new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g2d=image.createGraphics();
-
 		displayView();
 	}
 
 	public void displayView(){
-		this.setBackground(Color.BLUE);
+		setBackground(Color.BLACK);
 		updateView();
 	}
 
 	public void updateView(){
+		width=getWidth();
+		height=getHeight();
+		image=new BufferedImage(width-(width % GameInfo.TILE_SIZE), height-(height % GameInfo.TILE_SIZE),
+				BufferedImage.TYPE_INT_RGB);
+		g2d=image.createGraphics();
 		g2d.clearRect(0, 0, width, height);
 		centerMapDisplay();
 		displayMap();
@@ -60,15 +64,15 @@ public class AreaViewport extends Viewport{
 		int mapDisplayHeight=height/GameInfo.TILE_SIZE;
 
 		if(focus != null){
-			minX=Math.max(0, focus.x-mapDisplayWidth/2  + 1);
-			minY=Math.max(0, focus.y-mapDisplayHeight/2 + 1);
+			minX=Math.max(0, focus.x-mapDisplayWidth/2);
+			minY=Math.max(0, focus.y-mapDisplayHeight/2);
 		} else{
 			minX=0;
 			minY=0;
 		}
 
 		maxX=Math.min(minX+mapDisplayWidth, mapWidth);
-		maxY=Math.min(minY+mapDisplayWidth, mapHeight);
+		maxY=Math.min(minY+mapDisplayHeight, mapHeight);
 
 		if(maxX==mapWidth){
 			minX=Math.max(0, maxX-mapDisplayWidth);
@@ -87,7 +91,8 @@ public class AreaViewport extends Viewport{
 				Terrain terrain=tile.terrainType;
 				View view=viewFactory.getView(terrain);
 
-				g2d.drawImage(view.getImage(), (i-minX)*GameInfo.TILE_SIZE, (j-minY)*GameInfo.TILE_SIZE, null);
+				g2d.drawImage(view.getImage(), (i-minX)*GameInfo.TILE_SIZE,
+						(j-minY)*GameInfo.TILE_SIZE, null);
 			}
 		}
 
@@ -96,7 +101,8 @@ public class AreaViewport extends Viewport{
 			Color c=g2d.getColor();
 			g2d.setStroke(new BasicStroke(5));
 			g2d.setColor(Color.RED);
-			g2d.drawRect((focus.x-minX)*GameInfo.TILE_SIZE, (focus.y-minY)*GameInfo.TILE_SIZE, GameInfo.TILE_SIZE, 				GameInfo.TILE_SIZE);
+			g2d.drawRect((focus.x-minX)*GameInfo.TILE_SIZE, (focus.y-minY)*GameInfo.TILE_SIZE, 
+					GameInfo.TILE_SIZE, GameInfo.TILE_SIZE);
 			g2d.setStroke(s);
 			g2d.setColor(c);
 		}
@@ -123,7 +129,7 @@ public class AreaViewport extends Viewport{
 		int x=unit.getLoc().x;
 		int y=unit.getLoc().y;
 
-		if(x >= minX && x <= maxX && y >= minY && y <= maxY){
+		if(x >= minX && x < maxX && y >= minY && y < maxY){
 			g2d.drawImage(view.getImage(unit.facingDirection), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), 
 					(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), null);
 		}
