@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
@@ -33,17 +34,18 @@ public class GameWindow extends JFrame {
 		this.setTitle("Lost In the Sauce");
 
 		this.tabbedPane=new JTabbedPane();
+		removeDefaultKeyListeners();
 		tabbedPane.addKeyListener(new KeyListenerHandler(player,this));
-
+		
 		this.mainScreen=new MainScreen(player,opponent,map,width,height);
 		this.unitOverview=new UnitOverview(player, width, height);
 		this.structureOverview=new StructureOverview(player, width, height);
-
+		
 		//for testing only
 		mainScreen.placeDecal(new RedCross(), 1, 2);
 		mainScreen.placeDecal(new SkullCrossBones(), 4, 4);
 
-		this.addKeyListener(new KeyListenerHandler(player, this));
+		
 		setUpTabbedPane();
 		addGameMenu();
 	}
@@ -125,10 +127,23 @@ public class GameWindow extends JFrame {
 		Player opponent=new Player(map);
 		GameWindow game = new GameWindow(player,opponent,map,1275,850);
 		game.openWindow();
-
+		
 
 	}
 
+	private void removeDefaultKeyListeners() {
+	 
+		Action doNothing = new AbstractAction() {
+		    public void actionPerformed(ActionEvent e) {
+		        //do nothing
+		    }
+		};
+		
+		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("LEFT"),"doNothing");
+		tabbedPane.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"),"doNothing");
+		tabbedPane.getActionMap().put("doNothing",doNothing);
+		
+	}
 	private void addGameMenu() {
 
 
