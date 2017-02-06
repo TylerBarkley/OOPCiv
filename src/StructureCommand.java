@@ -49,4 +49,8 @@ public class StructureCommand implements Command {
         }
     }
 
+    public String toString(){
+        return s_inst.toString();
+    }
+
 }

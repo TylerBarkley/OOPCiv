@@ -41,4 +41,8 @@ public class UnitCommand implements Command{
                 break;
         }
     }
+
+    public String toString(){
+        return u_inst.toString();
+    }
 }
