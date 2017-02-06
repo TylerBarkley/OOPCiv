@@ -1,13 +1,12 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by hankerins on 2/5/17.
  */
 public class RunGame {
-    public static void main(String args[]) throws IOException { //for testing purposes only!
+    public static void main(String args[]) { //for testing purposes only!
         //MAP, PLAYERS, INITIAL UNITS
         Map map=new Map(10, 10, false);
         Player p1=new Player(map);
@@ -22,20 +21,12 @@ public class RunGame {
                 GameInfo.COLONIST), StatsFactory.createStats(GameInfo.COLONIST));
 
         //SCREENS
-        MainScreen main=new MainScreen(p1,p2,map,1275,850);
-        JFrame frame = new JFrame();
-        frame.setSize(1275, 850);
-        frame.add(main);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        main.placeDecal(new RedCross(), 1, 2);
-        main.placeDecal(new SkullCrossBones(), 4, 4);
-
-        main.focusOn(new Location(0, 0));
-
-        //KEYLISTENER -> switch this between players when turn ends
-       // new KeyListenerTester(p1);
-
+        int width=1200, height=800;
+        
+        GameWindow window=new GameWindow(p1, p2, map, width, height);
+        window.openWindow();
+        window.placeDecal(new RedCross(), 1, 2);
+        window.placeDecal(new SkullCrossBones(), 4, 4);
     }
 
 }

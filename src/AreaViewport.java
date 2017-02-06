@@ -28,11 +28,10 @@ public class AreaViewport extends Viewport{
 		this.decalLocations= new ArrayList<int[]>();
 
 		this.viewFactory=ViewFactory.getFactory();
-		
+
 		image=new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g2d=image.createGraphics();
-		focus=new Location(width/(2*GameInfo.TILE_SIZE), height/(2*GameInfo.TILE_SIZE));
-		
+
 		displayView();
 	}
 
@@ -52,26 +51,35 @@ public class AreaViewport extends Viewport{
 	}
 
 	private void displayMap(){
+
+		boolean isFocused = (focus != null);
+
 		int mapWidth=map.tileMatrix.length;
 		int mapHeight=map.tileMatrix[0].length;
-		
+
 		int mapDisplayWidth=width/GameInfo.TILE_SIZE;
 		int mapDisplayHeight=height/GameInfo.TILE_SIZE;
+
+		int minX, minY, maxX, maxY;
+		if(isFocused){
+			minX=Math.max(0, focus.x-mapDisplayWidth/2);
+			minY=Math.max(0, focus.y-mapDisplayHeight/2);
+		} else{
+			minX=0;
+			minY=0;
+		}
 		
-		int minX=Math.max(0, focus.x-mapDisplayWidth/2);
-		int minY=Math.max(0, focus.y-mapDisplayHeight/2);
-		
-		int maxX=Math.min(minX+mapDisplayWidth, mapWidth);
-		int maxY=Math.min(minY+mapDisplayWidth, mapHeight);
-		
+		maxX=Math.min(minX+mapDisplayWidth, mapWidth);
+		maxY=Math.min(minY+mapDisplayWidth, mapHeight);
+
 		if(maxX==mapWidth){
 			minX=Math.max(0, maxX-mapDisplayWidth);
 		}
-		
+
 		if(maxY==mapHeight){
 			minY=Math.max(0, maxY-mapDisplayHeight);
 		}
-		
+
 		for(int i=minX; i<maxX; i++){
 			Tile[] row=map.tileMatrix[i];
 			for(int j=minY; j<maxY; j++){
@@ -82,15 +90,17 @@ public class AreaViewport extends Viewport{
 				g2d.drawImage(view.getImage(), (i-minX)*GameInfo.TILE_SIZE, (j-minY)*GameInfo.TILE_SIZE, null);
 			}
 		}
-		Stroke s=g2d.getStroke();
-		Color c=g2d.getColor();
-		g2d.setStroke(new BasicStroke(5));
-		g2d.setColor(Color.RED);
-		g2d.drawRect((focus.x-minX)*GameInfo.TILE_SIZE, (focus.y-minY)*GameInfo.TILE_SIZE, GameInfo.TILE_SIZE, GameInfo.TILE_SIZE);
-		g2d.setStroke(s);
-		g2d.setColor(c);
+		if(focus != null){
+			Stroke s=g2d.getStroke();
+			Color c=g2d.getColor();
+			g2d.setStroke(new BasicStroke(5));
+			g2d.setColor(Color.RED);
+			g2d.drawRect((focus.x-minX)*GameInfo.TILE_SIZE, (focus.y-minY)*GameInfo.TILE_SIZE, GameInfo.TILE_SIZE, 				GameInfo.TILE_SIZE);
+			g2d.setStroke(s);
+			g2d.setColor(c);
+		}
 	}
-	
+
 	private void displayUnits(){
 		for(ArrayList<Unit> units: player.getUnits()){
 			for(Unit unit: units){
@@ -98,21 +108,22 @@ public class AreaViewport extends Viewport{
 				if(unit != null) { displayUnit(unit, false); }
 			}
 		}
-		
+
 		for(ArrayList<Unit> units: opponentPlayer.getUnits()){
 			for(Unit unit: units){
 				if(unit != null) { displayUnit(unit, true); }
 			}
 		}
 	}
-	
+
 	private void displayUnit(Unit unit, boolean opponent) {
 		View view = viewFactory.getView(unit, opponent);
-		
+
 		int x=unit.getLoc().x;
 		int y=unit.getLoc().y;
-		
-		g2d.drawImage(view.getImage(unit.facingDirection), (int)((x+0.5)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), (int)((y+0.5)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), null);
+
+		g2d.drawImage(view.getImage(unit.facingDirection), (int)((x+0.5)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), 
+				(int)((y+0.5)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), null);
 	}
 
 	private void displayStructures(){
@@ -123,7 +134,7 @@ public class AreaViewport extends Viewport{
 				}
 			}
 		}
-		
+
 		for(ArrayList<Structure> structures: opponentPlayer.getStructures()){
 			for(Structure structure: structures){
 				if(structure != null) {
@@ -132,14 +143,15 @@ public class AreaViewport extends Viewport{
 			}
 		}
 	}
-	
+
 	private void displayStructure(Structure structure, boolean opponent) {
 		View view = viewFactory.getView(structure, opponent);
-		
+
 		int x=structure.getLoc().x;
 		int y=structure.getLoc().y;
-		
-		g2d.drawImage(view.getImage(), (int)((x+0.5)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), (int)((y+0.5)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), null);
+
+		g2d.drawImage(view.getImage(), (int)((x+0.5)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), 
+				(int)((y+0.5)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), null);
 	}
 
 	private void displayDecals(){
@@ -166,16 +178,17 @@ public class AreaViewport extends Viewport{
 			}
 		}
 	}
-	
+
 	private void displayRallyPoint(RallyPoint rally) {
 		View view = viewFactory.getView(rally);
-		
+
 		int x=rally.getLoc().x;
 		int y=rally.getLoc().y;
-		
-		g2d.drawImage(view.getImage(), (int)(x*GameInfo.TILE_SIZE-GameInfo.RALLYPOINT_SIZE), (int)(y*GameInfo.TILE_SIZE), null);
+
+		g2d.drawImage(view.getImage(), (int)(x*GameInfo.TILE_SIZE-GameInfo.RALLYPOINT_SIZE), 
+				(int)(y*GameInfo.TILE_SIZE), null);
 	}
-	
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(image,0,0,null);
@@ -185,13 +198,13 @@ public class AreaViewport extends Viewport{
 		focus = loc;
 		updateView();
 	}
-	
+
 	public void focusOn(Unit unit){
 		focus=unit.getLoc();
 		updateView();
 		displayUnit(unit, false);
 	}
-	
+
 	public void focusOn(Structure structure){
 		focus=structure.getLoc();
 		updateView();
