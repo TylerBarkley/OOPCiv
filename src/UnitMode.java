@@ -118,7 +118,7 @@ public class UnitMode extends Mode {
         else currentInstructionIndex--;
 
         if(currentType!=GameInfo.COLONIST){ //only colonist can build base
-            if(currentInstructionIndex==UnitInstruction.U_BUILDBASE){
+            if(currentInstructionIndex==2){
                 currentInstructionIndex--;
             }
         }
@@ -141,7 +141,7 @@ public class UnitMode extends Mode {
             currentInstructionIndex = 2; //build base
         }
         if(currentType != GameInfo.COLONIST){ //only colonist can build base
-            if(currentInstructionIndex == UnitInstruction.U_BUILDBASE){
+            if(currentInstructionIndex == 2){
                 currentInstructionIndex++;
             }
         }
@@ -155,7 +155,7 @@ public class UnitMode extends Mode {
             currentInstructionIndex = 2; //build base
         }
         if(currentType != GameInfo.COLONIST){ //only colonist can build base
-            if(currentInstructionIndex == UnitInstruction.U_BUILDBASE){
+            if(currentInstructionIndex == 2){
                 currentInstructionIndex++;
             }
         }
