@@ -29,22 +29,22 @@ public class ViewFactory {
 	
 	private ViewFactory(){
 		try {
-			explorer=ImageIO.read(new File("Explorer.jpg"));
-			colonist=ImageIO.read(new File("Colonist.jpg"));
-			ranged=ImageIO.read(new File("Ranged.jpg"));
-			melee=ImageIO.read(new File("Melee.jpg"));
-			explorerEnemy=ImageIO.read(new File("EnemyExplorer.jpg"));
-			colonistEnemy=ImageIO.read(new File("EnemyColonist.jpg"));
-			rangedEnemy=ImageIO.read(new File("EnemyRanged.jpg"));
-			meleeEnemy=ImageIO.read(new File("EnemyMelee.jpg"));
-			water=ImageIO.read(new File("Water.jpg"));
-			ground=ImageIO.read(new File("Ground.jpg"));
-			mountain=ImageIO.read(new File("Mountain.jpg"));
-			base=ImageIO.read(new File("Base.jpg"));
-			baseEnemy=ImageIO.read(new File("EnemyBase.jpg"));
-			redCross=ImageIO.read(new File("RedCross.jpg"));
-			skullCrossBones=ImageIO.read(new File("SkullCrossBones.jpg"));
-			rallyPoint=ImageIO.read(new File("Rallypoint.jpg"));
+			explorer=ImageIO.read(getClass().getResource("/Explorer.jpg"));
+			colonist=ImageIO.read(getClass().getResource("/Colonist.jpg"));
+			ranged=ImageIO.read(getClass().getResource("/Ranged.jpg"));
+			melee=ImageIO.read(getClass().getResource("/Melee.jpg"));
+			explorerEnemy=ImageIO.read(getClass().getResource("/EnemyExplorer.jpg"));
+			colonistEnemy=ImageIO.read(getClass().getResource("/EnemyColonist.jpg"));
+			rangedEnemy=ImageIO.read(getClass().getResource("/EnemyRanged.jpg"));
+			meleeEnemy=ImageIO.read(getClass().getResource("/EnemyMelee.jpg"));
+			water=ImageIO.read(getClass().getResource("/Water.jpg"));
+			ground=ImageIO.read(getClass().getResource("/Ground.jpg"));
+			mountain=ImageIO.read(getClass().getResource("/Mountain.jpg"));
+			base=ImageIO.read(getClass().getResource("/Base.jpg"));
+			baseEnemy=ImageIO.read(getClass().getResource("/EnemyBase.jpg"));
+			redCross=ImageIO.read(getClass().getResource("/RedCross.jpg"));
+			skullCrossBones=ImageIO.read(getClass().getResource("/SkullCrossBones.jpg"));
+			rallyPoint=ImageIO.read(getClass().getResource("/Rallypoint.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
