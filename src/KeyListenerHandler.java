@@ -26,43 +26,9 @@ public class KeyListenerHandler implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
         if(e.getKeyCode() == KeyEvent.VK_CONTROL){
             ctrl = false;
         }
-        
-        Location loc=player.location;
-        int x=loc.x;
-        int y=loc.y;
-        
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD1){
-        	window.focusOn(new Location(x-1,y+1));
-        }
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD2){
-        	window.focusOn(new Location(x,y+1));
-        }
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD3){
-        	window.focusOn(new Location(x+1,y+1));
-        }
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD4){
-        	window.focusOn(new Location(x-1,y));
-        }
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD5){
-        	window.focusOn(ms.currentInstance);
-        }
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD6){
-        	window.focusOn(new Location(x+1,y));
-        }
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD7){
-        	window.focusOn(new Location(x-1,y-1));
-        }
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD8){
-        	window.focusOn(new Location(x,y-1));
-        }
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD9){
-        	window.focusOn(new Location(x+1,y-1));
-        }
-        window.updateView();
     }
 
     @Override
@@ -108,35 +74,27 @@ public class KeyListenerHandler implements KeyListener {
         }
         
         Location loc=player.location;
-        int x=loc.x;
-        int y=loc.y;
         
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD1){
-        	window.focusOn(new Location(x-1,y+1));
+        	window.focusOn(loc.getAdjacent(Map.MapDirection.SOUTHWEST));
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD2){
-        	window.focusOn(new Location(x,y+1));
+        	window.focusOn(loc.getAdjacent(Map.MapDirection.SOUTH));
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD3){
-        	window.focusOn(new Location(x+1,y+1));
-        }
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD4){
-        	window.focusOn(new Location(x-1,y));
+        	window.focusOn(loc.getAdjacent(Map.MapDirection.SOUTHEAST));
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD5){
         	window.focusOn(ms.currentInstance);
         }
-        if(e.getKeyCode() == KeyEvent.VK_NUMPAD6){
-        	window.focusOn(new Location(x+1,y));
-        }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD7){
-        	window.focusOn(new Location(x-1,y-1));
+        	window.focusOn(loc.getAdjacent(Map.MapDirection.NORTHWEST));
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD8){
-        	window.focusOn(new Location(x,y-1));
+        	window.focusOn(loc.getAdjacent(Map.MapDirection.NORTH));
         }
         if(e.getKeyCode() == KeyEvent.VK_NUMPAD9){
-        	window.focusOn(new Location(x+1,y-1));
+        	window.focusOn(loc.getAdjacent(Map.MapDirection.NORTHEAST));
         }
 
         if(e.getKeyCode() == KeyEvent.VK_ENTER){

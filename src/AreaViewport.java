@@ -42,8 +42,7 @@ public class AreaViewport extends Viewport{
 	public void updateView(){
 		width=getWidth();
 		height=getHeight();
-		image=new BufferedImage(width-(width % GameInfo.TILE_SIZE), height-(height % GameInfo.TILE_SIZE),
-				BufferedImage.TYPE_INT_RGB);
+		image=new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		g2d=image.createGraphics();
 		g2d.clearRect(0, 0, width, height);
 		centerMapDisplay();
@@ -59,8 +58,8 @@ public class AreaViewport extends Viewport{
 		int mapWidth=map.tileMatrix.length;
 		int mapHeight=map.tileMatrix[0].length;
 
-		int mapDisplayWidth=width/GameInfo.TILE_SIZE;
-		int mapDisplayHeight=height/GameInfo.TILE_SIZE;
+		int mapDisplayWidth=width/GameInfo.TILE_SIZE*4/5;
+		int mapDisplayHeight=height/GameInfo.TILE_SIZE*2;
 
 		if(player.location != null){
 			minX=Math.max(0, player.location.x-mapDisplayWidth/2);
@@ -90,8 +89,10 @@ public class AreaViewport extends Viewport{
 				Terrain terrain=tile.terrainType;
 				View view=viewFactory.getView(terrain);
 
-				g2d.drawImage(view.getImage(), (i-minX)*GameInfo.TILE_SIZE,
-						(j-minY)*GameInfo.TILE_SIZE, null);
+				Location loc=new Location(i,j);
+				
+				g2d.drawImage(view.getImage(), getMapPositionX(loc),
+						getMapPositionY(loc), null);
 			}
 		}
 
@@ -101,7 +102,7 @@ public class AreaViewport extends Viewport{
 			Color c=g2d.getColor();
 			g2d.setStroke(new BasicStroke(5));
 			g2d.setColor(Color.RED);
-			g2d.drawRect((player.location.x-minX)*GameInfo.TILE_SIZE, (player.location.y-minY)*GameInfo.TILE_SIZE, 
+			g2d.drawRect(getMapPositionX(player.location), getMapPositionY(player.location), 
 					GameInfo.TILE_SIZE, GameInfo.TILE_SIZE);
 			g2d.setStroke(s);
 			g2d.setColor(c);
@@ -146,16 +147,19 @@ public class AreaViewport extends Viewport{
 
 		int x=con.getLoc().x;
 		int y=con.getLoc().y;
+		
+		Location loc=new Location(x,y);
+		
 		if(con instanceof Structure){
 			if(x > minX && x < maxX && y > minY && y < maxY){
-				g2d.drawImage(view.getImage(), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), 
-						(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.STRUCTURE_SIZE/2.0), null);
+				g2d.drawImage(view.getImage(), (int)(getMapPositionX(loc)-GameInfo.STRUCTURE_SIZE/2.0), 
+						(int)(getMapPositionY(loc)-GameInfo.STRUCTURE_SIZE/2.0), null);
 			}
 		}
 		else{
 			if(x > minX && x < maxX && y > minY && y < maxY){
-				g2d.drawImage(view.getImage(), (int)((x+0.5-minX)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), 
-						(int)((y+0.5-minY)*GameInfo.TILE_SIZE-GameInfo.UNIT_SIZE/2.0), null);
+				g2d.drawImage(view.getImage(), (int)(getMapPositionX(loc)-GameInfo.UNIT_SIZE/2.0), 
+						(int)(getMapPositionY(loc)-GameInfo.UNIT_SIZE/2.0), null);
 			}
 		}
 	}
@@ -165,9 +169,12 @@ public class AreaViewport extends Viewport{
 			int x=decalLocations.get(i)[0];
 			int y=decalLocations.get(i)[1];
 
+			Location loc=new Location(x,y);
+			
 			View view=viewFactory.getView(decals.get(i));
 			if(x > minX && x < maxX && y > minY && y < maxY){
-				g2d.drawImage(view.getImage(), (x-minX)*GameInfo.TILE_SIZE, (y-minY)*GameInfo.TILE_SIZE, null);
+				g2d.drawImage(view.getImage(), getMapPositionX(loc), 
+						getMapPositionY(loc), null);
 			}
 		}
 	}
@@ -191,9 +198,12 @@ public class AreaViewport extends Viewport{
 
 		int x=rally.getLoc().x;
 		int y=rally.getLoc().y;
+		
+		Location loc=new Location(x,y);
+		
 		if(x > minX && x < maxX && y > minY && y < maxY){
-			g2d.drawImage(view.getImage(), (int)((x-minX+1)*GameInfo.TILE_SIZE-GameInfo.RALLYPOINT_SIZE), 
-					(int)((y-minY)*GameInfo.TILE_SIZE), null);
+			g2d.drawImage(view.getImage(), getMapPositionX(loc) + GameInfo.RALLYPOINT_SIZE, 
+					getMapPositionY(loc), null);
 		}
 	}
 
@@ -232,5 +242,13 @@ public class AreaViewport extends Viewport{
 		}
 
 		player.location = new Location(x, y);
+	}
+	
+	private int getMapPositionX(Location loc){
+		return (int)((1.5*(loc.x-minX)+(0.75*(loc.y%2)))*GameInfo.TILE_SIZE);
+	}
+	
+	private int getMapPositionY(Location loc){
+		return (loc.y-minY)*GameInfo.TILE_SIZE/2;
 	}
 }

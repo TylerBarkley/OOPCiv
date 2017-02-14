@@ -37,9 +37,9 @@ public class ViewFactory {
 			colonistEnemy=ImageIO.read(getClass().getResource("/EnemyColonist.jpg"));
 			rangedEnemy=ImageIO.read(getClass().getResource("/EnemyRanged.jpg"));
 			meleeEnemy=ImageIO.read(getClass().getResource("/EnemyMelee.jpg"));
-			water=ImageIO.read(getClass().getResource("/Water.jpg"));
-			ground=ImageIO.read(getClass().getResource("/Ground.jpg"));
-			mountain=ImageIO.read(getClass().getResource("/Mountain.jpg"));
+			water=ImageIO.read(getClass().getResource("/Water.png"));
+			ground=ImageIO.read(getClass().getResource("/Ground.png"));
+			mountain=ImageIO.read(getClass().getResource("/Mountain.png"));
 			base=ImageIO.read(getClass().getResource("/Base.jpg"));
 			baseEnemy=ImageIO.read(getClass().getResource("/EnemyBase.jpg"));
 			redCross=ImageIO.read(getClass().getResource("/RedCross.jpg"));

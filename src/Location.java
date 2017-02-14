@@ -20,35 +20,27 @@ public class Location {
 		switch (md){
 		case NORTH:
 			newX = x;
-			newY = y+1;
+			newY = y-2;
 			break;
 		case NORTHEAST:
-			newX = x+1;
-			newY = y+1;
+			newX = x+(y%2);
+			newY = y-1;
 			break;
 		case NORTHWEST:
-			newX = x-1;
-			newY = y+1;
-			break;
-		case EAST:
-			newX = x+1;
-			newY = y;
-			break;
-		case WEST:
-			newX = x-1;
-			newY = y;
+			newX = x-((y+1)%2);
+			newY = y-1;
 			break;
 		case SOUTH:
 			newX = x;
-			newY = y-1;
+			newY = y+2;
 			break;
 		case SOUTHEAST:
-			newX = x+1;
-			newY = y-1;
+			newX = x+(y%2);
+			newY = y+1;
 			break;
 		case SOUTHWEST:
-			newX = x-1;
-			newY = y-1;
+			newX = x-((y+1)%2);
+			newY = y+1;
 			break;
 		}
 
